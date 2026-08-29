@@ -23,6 +23,18 @@
     width: 15%;
 }
 
+.contentPane {
+    flex-grow: 1;
+}
+
+.splitContentPane {
+    flex-grow: 1;
+    > :nth-child(2) {
+        border-top-width: 1px;
+        border-top-color: lightgrey;
+    }
+}
+
 .topScreenBar {
     background-color: #e1e1e1;
     min-height: 3vh

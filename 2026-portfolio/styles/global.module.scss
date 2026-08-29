@@ -1,0 +1,14 @@
+.rowFlex {
+    display: flex;
+    flex-direction: row;
+}
+
+.columnFlex {
+    display: flex;
+    flex-direction: column;
+}
+
+.greyBorderRight {
+    border-right-width: 1px;
+    border-right-color: lightgrey;
+}
