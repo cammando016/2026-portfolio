@@ -25,9 +25,13 @@
 
 .contentPane {
     flex-grow: 1;
+    > :nth-child(2) {
+        border-left-width: 1px;
+        border-left-color: lightgrey;
+    }
 }
 
-.splitContentPane {
+.verticalFileSplit {
     flex-grow: 1;
     > :nth-child(2) {
         border-top-width: 1px;
