@@ -2,12 +2,18 @@
     flex: 1
 }
 
+.marginSides {
+    margin: 0 3;
+}
+
 .fileBar {
     background-color: #f1f1f1;
 }
 
 .fileName {
     background-color: white;
+    padding: 4 10;
+    width: max-content;
 }
 
 .lineNum {
