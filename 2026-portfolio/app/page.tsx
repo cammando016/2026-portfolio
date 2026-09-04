@@ -1,22 +1,37 @@
 'use client'
 
 import CodeFile from '../components/CodeFile';
+import CodeFileNameTab from '../components/CodeFileNameTab';
 import { useState } from 'react';
 import styles from '../styles/home-layout.module.scss';
+import codeFileStyles from '../styles/codeFile.module.scss';
 import globalStyles from '../styles/global.module.scss';
+import { FileData } from '../types/Files';
 
 export default function Home() {
-  const [fileData, setFileData] = useState<{key : string; screenQuarter: Number, fileName: string, lineCount: number, showFile: boolean }[]> ([
-    { key: crypto.randomUUID(), screenQuarter: 1, fileName: 'About Me', lineCount: 20, showFile: true },
-    { key: crypto.randomUUID(), screenQuarter: 2, fileName: 'Github Graph', lineCount: 6, showFile: true },
-    { key: crypto.randomUUID(), screenQuarter: 3, fileName: 'Github Graph', lineCount: 6, showFile: true },
-    { key: crypto.randomUUID(), screenQuarter: 4, fileName: 'Contact', lineCount: 15, showFile: true },
+  const [fileData, setFileData] = useState<FileData[]> ([
+    { key: crypto.randomUUID(), screenQuarter: 1, fileName: 'About Me', lineCount: 20, fileOpen: true, activeFileInQuarter: true },
+    { key: crypto.randomUUID(), screenQuarter: 2, fileName: 'Github Graph', lineCount: 6, fileOpen: true, activeFileInQuarter: true },
+    { key: crypto.randomUUID(), screenQuarter: 1, fileName: 'Github Graph', lineCount: 6, fileOpen: true, activeFileInQuarter: true },
+    { key: crypto.randomUUID(), screenQuarter: 4, fileName: 'Contact', lineCount: 15, fileOpen: true, activeFileInQuarter: true },
   ])
 
-  const quarter1Files = fileData.filter(f => f.screenQuarter === 1 && f.showFile);
-  const quarter2Files = fileData.filter(f => f.screenQuarter === 2 && f.showFile);
-  const quarter3Files = fileData.filter(f => f.screenQuarter === 3 && f.showFile);
-  const quarter4Files = fileData.filter(f => f.screenQuarter === 4 && f.showFile);
+  const updateScreenQuarter = (fileKey: string, newQuarter: number) => {
+    const newFileData = fileData.map(f => {
+      if (f.key !== fileKey) return f
+      return ({
+        ...f,
+        screenQuarter: newQuarter
+      })
+    })
+
+    setFileData(newFileData);
+  }
+
+  const quarter1Files = fileData.filter(f => f.screenQuarter === 1 && f.fileOpen);
+  const quarter2Files = fileData.filter(f => f.screenQuarter === 2 && f.fileOpen);
+  const quarter3Files = fileData.filter(f => f.screenQuarter === 3 && f.fileOpen);
+  const quarter4Files = fileData.filter(f => f.screenQuarter === 4 && f.fileOpen);
   return (
     <div className={styles.window}>
       <div className={`${styles.topScreenBar} ${styles.rowFlex} `}>
@@ -38,12 +53,27 @@ export default function Home() {
             (quarter1Files.length > 0 || quarter2Files.length > 0) &&
             (
               <div className={`${styles.verticalFileSplit}`}>
-                {
-                  quarter1Files.map(f => <CodeFile fileName={f.fileName} lineCount={f.lineCount} key={f.key} />)
-                }
-                {
-                  quarter2Files.map(f => <CodeFile fileName={f.fileName} lineCount={f.lineCount} key={f.key} />)
-                }
+                <div>
+                  <div className={`${codeFileStyles.fileBar} ${codeFileStyles.container} ${globalStyles.rowFlex}`}>
+                    {
+                      quarter1Files.map(f => <CodeFileNameTab key={f.key} fileName={f.fileName} fileKey={f.key} />)
+                    }
+                  </div>
+                  {
+                    quarter1Files.length > 0 && <CodeFile file={quarter1Files[0]} />
+                  }
+                </div>
+
+                <div>
+                  <div className={`${codeFileStyles.fileBar} ${codeFileStyles.container} ${globalStyles.rowFlex}`}>
+                    {
+                      quarter2Files.map(f => <CodeFileNameTab key={f.key} fileName={f.fileName} fileKey={f.key} />)
+                    }
+                  </div>
+                  {
+                    quarter2Files.length > 0 && <CodeFile file={quarter2Files[0]} />
+                  }
+                </div>
               </div>
             )
           }
@@ -51,12 +81,27 @@ export default function Home() {
             (quarter3Files.length > 0 || quarter4Files.length > 0) &&
             (
               <div className={`${styles.verticalFileSplit}`}>
-                {
-                  quarter3Files.map(f => <CodeFile fileName={f.fileName} lineCount={f.lineCount} key={f.key} />)
-                }
-                {
-                  quarter4Files.map(f => <CodeFile fileName={f.fileName} lineCount={f.lineCount} key={f.key} />)
-                }
+                <div>
+                  <div className={`${codeFileStyles.fileBar} ${codeFileStyles.container} ${globalStyles.rowFlex}`}>
+                    {
+                      quarter3Files.map(f => <CodeFileNameTab key={f.key} fileName={f.fileName} fileKey={f.key} />)
+                    }
+                  </div>
+                  {
+                    quarter3Files.length > 0 && <CodeFile file={quarter3Files[0]} />
+                  }
+                </div>
+
+                <div>
+                  <div className={`${codeFileStyles.fileBar} ${codeFileStyles.container} ${globalStyles.rowFlex}`}>
+                    {
+                      quarter4Files.map(f => <CodeFileNameTab key={f.key} fileName={f.fileName} fileKey={f.key} />)
+                    }
+                  </div>
+                  {
+                    quarter4Files.length > 0 && <CodeFile file={quarter4Files[0]} />
+                  }
+                </div>
               </div>
             )
           }
