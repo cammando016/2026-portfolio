@@ -28,10 +28,12 @@ export default function Home() {
     setFileData(newFileData);
   }
 
-  const quarter1Files = fileData.filter(f => f.screenQuarter === 1 && f.fileOpen);
-  const quarter2Files = fileData.filter(f => f.screenQuarter === 2 && f.fileOpen);
-  const quarter3Files = fileData.filter(f => f.screenQuarter === 3 && f.fileOpen);
-  const quarter4Files = fileData.filter(f => f.screenQuarter === 4 && f.fileOpen);
+  const quarterFiles: FileData[][] = [[], [], [], []];
+
+  fileData.forEach(f => {
+    quarterFiles[f.screenQuarter - 1].push(f);
+  })
+
   return (
     <div className={styles.window}>
       <div className={`${styles.topScreenBar} ${styles.rowFlex} `}>
@@ -50,56 +52,56 @@ export default function Home() {
 
         <div className={`${styles.rowFlex} ${styles.contentPane}`}>
           {
-            (quarter1Files.length > 0 || quarter2Files.length > 0) &&
+            (quarterFiles[0].length > 0 || quarterFiles[1].length > 0) &&
             (
               <div className={`${styles.verticalFileSplit}`}>
                 <div>
                   <div className={`${codeFileStyles.fileBar} ${codeFileStyles.container} ${globalStyles.rowFlex}`}>
                     {
-                      quarter1Files.map(f => <CodeFileNameTab key={f.key} fileName={f.fileName} fileKey={f.key} />)
+                      quarterFiles[0].map(f => <CodeFileNameTab key={f.key} fileName={f.fileName} fileKey={f.key} />)
                     }
                   </div>
                   {
-                    quarter1Files.length > 0 && <CodeFile file={quarter1Files[0]} />
+                    quarterFiles[0].length > 0 && <CodeFile file={quarterFiles[0][0]} />
                   }
                 </div>
 
                 <div>
                   <div className={`${codeFileStyles.fileBar} ${codeFileStyles.container} ${globalStyles.rowFlex}`}>
                     {
-                      quarter2Files.map(f => <CodeFileNameTab key={f.key} fileName={f.fileName} fileKey={f.key} />)
+                      quarterFiles[1].map(f => <CodeFileNameTab key={f.key} fileName={f.fileName} fileKey={f.key} />)
                     }
                   </div>
                   {
-                    quarter2Files.length > 0 && <CodeFile file={quarter2Files[0]} />
+                    quarterFiles[1].length > 0 && <CodeFile file={quarterFiles[1][0]} />
                   }
                 </div>
               </div>
             )
           }
           {
-            (quarter3Files.length > 0 || quarter4Files.length > 0) &&
+            (quarterFiles[2].length > 0 || quarterFiles[3].length > 0) &&
             (
               <div className={`${styles.verticalFileSplit}`}>
                 <div>
                   <div className={`${codeFileStyles.fileBar} ${codeFileStyles.container} ${globalStyles.rowFlex}`}>
                     {
-                      quarter3Files.map(f => <CodeFileNameTab key={f.key} fileName={f.fileName} fileKey={f.key} />)
+                      quarterFiles[2].map(f => <CodeFileNameTab key={f.key} fileName={f.fileName} fileKey={f.key} />)
                     }
                   </div>
                   {
-                    quarter3Files.length > 0 && <CodeFile file={quarter3Files[0]} />
+                    quarterFiles[2].length > 0 && <CodeFile file={quarterFiles[2][0]} />
                   }
                 </div>
 
                 <div>
                   <div className={`${codeFileStyles.fileBar} ${codeFileStyles.container} ${globalStyles.rowFlex}`}>
                     {
-                      quarter4Files.map(f => <CodeFileNameTab key={f.key} fileName={f.fileName} fileKey={f.key} />)
+                      quarterFiles[3].map(f => <CodeFileNameTab key={f.key} fileName={f.fileName} fileKey={f.key} />)
                     }
                   </div>
                   {
-                    quarter4Files.length > 0 && <CodeFile file={quarter4Files[0]} />
+                    quarterFiles[3].length > 0 && <CodeFile file={quarterFiles[3][0]} />
                   }
                 </div>
               </div>
