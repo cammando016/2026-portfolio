@@ -10,9 +10,9 @@ import { FileData } from '../types/Files';
 import SectionLinks from '../components/SectionLinks';
 
 export default function Home() {
-  console.log('log test');
   const [showLinks, setShowLinks] = useState<boolean>(true);
   const [activeScreenQuarter, setActiveScreenQuarter] = useState<number>(1); 
+  console.log(activeScreenQuarter);
   const [fileData, setFileData] = useState<FileData[]> ([
     { key: crypto.randomUUID(), screenQuarter: 1, fileName: 'About Me', lineCount: 20, fileOpen: true, activeFileInQuarter: true },
     { key: crypto.randomUUID(), screenQuarter: 2, fileName: 'Github Graph', lineCount: 6, fileOpen: true, activeFileInQuarter: true },
@@ -20,7 +20,7 @@ export default function Home() {
     { key: crypto.randomUUID(), screenQuarter: 4, fileName: 'Contact', lineCount: 15, fileOpen: true, activeFileInQuarter: true },
   ])
 
-  const updateFileScreenQuarter = (fileKey: string, newQuarter: number) => {
+  const updateFileScreenQuarter = (fileKey: string, newQuarter: number) : void => {
     const newFileData : FileData[] = fileData.map(f => {
       if (f.key !== fileKey) return f
       return ({
@@ -32,10 +32,28 @@ export default function Home() {
     setFileData(newFileData);
   }
 
-  const updateActiveScreenQuarter = (newQuarter: number) => setActiveScreenQuarter(newQuarter);
+  const updateQuarterActiveFile = (fileKey: string) : void => {
+    const quarterOfClickedFile = fileData.find(f => f.key === fileKey)!.screenQuarter;
+
+    const newFileData : FileData[] = fileData.map(f => {
+      if (f.key !== fileKey && f.screenQuarter !== quarterOfClickedFile) return f;
+      if (f.key !== fileKey && f.screenQuarter === quarterOfClickedFile) return ({
+        ...f,
+        activeFileInQuarter: false
+      })
+      return ({
+        ...f,
+        activeFileInQuarter: true
+      })
+    });
+
+    setFileData(newFileData);
+  }
+
+  const updateActiveScreenQuarter = (newQuarter: number) : void => setActiveScreenQuarter(newQuarter);
 
   //Passed into CodeFileNameTab components to trigger on clicking cross button
-  const closeFile = (fileKey: string) => {
+  const closeFile = (fileKey: string) : void => {
     //Need to update next file in quarter as activeFileInQuarter = true if multiple in quarter array from closed file
     //Get quarter of closed file for use in updating activeFileInQuarter
     const closedFileQuarter : number = fileData.find(f => f.key === fileKey)!.screenQuarter;
@@ -61,12 +79,9 @@ export default function Home() {
     setFileData(newFileData);
   }
 
-  const openFile = (fileKey : string) => {
-    console.log('Open file func ran')
+  const openFile = (fileKey : string) : void => {
     //Each file can only be open once, early return if already open
     if (fileData.find(f => f.key === fileKey)!.fileOpen) return;
-
-    console.log('Got passed early return');
 
     const newFileData : FileData[] = fileData.map(f => {
       //No changes for files that don't match and are in a different quarter of screen to current active
@@ -122,12 +137,12 @@ export default function Home() {
           {
             (quarterFiles[0].length > 0 || quarterFiles[1].length > 0) &&
             (
-              <div className={`${styles.verticalFileSplit}`}>
+              <div className={`${styles.verticalFileSplit} ${globalStyles.columnFlex}`}>
                 { quarterFiles[0].length > 0 &&
-                  <div>
+                  <div className={`${codeFileStyles.screenQuarterContainer}`} onClick={() => updateActiveScreenQuarter(1)}>
                     <div className={`${codeFileStyles.fileBar} ${codeFileStyles.container} ${globalStyles.rowFlex}`}>
                       {
-                        quarterFiles[0].map(f => <CodeFileNameTab key={f.key} fileName={f.fileName} fileKey={f.key} closeFile={closeFile} />)
+                        quarterFiles[0].map(f => <CodeFileNameTab key={f.key} fileName={f.fileName} fileKey={f.key} activeFileInQuarter={f.activeFileInQuarter} closeFile={closeFile} setActiveFileInQuarter={updateQuarterActiveFile} />)
                       }
                     </div>
                     {
@@ -136,10 +151,10 @@ export default function Home() {
                   </div>
                 }
                 { quarterFiles[1].length > 0 &&
-                  <div>
+                  <div className={`${codeFileStyles.screenQuarterContainer}`}  onClick={() => updateActiveScreenQuarter(2)}>
                     <div className={`${codeFileStyles.fileBar} ${codeFileStyles.container} ${globalStyles.rowFlex}`}>
                       {
-                        quarterFiles[1].map(f => <CodeFileNameTab key={f.key} fileName={f.fileName} fileKey={f.key} closeFile={closeFile} />)
+                        quarterFiles[1].map(f => <CodeFileNameTab key={f.key} fileName={f.fileName} fileKey={f.key} activeFileInQuarter={f.activeFileInQuarter} closeFile={closeFile} setActiveFileInQuarter={updateQuarterActiveFile} />)
                       }
                     </div>
                     {
@@ -153,12 +168,12 @@ export default function Home() {
           {
             (quarterFiles[2].length > 0 || quarterFiles[3].length > 0) &&
             (
-              <div className={`${styles.verticalFileSplit}`}>
+              <div className={`${styles.verticalFileSplit} ${globalStyles.columnFlex}`}>
                 { quarterFiles[2].length > 0 &&
-                  <div>
+                  <div className={`${codeFileStyles.screenQuarterContainer}`}  onClick={() => updateActiveScreenQuarter(3)}>
                     <div className={`${codeFileStyles.fileBar} ${codeFileStyles.container} ${globalStyles.rowFlex}`}>
                       {
-                        quarterFiles[2].map(f => <CodeFileNameTab key={f.key} fileName={f.fileName} fileKey={f.key} closeFile={closeFile} />)
+                        quarterFiles[2].map(f => <CodeFileNameTab key={f.key} fileName={f.fileName} fileKey={f.key} activeFileInQuarter={f.activeFileInQuarter} closeFile={closeFile} setActiveFileInQuarter={updateQuarterActiveFile} />)
                       }
                     </div>
                     {
@@ -167,10 +182,10 @@ export default function Home() {
                   </div>
                 }
                 { quarterFiles[3].length > 0 &&
-                  <div>
+                  <div className={`${codeFileStyles.screenQuarterContainer}`}  onClick={() => updateActiveScreenQuarter(4)}>
                     <div className={`${codeFileStyles.fileBar} ${codeFileStyles.container} ${globalStyles.rowFlex}`}>
                       {
-                        quarterFiles[3].map(f => <CodeFileNameTab key={f.key} fileName={f.fileName} fileKey={f.key} closeFile={closeFile} />)
+                        quarterFiles[3].map(f => <CodeFileNameTab key={f.key} fileName={f.fileName} fileKey={f.key} activeFileInQuarter={f.activeFileInQuarter} closeFile={closeFile} setActiveFileInQuarter={updateQuarterActiveFile} />)
                       }
                     </div>
                     {

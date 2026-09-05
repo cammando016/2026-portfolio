@@ -11,9 +11,16 @@
 }
 
 .fileName {
-    background-color: white;
     padding: 4 10;
     width: max-content;
+}
+
+.fileNameActive {
+    background-color: white;
+}
+
+.fileNameInactive {
+    background-color: #E9E9E9;
 }
 
 .lineNum {
@@ -22,4 +29,10 @@
 
 .lineNumsContainer {
     padding: 0px 20px;
+}
+
+.screenQuarterContainer {
+    &:last-child {
+        flex: 1;
+    }
 }
