@@ -7,7 +7,7 @@ import { useState } from "react";
 interface Props {
     sectionName: string,
     files: FileData[],
-    openFile: (key : string) => void,
+    openFile?: (key : string) => void,
 }
 
 export default function SectionLinks (props: Props) {
@@ -24,7 +24,7 @@ export default function SectionLinks (props: Props) {
                     return (
                     <div key={f.key} >
                         <button 
-                            onClick={() => props.openFile(f.key)}
+                            // onClick={() => props.openFile(f.key)}
                             className={`${globalStyles.button}`}
                         >
                             {f.fileName}

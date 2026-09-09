@@ -5,4 +5,5 @@ export interface FileData {
     lineCount: number,
     fileOpen: boolean,
     activeFileInQuarter: boolean,
+    fileContent?: string,
 }
