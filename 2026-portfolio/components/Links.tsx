@@ -12,6 +12,9 @@ export default function Links () {
             </div>
 
             <SectionLinks sectionName='Home' />
+            <SectionLinks sectionName='PROJECT: Resume' />
+            <SectionLinks sectionName='PROJECT: NBA Guesser' />
+            <SectionLinks sectionName='PROJECT: Calendar' />
         </div>
     )
 }

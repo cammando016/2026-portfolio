@@ -1,3 +1,5 @@
+import React, { ComponentType } from "react";
+
 export interface FileData {
     key: string,
     screenQuarter: number,
@@ -5,4 +7,5 @@ export interface FileData {
     lineCount: number,
     fileOpen: boolean,
     activeFileInQuarter: boolean,
+    contentComponent: ComponentType,
 }

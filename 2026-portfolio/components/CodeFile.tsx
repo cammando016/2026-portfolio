@@ -8,6 +8,7 @@ interface Props {
 
 export default function CodeFile ( props : Props ) {
     const lineNums : number[] = [];
+    const Content = props.file.contentComponent;
 
     for (let i = 0; i < props.file.lineCount; i++) {
         lineNums.push(i+1);
@@ -21,7 +22,7 @@ export default function CodeFile ( props : Props ) {
                         lineNums.map(l => <p key={l} className={`${styles.lineNum}`}>{l}</p>)
                     }
                 </div>
-                <p>content</p>
+                <Content />
             </div>
         </div>
     )
