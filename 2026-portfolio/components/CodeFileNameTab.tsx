@@ -2,7 +2,7 @@
 
 import globalStyles from '../styles/global.module.scss';
 import styles from '../styles/codeFile.module.scss';
-import { useFileDataStore } from '../store/fileDataStore';
+import { useHomeFileDataStore } from '../store/homeFileDataStore';
 
 interface Props {
     fileName: string,
@@ -11,8 +11,8 @@ interface Props {
 }
 
 export default function CodeFileNameTab(props: Props) {
-    const closeFile = useFileDataStore(state => state.closeFile);
-    const updateQuarterActiveFile = useFileDataStore(state => state.updateQuarterActiveFile)
+    const closeFile = useHomeFileDataStore(state => state.closeFile);
+    const updateQuarterActiveFile = useHomeFileDataStore(state => state.updateQuarterActiveFile)
 
     return (
         <div className={`${globalStyles.rowFlex} ${styles.fileName} ${props.activeFileInQuarter ? styles.fileNameActive : styles.fileNameInactive}`}>

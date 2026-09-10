@@ -2,7 +2,7 @@
 
 import globalStyles from '../styles/global.module.scss';
 import { useState } from "react";
-import { useFileDataStore } from "../store/fileDataStore";
+import { useHomeFileDataStore } from "../store/homeFileDataStore";
 
 interface Props {
     sectionName: string,
@@ -10,8 +10,8 @@ interface Props {
 
 export default function SectionLinks (props: Props) {
     const [showLinks, setShowLinks] = useState<boolean>(true);
-    const openFile = useFileDataStore(state => state.openFile);
-    const fileData = useFileDataStore(state => state.fileData);
+    const openFile = useHomeFileDataStore(state => state.openFile);
+    const fileData = useHomeFileDataStore(state => state.fileData);
 
     return (
         <div>

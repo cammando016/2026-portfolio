@@ -2,11 +2,11 @@
 
 import styles from '../styles/home-layout.module.scss';
 import { FileData } from '../types/Files';
-import { useFileDataStore } from '../store/fileDataStore';
+import { useHomeFileDataStore } from '../store/homeFileDataStore';
 import ScreenQuarters from '../components/ScreenQuarters';
 
 export default function Home() {
-  const fileData = useFileDataStore(state => state.fileData);
+  const fileData = useHomeFileDataStore(state => state.fileData);
   const quarterFiles: FileData[][] = [[], [], [], []];
 
   fileData.forEach(f => {
