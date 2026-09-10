@@ -7,102 +7,18 @@ import styles from '../styles/home-layout.module.scss';
 import codeFileStyles from '../styles/codeFile.module.scss';
 import globalStyles from '../styles/global.module.scss';
 import { FileData } from '../types/Files';
+import { useFileDataStore } from '../store/fileDataStore';
 import SectionLinks from '../components/SectionLinks';
 
 export default function Home() {
   const [showLinks, setShowLinks] = useState<boolean>(true);
   const [activeScreenQuarter, setActiveScreenQuarter] = useState<number>(1); 
-  console.log(activeScreenQuarter);
-  const [fileData, setFileData] = useState<FileData[]> ([
-    { key: crypto.randomUUID(), screenQuarter: 1, fileName: 'About Me', lineCount: 20, fileOpen: true, activeFileInQuarter: true },
-    { key: crypto.randomUUID(), screenQuarter: 2, fileName: 'Github Graph', lineCount: 6, fileOpen: true, activeFileInQuarter: true },
-    { key: crypto.randomUUID(), screenQuarter: 1, fileName: 'Spare Testing', lineCount: 8, fileOpen: true, activeFileInQuarter: false },
-    { key: crypto.randomUUID(), screenQuarter: 4, fileName: 'Contact', lineCount: 15, fileOpen: true, activeFileInQuarter: true },
-  ])
-
-  const updateFileScreenQuarter = (fileKey: string, newQuarter: number) : void => {
-    const newFileData : FileData[] = fileData.map(f => {
-      if (f.key !== fileKey) return f
-      return ({
-        ...f,
-        screenQuarter: newQuarter
-      })
-    })
-
-    setFileData(newFileData);
-  }
-
-  const updateQuarterActiveFile = (fileKey: string) : void => {
-    const quarterOfClickedFile = fileData.find(f => f.key === fileKey)!.screenQuarter;
-
-    const newFileData : FileData[] = fileData.map(f => {
-      if (f.key !== fileKey && f.screenQuarter !== quarterOfClickedFile) return f;
-      if (f.key !== fileKey && f.screenQuarter === quarterOfClickedFile) return ({
-        ...f,
-        activeFileInQuarter: false
-      })
-      return ({
-        ...f,
-        activeFileInQuarter: true
-      })
-    });
-
-    setFileData(newFileData);
-  }
-
-  const updateActiveScreenQuarter = (newQuarter: number) : void => setActiveScreenQuarter(newQuarter);
-
-  //Passed into CodeFileNameTab components to trigger on clicking cross button
-  const closeFile = (fileKey: string) : void => {
-    //Need to update next file in quarter as activeFileInQuarter = true if multiple in quarter array from closed file
-    //Get quarter of closed file for use in updating activeFileInQuarter
-    const closedFileQuarter : number = fileData.find(f => f.key === fileKey)!.screenQuarter;
-
-    //Need key of first file in the same quarter of closed file to set as activeFileInQuarter
-    //May not be other files open in same quarter, filter matching first then get key of index 0 if exists
-    const matchingQuarterFiles : FileData[] = fileData.filter(f => f.key !== fileKey && f.screenQuarter === closedFileQuarter);
-    const firstFileKeyMatchingQuarter : string = matchingQuarterFiles.length > 0 ? matchingQuarterFiles[0].key : '';
-
-    const newFileData : FileData[] = fileData.map(f => {
-      if (f.key !== fileKey && f.key !== firstFileKeyMatchingQuarter) return f;
-      if (f.key === firstFileKeyMatchingQuarter) return ({
-        ...f,
-        activeFileInQuarter: true
-      })
-      return ({
-        ...f,
-        screenQuarter: 0,
-        fileOpen: false
-      });
-    });
-
-    setFileData(newFileData);
-  }
-
-  const openFile = (fileKey : string) : void => {
-    //Each file can only be open once, early return if already open
-    if (fileData.find(f => f.key === fileKey)!.fileOpen) return;
-
-    const newFileData : FileData[] = fileData.map(f => {
-      //No changes for files that don't match and are in a different quarter of screen to current active
-      if(f.key !== fileKey && f.screenQuarter !== activeScreenQuarter) return f;
-      //Only one file per quarter of screen can have activeFileInQuarter as true to display content
-      if(f.key !== fileKey && f.screenQuarter === activeScreenQuarter) return ({
-        ...f,
-        activeFileInQuarter: false
-      })
-      return ({
-        ...f,
-        fileOpen: true,
-        screenQuarter: activeScreenQuarter,
-        activeFileInQuarter: true
-      })
-    });
-
-    console.log(newFileData);
-
-    setFileData(newFileData);
-  }
+  const fileData = useFileDataStore(state => state.fileData);
+  const closeFile = useFileDataStore(state => state.closeFile);
+  const openFile = useFileDataStore(state => state.openFile);
+  const updateFileScreenQuarter = useFileDataStore(state => state.updateFileScreenQuarter);
+  const updateQuarterActiveFile = useFileDataStore(state => state.updateQuarterActiveFile);
+  const updateActiveScreenQuarter = useFileDataStore(state => state.updateActiveScreenQuarter);
 
   const quarterFiles: FileData[][] = [[], [], [], []];
 
