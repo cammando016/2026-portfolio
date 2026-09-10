@@ -1,17 +1,17 @@
 'use client'
 
-import { FileData } from "../types/Files";
 import globalStyles from '../styles/global.module.scss';
 import { useState } from "react";
+import { useFileDataStore } from "../store/fileDataStore";
 
 interface Props {
     sectionName: string,
-    files: FileData[],
-    openFile: (key : string) => void,
 }
 
 export default function SectionLinks (props: Props) {
     const [showLinks, setShowLinks] = useState<boolean>(true);
+    const openFile = useFileDataStore(state => state.openFile);
+    const fileData = useFileDataStore(state => state.fileData);
 
     return (
         <div>
@@ -20,11 +20,11 @@ export default function SectionLinks (props: Props) {
                 <p>{props.sectionName}</p>
             </div>
             {
-                showLinks && props.files.map(f => {
+                showLinks && fileData.map(f => {
                     return (
                     <div key={f.key} >
                         <button 
-                            onClick={() => props.openFile(f.key)}
+                            onClick={() => openFile(f.key)}
                             className={`${globalStyles.button}`}
                         >
                             {f.fileName}
