@@ -11,10 +11,10 @@ export default function Links () {
                 <p>My Portfolio</p>
             </div>
 
-            <SectionLinks sectionName='Home' />
-            <SectionLinks sectionName='PROJECT: Resume' />
-            <SectionLinks sectionName='PROJECT: NBA Guesser' />
-            <SectionLinks sectionName='PROJECT: Calendar' />
+            <SectionLinks sectionName='Home' link='/' />
+            <SectionLinks sectionName='PROJECT: Resume' link='/projects' />
+            {/* <SectionLinks sectionName='PROJECT: NBA Guesser' link='/projects' /> */}
+            {/* <SectionLinks sectionName='PROJECT: Calendar' link='/projects' /> */}
         </div>
     )
 }
