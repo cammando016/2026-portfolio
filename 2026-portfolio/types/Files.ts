@@ -1,4 +1,4 @@
-import React, { ComponentType } from "react";
+import { ComponentType } from "react";
 
 export interface FileData {
     key: string,
@@ -7,5 +7,6 @@ export interface FileData {
     lineCount: number,
     fileOpen: boolean,
     activeFileInQuarter: boolean,
-    contentComponent: ComponentType,
+    contentComponent: ComponentType<{ content? : string }>,
+    content?: string,
 }

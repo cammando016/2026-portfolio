@@ -2,12 +2,14 @@
 
 import globalStyles from '../styles/global.module.scss';
 import { useState } from "react";
-import { useHomeFileDataStore } from "../store/homeFileDataStore";
+import { FileDataState } from '../store/createFileDataStore';
 import { usePathname, useRouter } from 'next/navigation';
+import { UseBoundStore, StoreApi } from 'zustand';
 
 interface Props {
     sectionName: string,
     link: string,
+    useStore: UseBoundStore<StoreApi<FileDataState>>,
 }
 
 export default function SectionLinks (props: Props) {
@@ -17,9 +19,10 @@ export default function SectionLinks (props: Props) {
     const isActiveSection : boolean = sectionPathname === props.link;
 
     const [showLinks, setShowLinks] = useState<boolean>(true);
-    const openFile = useHomeFileDataStore(state => state.openFile);
-    const fileData = useHomeFileDataStore(state => state.fileData);
     const router = useRouter();
+
+    const openFile = props.useStore(state => state.openFile);
+    const fileData = props.useStore(state => state.fileData);
 
     return (
         <div>

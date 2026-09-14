@@ -22,7 +22,7 @@ export default function CodeFile ( props : Props ) {
                         lineNums.map(l => <p key={l} className={`${styles.lineNum}`}>{l}</p>)
                     }
                 </div>
-                <Content />
+                <Content content={props.file.content} />
             </div>
         </div>
     )
