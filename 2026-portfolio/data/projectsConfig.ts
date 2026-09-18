@@ -24,7 +24,17 @@ export const projectsConfig: ProjectConfig[] = [
         title: 'NBA Guesser',
         githubRepo: { owner: 'cammando016', repo: 'nba_guessing_game'},
         staticFileData: [
-
+            {
+                key: crypto.randomUUID(),
+                screenQuarter: 3,
+                fileName: 'Project Links',
+                lineCount: 2,
+                fileOpen: true,
+                activeFileInQuarter: true,
+                contentComponent: 'projectLinks',
+                projectLink: 'https://nbateamguesser.netlify.app',
+                githubLink: 'https://github.com/cammando016/nba_guessing_game'
+            },
         ],
     },
     {

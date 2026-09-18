@@ -1,4 +1,4 @@
-import { ComponentType } from "react";
+export type ContentComponentKey = 'aboutMe' | 'contactMe' | 'githubGraph' | 'skills' | 'readme' | 'projectLinks'
 
 export interface FileData {
     key: string,
@@ -7,6 +7,8 @@ export interface FileData {
     lineCount: number,
     fileOpen: boolean,
     activeFileInQuarter: boolean,
-    contentComponent: ComponentType<{ content? : string }>,
+    contentComponent: ContentComponentKey,
     content?: string,
+    projectLink? : string,
+    githubLink?: string,
 }

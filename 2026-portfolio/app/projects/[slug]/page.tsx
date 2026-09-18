@@ -2,7 +2,6 @@ import { projectsConfig } from "../../../data/projectsConfig";
 import { FileData } from "../../../types/Files";
 import { fetchReadme } from "../../../utils/githubFetch";
 import ProjectPageClient from "./ProjectPageClient";
-import ReadmeViewer from "../../../components/contentComponents/ReadmeViewer";
 
 export function generateStaticParams() { return projectsConfig.map(p => ({slug: p.slug})); }
 
@@ -21,8 +20,6 @@ export default async function ProjectPage(props : Props) {
     if (project.githubRepo) {
         const readmeContent = await fetchReadme(project.githubRepo.owner, project.githubRepo.repo);
 
-        console.log(readmeContent);
-
         const readmeFile: FileData = {
             key: crypto.randomUUID(),
             screenQuarter: 1,
@@ -30,7 +27,7 @@ export default async function ProjectPage(props : Props) {
             lineCount: readmeContent.split(`\n`).length,
             fileOpen: true,
             activeFileInQuarter: true,
-            contentComponent: ReadmeViewer,
+            contentComponent: 'readme',
             content: readmeContent,
         };
 
