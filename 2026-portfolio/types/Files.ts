@@ -1,4 +1,6 @@
-export type ContentComponentKey = 'aboutMe' | 'contactMe' | 'githubGraph' | 'skills' | 'readme' | 'projectLinks'
+import { StaticImageData } from "next/image"
+
+export type ContentComponentKey = 'aboutMe' | 'contactMe' | 'githubGraph' | 'skills' | 'readme' | 'projectLinks' | 'screenshots'
 
 export interface FileData {
     key: string,
@@ -11,4 +13,5 @@ export interface FileData {
     content?: string,
     projectLink? : string,
     githubLink?: string,
+    screenshots? : StaticImageData[],
 }

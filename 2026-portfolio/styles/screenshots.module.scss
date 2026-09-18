@@ -1,0 +1,11 @@
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.screenshot {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+}

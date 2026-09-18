@@ -24,7 +24,7 @@ export default function CodeFile ( props : Props ) {
                     }
                 </div>
                 <div>
-                    <Content content={props.file.content} projectLink={props.file.projectLink} githubLink={props.file.githubLink} />
+                    <Content content={props.file.content} projectLink={props.file.projectLink} githubLink={props.file.githubLink} screenshots={props.file.screenshots} />
                 </div>
             </div>
         </div>

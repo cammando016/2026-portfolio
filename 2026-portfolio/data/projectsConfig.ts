@@ -1,4 +1,6 @@
 import { FileData } from "../types/Files";
+import nbaScreenshot0 from '../assets/nbaScreenshot0.png';
+import nbaScreenshot1 from '../assets/nbaScreenshot1.png';
 
 export interface ProjectConfig {
     slug: string,
@@ -35,6 +37,16 @@ export const projectsConfig: ProjectConfig[] = [
                 projectLink: 'https://nbateamguesser.netlify.app',
                 githubLink: 'https://github.com/cammando016/nba_guessing_game'
             },
+            {
+                key: crypto.randomUUID(),
+                screenQuarter: 4,
+                fileName: 'Project Screenshots',
+                lineCount: 0,
+                fileOpen: true,
+                activeFileInQuarter: true,
+                contentComponent: 'screenshots',
+                screenshots: [nbaScreenshot0, nbaScreenshot1]
+            }
         ],
     },
     {
