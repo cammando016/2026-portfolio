@@ -21,11 +21,13 @@ export default async function ProjectPage(props : Props) {
     if (project.githubRepo) {
         const readmeContent = await fetchReadme(project.githubRepo.owner, project.githubRepo.repo);
 
+        console.log(readmeContent);
+
         const readmeFile: FileData = {
             key: crypto.randomUUID(),
             screenQuarter: 1,
             fileName: 'README',
-            lineCount: readmeContent.split(`n`).length,
+            lineCount: readmeContent.split(`\n`).length,
             fileOpen: true,
             activeFileInQuarter: true,
             contentComponent: ReadmeViewer,
@@ -33,7 +35,7 @@ export default async function ProjectPage(props : Props) {
         };
 
         fileData = [readmeFile, ...fileData];
-
-        return <ProjectPageClient slug={slug} initialFileData={fileData} />
     }
+
+    return <ProjectPageClient slug={slug} initialFileData={fileData} />
 }
