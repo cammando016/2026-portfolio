@@ -20,4 +20,28 @@ export const projectsConfig: ProjectConfig[] = [
             
         ],
     },
+    {
+        slug: 'nba_guessing_game',
+        title: 'NBA Guesser',
+        githubRepo: { owner: 'cammando016', repo: 'nba_guessing_game'},
+        staticFileData: [
+
+        ],
+    },
+    {
+        slug: 'calendar',
+        title: 'Group Calendar',
+        githubRepo: { owner: 'cammando016', repo: 'calendar'},
+        staticFileData: [
+
+        ],
+    },
+    {
+        slug: 'gym',
+        title: 'Gym Tracker',
+        githubRepo: { owner: 'cammando016', repo: 'gym'},
+        staticFileData: [
+
+        ],
+    },
 ]
