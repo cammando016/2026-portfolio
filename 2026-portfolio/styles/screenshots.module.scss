@@ -1,11 +1,82 @@
-.container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-}
-
 .screenshot {
     max-width: 100%;
     height: auto;
     border-radius: 4px;
+}
+
+.carousel {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-direction: column;
+}
+
+.screenshotWrapper {
+    padding: 10px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 95%;
+
+    &:hover {
+        width: 100%;
+    }
+}
+
+.navButton {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    border-radius: 9999px;
+    border: none;
+    background-color: rgba(0, 0, 0, 0.4);
+    color: white;
+    font-size: 1.75rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease;
+    line-height: 1;
+
+    &:hover {
+        background-color: rgba(0, 0, 0, 0.6);
+    }
+}
+
+.prev {
+    left: 12px;
+}
+
+.next {
+    right: 12px;
+}
+
+.dots {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 9999px;
+    background-color: #ccc;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    align-self: center;
+
+    &:hover {
+        width: 16px;
+        height: 16px;
+    }
+}
+
+.dotActive {
+    background-color: #3b82f6;
 }
