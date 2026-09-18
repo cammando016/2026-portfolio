@@ -18,11 +18,13 @@ export default function CodeFile ( props : Props ) {
     return (
         <div className={`${styles.container} ${globalStyles.greyBorderRight}`}>
             <div className={`${globalStyles.rowFlex}`}>
-                <div className={`${styles.lineNumsContainer}`}>
-                    {
-                        lineNums.map(l => <p key={l} className={`${styles.lineNum}`}>{l}</p>)
-                    }
-                </div>
+                {lineNums.length > 0 &&
+                    <div className={`${styles.lineNumsContainer}`}>
+                        {
+                            lineNums.map(l => <p key={l} className={`${styles.lineNum}`}>{l}</p>)
+                        }
+                    </div>
+                }
                 <div>
                     <Content content={props.file.content} projectLink={props.file.projectLink} githubLink={props.file.githubLink} screenshots={props.file.screenshots} />
                 </div>
