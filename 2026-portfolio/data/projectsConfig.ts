@@ -1,5 +1,4 @@
 import { FileData } from "../types/Files";
-import AboutMe from "../components/contentComponents/AboutMe";
 
 export interface ProjectConfig {
     slug: string,
