@@ -1,8 +1,4 @@
 import { createFileDataStore } from "./createFileDataStore";
-import AboutMe from "../components/contentComponents/AboutMe";
-import GithubGraph from "../components/contentComponents/GithubGraph";
-import Skills from "../components/contentComponents/Skills";
-import ContactMe from "../components/contentComponents/ContactMe";
 
 export const useHomeFileDataStore = createFileDataStore([
     { key: crypto.randomUUID(), screenQuarter: 1, fileName: 'About Me', lineCount: 20, fileOpen: true, activeFileInQuarter: true, contentComponent: 'aboutMe' },

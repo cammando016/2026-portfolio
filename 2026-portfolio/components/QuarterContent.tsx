@@ -5,7 +5,7 @@ import CodeFileNameTab from "./CodeFileNameTab";
 import codeFileStyles from '../styles/codeFile.module.scss';
 import globalStyles from '../styles/global.module.scss';
 import { FileData } from "../types/Files";
-import { useHomeFileDataStore } from "../store/homeFileDataStore";
+import { useCurrentFileDataStore } from "../store/fileDataStoreContext";
 
 interface Props {
     quarterFiles: FileData[],
@@ -13,7 +13,7 @@ interface Props {
 }
 
 export default function QuarterContent (props : Props) {
-    const updateActiveScreenQuarter = useHomeFileDataStore(state => state.updateActiveScreenQuarter);
+    const updateActiveScreenQuarter = useCurrentFileDataStore(state => state.updateActiveScreenQuarter);
     
     return (
         <div className={`${codeFileStyles.screenQuarterContainer}`} onClick={() => updateActiveScreenQuarter(props.quarter)}>

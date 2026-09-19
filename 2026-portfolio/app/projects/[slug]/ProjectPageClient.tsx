@@ -18,6 +18,5 @@ export default function ProjectPageClient (props : Props) {
         hydrateFileData(props.initialFileData);
     }, []);
 
-    const fileData = useStore(state => state.fileData);
-    return <MainContentSection fileData={fileData} />
+    return <MainContentSection />
 }
