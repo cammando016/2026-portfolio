@@ -1,6 +1,7 @@
 'use client'
 
 import globalStyles from '../styles/global.module.scss';
+import styles from '../styles/home-layout.module.scss'
 import { useState } from "react";
 import { FileDataState } from '../store/createFileDataStore';
 import { usePathname, useRouter } from 'next/navigation';
@@ -26,14 +27,15 @@ export default function SectionLinks (props: Props) {
 
     return (
         <div>
-            <div className={`${globalStyles.rowFlex}`}>
-                { isActiveSection && <button onClick={() => setShowLinks(!showLinks)}>{`>`}</button> }
-                <button onClick={() => router.push(props.link)} >{props.sectionName}</button>
+            <div className={`${globalStyles.rowFlex} ${globalStyles.paddingTopBottom}`}>
+                <button disabled={!isActiveSection} onClick={() => setShowLinks(!showLinks)}><span className={`${styles.sectionLinksChevron} ${(showLinks && isActiveSection) ? styles.sectionLinksChevronExpanded : ''}`}>{`>`}</span></button> 
+                <button disabled={isActiveSection} onClick={() => router.push(props.link)} className={styles.linkText} >{props.sectionName}</button>
             </div>
+            <div className={`${styles.sectionLinksContainer}`}>
             {
                 (isActiveSection && showLinks) && fileData.map(f => {
                     return (
-                    <div key={f.key} >
+                    <div key={f.key} className={`${globalStyles.paddingTopBottom} ${styles.linkText}`} >
                         <button 
                             onClick={() => openFile(f.key)}
                             className={`${globalStyles.button}`}
@@ -43,6 +45,7 @@ export default function SectionLinks (props: Props) {
                     </div>    
                 )})
             }
+            </div>
         </div>
     )
 }
