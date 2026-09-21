@@ -1,5 +1,8 @@
 .container {
+    display: flex;
     flex: 1;
+    min-height: 0;
+    overflow-y: auto;
 }
 
 .paddingSides {
@@ -8,6 +11,8 @@
 
 .fileBar {
     background-color: #f1f1f1;
+    display: flex;
+    flex-shrink: 0;
 }
 
 .fileName {
@@ -32,6 +37,11 @@
 }
 
 .screenQuarterContainer {
+    display: flex;
+    flex-direction: column;
+    flex: 0 1 auto;
+    min-height: 0;
+    overflow-y: hidden;
     &:last-child {
         flex: 1;
     }

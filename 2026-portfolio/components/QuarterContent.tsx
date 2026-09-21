@@ -17,7 +17,7 @@ export default function QuarterContent (props : Props) {
     
     return (
         <div className={`${codeFileStyles.screenQuarterContainer}`} onClick={() => updateActiveScreenQuarter(props.quarter)}>
-            <div className={`${codeFileStyles.fileBar} ${codeFileStyles.container} ${globalStyles.rowFlex}`}>
+            <div className={`${codeFileStyles.fileBar} ${globalStyles.rowFlex}`}>
                 {
                     props.quarterFiles.map(f => <CodeFileNameTab key={f.key} fileName={f.fileName} fileKey={f.key} activeFileInQuarter={f.activeFileInQuarter} />)
                 }

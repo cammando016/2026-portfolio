@@ -1,7 +1,11 @@
+html, body {
+    height: 100%;
+}
+
 .window {
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
+    height: 100vh;
 }
 
 .rowFlex {
@@ -10,7 +14,9 @@
 }
 
 .homeContainer {
-    flex-grow: 1;
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
 }
 
 .iconsPane {
@@ -21,10 +27,14 @@
 .filesPane {
     background-color: #f3f3f3;
     width: 15%;
+    flex-shrink: 0;
+    overflow-y: auto;
 }
 
 .contentPane {
     flex: 1;
+    min-height: 0;
+    display: flex;
     > :nth-child(2) {
         border-left-width: 1px;
         border-left-color: lightgrey;
@@ -33,6 +43,7 @@
 
 .verticalFileSplit {
     flex: 1;
+    min-height: 0;
     > :nth-child(2) {
         border-top-width: 1px;
         border-top-color: lightgrey;
@@ -41,7 +52,8 @@
 
 .topScreenBar {
     background-color: #e1e1e1;
-    height: 3vh
+    // height: 3vh;
+    flex-shrink: 0;
 }
 
 .windowControlContainer {
@@ -65,5 +77,6 @@
 
 .bottomScreenBar {
     background-color: #0071c1;
-    height: 3%;
+    // height: 3%;
+    flex-shrink: 0;
 }
