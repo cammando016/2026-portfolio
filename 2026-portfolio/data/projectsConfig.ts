@@ -28,34 +28,6 @@ export interface ProjectConfig {
 
 export const projectsConfig: ProjectConfig[] = [
     {
-        slug: 'resume-draft',
-        title: 'Resume',
-        githubRepo: { owner: 'cammando016', repo: 'resume-draft'},
-        staticFileData: [
-            {
-                key: crypto.randomUUID(),
-                screenQuarter: 3,
-                fileName: 'Project Links',
-                lineCount: 2,
-                fileOpen: true,
-                activeFileInQuarter: true,
-                contentComponent: 'projectLinks',
-                projectLink: 'https://c-anderson-resume.netlify.app/#education-section',
-                githubLink: 'https://github.com/cammando016/resume-draft'
-            },
-            {
-                key: crypto.randomUUID(),
-                screenQuarter: 4,
-                fileName: 'Project Screenshots',
-                lineCount: 0,
-                fileOpen: true,
-                activeFileInQuarter: true,
-                contentComponent: 'screenshots',
-                screenshots: [resumeScreenshot0]
-            }
-        ],
-    },
-    {
         slug: 'nba_guessing_game',
         title: 'NBA Guesser',
         githubRepo: { owner: 'cammando016', repo: 'nba_guessing_game'},
@@ -85,7 +57,7 @@ export const projectsConfig: ProjectConfig[] = [
     },
     {
         slug: 'calendar',
-        title: 'Group Calendar',
+        title: 'Calendar',
         githubRepo: { owner: 'cammando016', repo: 'calendar'},
         staticFileData: [
             {
@@ -126,6 +98,34 @@ export const projectsConfig: ProjectConfig[] = [
                 contentComponent: 'projectLinks',
                 githubLink: 'https://github.com/cammando016/gym'
             },
+        ],
+    },
+    {
+        slug: 'resume-draft',
+        title: 'Resume',
+        githubRepo: { owner: 'cammando016', repo: 'resume-draft'},
+        staticFileData: [
+            {
+                key: crypto.randomUUID(),
+                screenQuarter: 3,
+                fileName: 'Project Links',
+                lineCount: 2,
+                fileOpen: true,
+                activeFileInQuarter: true,
+                contentComponent: 'projectLinks',
+                projectLink: 'https://c-anderson-resume.netlify.app/#education-section',
+                githubLink: 'https://github.com/cammando016/resume-draft'
+            },
+            {
+                key: crypto.randomUUID(),
+                screenQuarter: 4,
+                fileName: 'Project Screenshots',
+                lineCount: 0,
+                fileOpen: true,
+                activeFileInQuarter: true,
+                contentComponent: 'screenshots',
+                screenshots: [resumeScreenshot0]
+            }
         ],
     },
 ]
