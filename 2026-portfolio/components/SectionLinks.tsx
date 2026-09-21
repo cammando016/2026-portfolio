@@ -24,28 +24,27 @@ export default function SectionLinks (props: Props) {
 
     const openFile = props.useStore(state => state.openFile);
     const fileData = props.useStore(state => state.fileData);
+    const activeScreenQuarter = props.useStore(state => state.activeScreenQuarter);
 
     return (
         <div>
             <div className={`${globalStyles.rowFlex} ${globalStyles.paddingTopBottom}`}>
-                <button disabled={!isActiveSection} onClick={() => setShowLinks(!showLinks)}><span className={`${styles.sectionLinksChevron} ${(showLinks && isActiveSection) ? styles.sectionLinksChevronExpanded : ''}`}>{`>`}</span></button> 
+                <button onClick={isActiveSection ? () => setShowLinks(!showLinks) : () => router.push(props.link)}><span className={`${styles.sectionLinksChevron} ${(showLinks && isActiveSection) ? styles.sectionLinksChevronExpanded : ''}`}>{`>`}</span></button> 
                 <button disabled={isActiveSection} onClick={() => router.push(props.link)} className={styles.linkText} >{props.sectionName}</button>
             </div>
-            <div className={`${styles.sectionLinksContainer}`}>
-            {
-                (isActiveSection && showLinks) && fileData.map(f => {
-                    return (
-                    <div key={f.key} className={`${globalStyles.paddingTopBottom} ${styles.linkText}`} >
-                        <button 
-                            onClick={() => openFile(f.key)}
-                            className={`${globalStyles.button}`}
-                        >
-                            {f.fileName}
-                        </button>
-                    </div>    
-                )})
-            }
-            </div>
+            
+            {(isActiveSection && showLinks) && fileData.map(f => {
+                const isFocused = f.screenQuarter === activeScreenQuarter && f.activeFileInQuarter;
+                return (
+                    <div key={f.key} className={`${styles.fileRowOuter} ${isFocused ? styles.focusedFile : ''}`}>
+                        <div className={`${styles.fileRowInner} ${globalStyles.paddingTopBottom} ${styles.linkText}`}>
+                            <button onClick={() => openFile(f.key)} className={`${globalStyles.button} ${styles.fileButton}`}>
+                                {f.fileName}
+                            </button>
+                        </div>
+                    </div>
+                );
+            })}
         </div>
     )
 }

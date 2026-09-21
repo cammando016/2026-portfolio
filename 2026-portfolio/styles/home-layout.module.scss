@@ -79,12 +79,6 @@ html, body {
     flex-shrink: 0;
 }
 
-.sectionLinksContainer {
-    margin-left: 19px;
-    padding-left: 5px;
-    border-left: 1px solid grey;
-}
-
 .sectionLinksChevron {
     display: inline-flex;
     align-items: center;
@@ -101,4 +95,22 @@ html, body {
 
 .linkText {
     color: #5a5a5a;
+}
+
+.fileButton {
+    padding-left: 5px;
+}
+
+.focusedFile {
+    background-color: #dfe2ee;
+}
+
+.fileRowOuter {
+    width: 100%;
+}
+  
+.fileRowInner {
+    margin-left: 19px;
+    padding-left: 5px;
+    border-left: 1px solid grey;
 }
