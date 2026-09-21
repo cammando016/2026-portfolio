@@ -25,7 +25,7 @@ export default function CodeFile ( props : Props ) {
                         }
                     </div>
                 }
-                <div>
+                <div style={{ display: 'flex', flexDirection: 'column', flex: 1, minHeight: 0 }}>
                     <Content content={props.file.content} projectLink={props.file.projectLink} githubLink={props.file.githubLink} screenshots={props.file.screenshots} />
                 </div>
             </div>
