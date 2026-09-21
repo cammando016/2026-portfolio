@@ -28,7 +28,12 @@ export const createFileDataStore = (initFileData: FileData[]) => {
         updateActiveScreenQuarter: (newQuarter) => set({ activeScreenQuarter: newQuarter }),
 
         updateFileScreenQuarter: (fileKey, newQuarter) => {
-            set(state => ({ fileData: fileFuncs.updateFileScreenQuarter(state.fileData, fileKey, newQuarter) }));
+            const { fileData, activeScreenQuarter } = get();
+            const result = fileFuncs.fillEmptyQuartersAboveAndLeft(
+                fileFuncs.updateFileScreenQuarter(fileData, fileKey, newQuarter),
+                activeScreenQuarter
+            );
+            set({fileData: result.fileData, activeScreenQuarter: result.activeScreenQuarter});
         },
 
         updateQuarterActiveFile: (fileKey) => {
@@ -36,12 +41,22 @@ export const createFileDataStore = (initFileData: FileData[]) => {
         },
 
         closeFile: (fileKey) => {
-            set(state => ({ fileData: fileFuncs.closeFile(state.fileData, fileKey) }))
+            const { fileData, activeScreenQuarter } = get();
+            const result = fileFuncs.fillEmptyQuartersAboveAndLeft(
+                fileFuncs.closeFile(fileData, fileKey),
+                activeScreenQuarter
+            );
+            set({fileData: result.fileData, activeScreenQuarter: result.activeScreenQuarter});
+
         },
 
         openFile: (fileKey) => {
-            const { activeScreenQuarter } = get();
-            set(state => ({ fileData: fileFuncs.openFile(state.fileData, fileKey, activeScreenQuarter) }))
+            const { fileData, activeScreenQuarter } = get();
+            const result = fileFuncs.fillEmptyQuartersAboveAndLeft(
+                fileFuncs.openFile(fileData, fileKey, activeScreenQuarter),
+                activeScreenQuarter
+            );
+            set({fileData: result.fileData, activeScreenQuarter: result.activeScreenQuarter});
         }
     }))
 }
