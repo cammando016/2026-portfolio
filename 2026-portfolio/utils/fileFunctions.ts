@@ -1,7 +1,19 @@
 import { FileData } from "../types/Files";
 
 export const updateFileScreenQuarter = (fileData: FileData[], fileKey: string, newQuarter: number) : FileData[] => {
-    return fileData.map(f => f.key !== fileKey ? f : {...f, screenQuarter: newQuarter});
+    const quarterMovedFrom = fileData.find(f => f.key === fileKey)!.screenQuarter;
+
+    const matchingQuarterFiles = fileData.filter(f => f.key !== fileKey && f.screenQuarter === quarterMovedFrom && f.fileOpen);
+    const firstFileMatchingQuarterMovedFrom = matchingQuarterFiles.length > 0 ? matchingQuarterFiles[0].key : '';
+    
+    const newFileData = fileData.map(f => {
+        if (f.key !== fileKey && f.screenQuarter !== quarterMovedFrom && f.screenQuarter !== newQuarter) return f;
+        if (f.key !== fileKey && f.screenQuarter === newQuarter) return {...f, activeFileInQuarter: false};
+        if (f.key === firstFileMatchingQuarterMovedFrom) return {...f, activeFileInQuarter: true};
+        return { ...f, screenQuarter: newQuarter, activeFileInQuarter: true}
+    })
+
+    return newFileData;
 }
 
 export const updateQuarterActiveFile = (fileData: FileData[], fileKey: string) : FileData[] => {
