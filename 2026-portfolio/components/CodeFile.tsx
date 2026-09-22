@@ -1,3 +1,6 @@
+'use client'
+
+import { useLayoutEffect, useRef, useState } from 'react';
 import styles from '../styles/codeFile.module.scss'
 import globalStyles from '../styles/global.module.scss'
 import { FileData } from '../types/Files';
@@ -7,13 +10,34 @@ interface Props {
     file: FileData
 }
 
-export default function CodeFile ( props : Props ) {
-    const lineNums : number[] = [];
-    const Content = contentComponentRegistry[props.file.contentComponent];
+const LINE_HEIGHT_PIXELS = 24;
 
-    for (let i = 0; i < props.file.lineCount; i++) {
-        lineNums.push(i+1);
-    }
+export default function CodeFile ( props : Props ) {
+    const Content = contentComponentRegistry[props.file.contentComponent];
+    const measureRef = useRef<HTMLDivElement>(null);
+    const [lineCount, setLineCount] = useState<number>(1);
+
+    const hasScreenshots =!!props.file.screenshots;
+
+    useLayoutEffect(() => {
+        const el = measureRef.current;
+        if (!el) return;
+
+        const measureContentHeight = () => {
+            const height = el.scrollHeight;
+            const lines = Math.max(1, Math.ceil(height / LINE_HEIGHT_PIXELS));
+            setLineCount(lines);
+        }
+
+        setLineCount(1);
+        measureContentHeight();
+
+        const observer = new ResizeObserver(measureContentHeight);
+        observer.observe(el);
+        return () => observer.disconnect();
+    }, [props.file.key]);
+
+    const lineNums: number[] = !hasScreenshots ? Array.from({length: lineCount}, (_, i) => i + 1) : [];
 
     return (
         <div className={`${styles.container} ${globalStyles.greyBorderRight}`}>
@@ -21,12 +45,18 @@ export default function CodeFile ( props : Props ) {
                 {lineNums.length > 0 &&
                     <div className={`${styles.lineNumsContainer}`}>
                         {
-                            lineNums.map(l => <p key={l} className={`${styles.lineNum}`}>{l}</p>)
+                            lineNums.map(l => <p key={l} className={`${styles.lineNum}`} style={{ height: `${LINE_HEIGHT_PIXELS}px`, lineHeight: `${LINE_HEIGHT_PIXELS}px`}} >{l}</p>)
                         }
                     </div>
                 }
                 <div style={{ display: 'flex', flexDirection: 'column', flex: 1, minHeight: 0 }}>
-                    <Content content={props.file.content} projectLink={props.file.projectLink} githubLink={props.file.githubLink} screenshots={props.file.screenshots} />
+                    {hasScreenshots ? (
+                        <Content content={props.file.content} projectLink={props.file.projectLink} githubLink={props.file.githubLink} screenshots={props.file.screenshots} />
+                    ) : (
+                        <div ref={measureRef}>
+                            <Content content={props.file.content} projectLink={props.file.projectLink} githubLink={props.file.githubLink} screenshots={props.file.screenshots} />
+                        </div>
+                    )}
                 </div>
             </div>
         </div>

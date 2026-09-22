@@ -1,7 +1,7 @@
 'use client'
 
 import ReactMarkdown from 'react-markdown';
-import styles from '../../styles/readmeViewer.module.scss';
+import styles from '../../styles/codeFile.module.scss';
 
 export default function ReadmeViewer({content} : {content?: string}) {
     if (!content) return null;

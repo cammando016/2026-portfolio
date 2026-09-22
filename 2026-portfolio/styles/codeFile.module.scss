@@ -30,10 +30,14 @@
 
 .lineNum {
     color: #106e86;
+    margin: 0;
 }
 
 .lineNumsContainer {
     padding: 0px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .screenQuarterContainer {
@@ -75,4 +79,8 @@
 .closeFileButton {
     padding: 0 4px;
     border-radius: 25%;
+}
+
+.markdownContent > * {
+    margin-bottom: 24px;
 }
