@@ -40,7 +40,7 @@ export default function Icons (props : Props) {
                     handleClickIcon={props.handleClickIcon}
                     selectedIconSrc={githubLogo}
                     selectedIconAlt='github logo'
-                    href=''
+                    href='https://github.com/cammando016'
                 />
                 <Icon 
                     toggleable={false} 
@@ -49,7 +49,7 @@ export default function Icons (props : Props) {
                     handleClickIcon={props.handleClickIcon}
                     selectedIconSrc={linkedInLogo}
                     selectedIconAlt='linked in logo'
-                    href=''
+                    href='https://www.linkedin.com/in/cameron-anderson-6b3078209/'
                 />
                 <Icon 
                     toggleable={true} 

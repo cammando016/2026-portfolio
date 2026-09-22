@@ -44,12 +44,13 @@ export default function Icon(props : Props) {
                 }
             </button>
             :
-            <button 
+            <a 
                 className={`${styles.iconContainer} ${styles.iconContainerInactive} `}
-                onClick={() => props.handleClickIcon(props.iconType)}    
+                href={props.href}
+                target='blank'   
             >
                 <Image src={props.selectedIconSrc} alt={props.selectedIconAlt} />
-            </button>
+            </a>
         }
         </>
     )
