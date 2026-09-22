@@ -33,7 +33,8 @@ export default function Icon(props : Props) {
     return (
         <>
         { props.toggleable ?
-            <button 
+            <button
+                disabled={props.activeIcon === 'settings' && props.iconType === 'settings'}
                 className={`${styles.iconContainer} ${isActiveIcon ? styles.iconContainerActive : styles.iconContainerInactive} `}
                 onClick={() => props.handleClickIcon(props.iconType)}    
             >
