@@ -8,6 +8,7 @@ import React from 'react';
 interface Props {
     fileName: string,
     fileKey: string,
+    fileExtension: string,
     activeFileInQuarter: boolean,
 }
 
@@ -23,7 +24,7 @@ export default function CodeFileNameTab(props: Props) {
     return (
         <div draggable onDragStart={handleDragStart} className={`${globalStyles.rowFlex} ${styles.fileName} ${props.activeFileInQuarter ? styles.fileNameActive : styles.fileNameInactive}`}>
             <div className={`${globalStyles.rowFlex}`} onClick={() => updateQuarterActiveFile(props.fileKey)} >
-                <p className={`${styles.paddingSides}`}>TS</p>
+                <p className={`${styles.paddingSides}`}>{props.fileExtension}</p>
                 <p className={`${styles.paddingSides}`}>{props.fileName}</p>
             </div>
             <button className={`${globalStyles.hover} ${styles.closeFileButton}`} onClick={() => closeFile(props.fileKey)}>X</button>

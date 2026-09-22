@@ -26,6 +26,7 @@ export default async function ProjectPage(props : Props) {
             fileName: 'README',
             lineCount: readmeContent.split(`\n`).length,
             fileOpen: true,
+            fileExtension: 'md',
             activeFileInQuarter: true,
             contentComponent: 'readme',
             content: readmeContent,

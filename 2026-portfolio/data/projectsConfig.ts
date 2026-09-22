@@ -35,7 +35,8 @@ export const projectsConfig: ProjectConfig[] = [
             {
                 key: crypto.randomUUID(),
                 screenQuarter: 3,
-                fileName: 'Project Links',
+                fileName: 'Links', 
+                fileExtension: 'tsx',
                 lineCount: 2,
                 fileOpen: true,
                 activeFileInQuarter: true,
@@ -46,7 +47,8 @@ export const projectsConfig: ProjectConfig[] = [
             {
                 key: crypto.randomUUID(),
                 screenQuarter: 4,
-                fileName: 'Project Screenshots',
+                fileName: 'Screenshots',
+                fileExtension: 'img',
                 lineCount: 0,
                 fileOpen: true,
                 activeFileInQuarter: true,
@@ -63,7 +65,8 @@ export const projectsConfig: ProjectConfig[] = [
             {
                 key: crypto.randomUUID(),
                 screenQuarter: 3,
-                fileName: 'Project Links',
+                fileName: 'Links',
+                fileExtension: 'tsx',
                 lineCount: 2,
                 fileOpen: true,
                 activeFileInQuarter: true,
@@ -74,8 +77,9 @@ export const projectsConfig: ProjectConfig[] = [
             {
                 key: crypto.randomUUID(),
                 screenQuarter: 4,
-                fileName: 'Project Screenshots',
+                fileName: 'Screenshots',
                 lineCount: 0,
+                fileExtension: 'img',
                 fileOpen: true,
                 activeFileInQuarter: true,
                 contentComponent: 'screenshots',
@@ -91,8 +95,9 @@ export const projectsConfig: ProjectConfig[] = [
             {
                 key: crypto.randomUUID(),
                 screenQuarter: 3,
-                fileName: 'Project Links',
+                fileName: 'Links',
                 lineCount: 2,
+                fileExtension: 'tsx',
                 fileOpen: true,
                 activeFileInQuarter: true,
                 contentComponent: 'projectLinks',
@@ -108,8 +113,9 @@ export const projectsConfig: ProjectConfig[] = [
             {
                 key: crypto.randomUUID(),
                 screenQuarter: 3,
-                fileName: 'Project Links',
+                fileName: 'Links',
                 lineCount: 2,
+                fileExtension: 'tsx',
                 fileOpen: true,
                 activeFileInQuarter: true,
                 contentComponent: 'projectLinks',
@@ -119,8 +125,9 @@ export const projectsConfig: ProjectConfig[] = [
             {
                 key: crypto.randomUUID(),
                 screenQuarter: 4,
-                fileName: 'Project Screenshots',
+                fileName: 'Screenshots',
                 lineCount: 0,
+                fileExtension: 'img',
                 fileOpen: true,
                 activeFileInQuarter: true,
                 contentComponent: 'screenshots',

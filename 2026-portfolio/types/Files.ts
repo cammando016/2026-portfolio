@@ -10,6 +10,7 @@ export interface FileData {
     fileOpen: boolean,
     activeFileInQuarter: boolean,
     contentComponent: ContentComponentKey,
+    fileExtension: string,
     content?: string,
     projectLink? : string,
     githubLink?: string,

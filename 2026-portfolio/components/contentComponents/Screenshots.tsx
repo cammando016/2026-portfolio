@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useRef, useCallback, useMemo } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { StaticImageData } from "next/image";
 import styles from '../../styles/screenshots.module.scss';
 import Image from "next/image";

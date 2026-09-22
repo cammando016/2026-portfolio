@@ -41,7 +41,7 @@ export default function CodeFile ( props : Props ) {
 
     return (
         <div className={`${styles.container} ${globalStyles.greyBorderRight}`}>
-            <div className={`${globalStyles.rowFlex}`}>
+            <div className={`${globalStyles.rowFlex} ${styles.screenQuarterContent}`}>
                 {lineNums.length > 0 &&
                     <div className={`${styles.lineNumsContainer}`}>
                         {
