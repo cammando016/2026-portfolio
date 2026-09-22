@@ -1,16 +1,20 @@
 import { FileData } from "../types/Files";
 
 export const updateFileScreenQuarter = (fileData: FileData[], fileKey: string, newQuarter: number) : FileData[] => {
-    const quarterMovedFrom = fileData.find(f => f.key === fileKey)!.screenQuarter;
+    const draggedFile : FileData = fileData.find(f => f.key === fileKey)!;
+    const quarterMovedFrom : number = draggedFile.screenQuarter;
 
-    const matchingQuarterFiles = fileData.filter(f => f.key !== fileKey && f.screenQuarter === quarterMovedFrom && f.fileOpen);
-    const firstFileMatchingQuarterMovedFrom = matchingQuarterFiles.length > 0 ? matchingQuarterFiles[0].key : '';
+    if (quarterMovedFrom === newQuarter) return fileData;
+
+    const wasActiveBeforeDrag : boolean = draggedFile.activeFileInQuarter;
+    const matchingQuarterFiles : FileData[] = fileData.filter(f => f.key !== fileKey && f.screenQuarter === quarterMovedFrom && f.fileOpen);
+    const firstFileMatchingQuarterMovedFrom : string = matchingQuarterFiles.length > 0 ? matchingQuarterFiles[0].key : '';
     
     return fileData.map(f => {
-        if (f.key !== fileKey && f.screenQuarter !== quarterMovedFrom && f.screenQuarter !== newQuarter) return f;
-        if (f.key !== fileKey && f.screenQuarter === newQuarter) return {...f, activeFileInQuarter: false};
-        if (f.key === firstFileMatchingQuarterMovedFrom) return {...f, activeFileInQuarter: true};
-        return { ...f, screenQuarter: newQuarter, activeFileInQuarter: true}
+        if (f.key === fileKey) return { ...f, screenQuarter: newQuarter, activeFileInQuarter: true}
+        if (wasActiveBeforeDrag && f.key === firstFileMatchingQuarterMovedFrom) return {...f, activeFileInQuarter: true}
+        if (f.screenQuarter === newQuarter) return {...f, activeFileInQuarter: false}
+        return f;
     })
 }
 
@@ -77,6 +81,19 @@ export const fillEmptyQuartersAboveAndLeft = (fileData: FileData[], activeScreen
             if (f.screenQuarter === 4) return {...f, screenQuarter: 2};
             return f
         })
+    }
+
+    //After moving files, each quarter should only have a max of one active file in quarter
+    for (const quarter of [1, 2, 3, 4]) {
+        const activeFilesInQuarter = result.filter(f => f.fileOpen && f.screenQuarter === quarter && f.activeFileInQuarter);
+        if(activeFilesInQuarter.length > 1) {
+            const keyOfKeptFile = activeFilesInQuarter[0].key;
+            result = result.map(f => 
+                (f.fileOpen && f.screenQuarter === quarter && f.activeFileInQuarter && f.key !== keyOfKeptFile)
+                    ? { ...f, activeFilesInQuarter: false }
+                    : f
+            )
+        }
     }
 
     //Check if the last interacted screen quarter still has files open, otherwise default to 1

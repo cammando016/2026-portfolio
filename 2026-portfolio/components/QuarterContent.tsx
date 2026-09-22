@@ -10,24 +10,43 @@ import React, { useRef, useState } from "react";
 
 interface Props {
     quarterFiles: FileData[],
-    quarter: number
+    quarter: number,
+    offerVerticalDropTarget?: number,
+    offerHorizontalDropTarget?: number,
 }
+
+type EdgeZone = 'bottom' | 'right' | null;
+const EDGE_THRESHOLD : number = 0.2;
 
 export default function QuarterContent (props : Props) {
     const updateActiveScreenQuarter = useCurrentFileDataStore(state => state.updateActiveScreenQuarter);
     const updateFileScreenQuarter = useCurrentFileDataStore(state => state.updateFileScreenQuarter);
-    const [isDragOver, setIsDragOver] = useState<boolean>(false);
+    const [isDragging, setIsDragging] = useState<boolean>(false);
+    const [edgeZone, setEdgeZone] = useState<EdgeZone>(null);
+    const containerRef = useRef<HTMLDivElement>(null);
     const dragCounter = useRef<number>(0);
+
+    const computeEdgeZone = (e: React.DragEvent<HTMLDivElement>) : EdgeZone => {
+        if (!containerRef.current) return null;
+        const rect = containerRef.current.getBoundingClientRect();
+        const relX = (e.clientX - rect.left) / rect.width;
+        const relY = (e.clientY - rect.top) / rect.height;
+
+        if (props.offerVerticalDropTarget && relY > 1 - EDGE_THRESHOLD) return 'bottom';
+        if (props.offerHorizontalDropTarget && relX > 1 - EDGE_THRESHOLD) return 'right'
+        return null;
+    }
 
     const handleDragEnter = (e: React.DragEvent<HTMLDivElement>) => {
         e.preventDefault();
         dragCounter.current += 1;
-        setIsDragOver(true);
+        setIsDragging(true);
     }
 
     const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
         e.preventDefault();
         e.dataTransfer.dropEffect = 'move';
+        setEdgeZone(computeEdgeZone(e))
     }
 
     const handleDragLeave = (e: React.DragEvent<HTMLDivElement>) => {
@@ -35,27 +54,39 @@ export default function QuarterContent (props : Props) {
         dragCounter.current -= 1;
         if (dragCounter.current <= 0) {
             dragCounter.current = 0;
-            setIsDragOver(false)
+            setIsDragging(false);
+            setEdgeZone(null);
         }
     }
 
     const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
         e.preventDefault();
         dragCounter.current = 0;
-        setIsDragOver(false);
         const draggedFileKey = e.dataTransfer.getData('text/plain');
-        if (draggedFileKey) updateFileScreenQuarter(draggedFileKey, props.quarter);
+
+        setIsDragging(false);
+
+        let targetQuarter = props.quarter;
+        if (edgeZone === 'bottom' && props.offerVerticalDropTarget) targetQuarter = props.offerVerticalDropTarget;
+        if (edgeZone === 'right' && props.offerHorizontalDropTarget) targetQuarter = props.offerHorizontalDropTarget;
+
+        setEdgeZone(null);
+        if (draggedFileKey) updateFileScreenQuarter(draggedFileKey, targetQuarter);
     }
-    
+
     return (
-        <div 
-            className={`${codeFileStyles.screenQuarterContainer} ${isDragOver ? codeFileStyles.dragOver : ''}`} 
+        <div
+            ref={containerRef}
+            className={`${codeFileStyles.screenQuarterContainer} ${isDragging && !edgeZone ? codeFileStyles.dragOver : ''}`} 
             onClick={() => updateActiveScreenQuarter(props.quarter)}
             onDragEnter={handleDragEnter}
             onDragOver={handleDragOver}
             onDragLeave={handleDragLeave}
             onDrop={handleDrop}
         >
+            {edgeZone && (
+                <div className={`${codeFileStyles.edgeZoneIndicator} ${codeFileStyles[`edgeZone_${edgeZone}`]} ${codeFileStyles.dragOver} `}></div>
+            )}
             <div className={`${codeFileStyles.fileBar} ${globalStyles.rowFlex}`}>
                 {
                     props.quarterFiles.map(f => <CodeFileNameTab key={f.key} fileName={f.fileName} fileKey={f.key} activeFileInQuarter={f.activeFileInQuarter} />)
