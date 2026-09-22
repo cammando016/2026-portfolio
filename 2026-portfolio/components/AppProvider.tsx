@@ -5,16 +5,34 @@ import styles from '../styles/home-layout.module.scss';
 import colourStyles from '../styles/colourThemes.module.scss';
 import ActiveStoreProvider from "../components/ActiveStoreProvider";
 import LinksAndIcons from "../components/LinksAndIcons";
-import { useState } from "react";
-import { colourSchemes } from "../types/Files";
+import { useEffect, useState } from "react";
+import { COLOUR_SCHEMES, colourSchemes } from "../types/Files";
 import Footer from "./Footer";
 
 interface Props {
     children: React.ReactNode
 }
 
+const THEME_STORAGE_KEY = 'portfolio-theme';
+
+function isValidTheme(value: string | null) : value is colourSchemes {
+    return COLOUR_SCHEMES.includes(value as colourSchemes);
+}
+
 export default function AppProvider(props: Props) {
-    const [theme, setTheme] = useState<colourSchemes>('light');
+    const [theme, setThemeState] = useState<colourSchemes>('light');
+
+    useEffect(() => {
+        try {
+            const stored = localStorage.getItem(THEME_STORAGE_KEY);
+            if (isValidTheme(stored)) setThemeState(stored);
+        } catch {}
+    }, []);
+
+    const setTheme = (newTheme: colourSchemes) => {
+        setThemeState(newTheme);
+        localStorage.setItem(THEME_STORAGE_KEY, newTheme);
+    }
 
     return (
         <ThemeContext.Provider
