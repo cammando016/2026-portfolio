@@ -19,4 +19,5 @@ export interface FileData {
 
 export type iconOptions = 'files' | 'settings' | 'logo' | null;
 
-export type colourSchemes = 'light' | 'dark' |'retro';
+export const COLOUR_SCHEMES = ['light', 'dark', 'retro'] as const;
+export type colourSchemes = typeof COLOUR_SCHEMES[number];

@@ -1,0 +1,29 @@
+.themeFieldset {
+    border-top: 2px solid lightslategrey;
+    border-bottom: 2px solid lightslategray;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.themeLegend {
+    width: fit-content;
+    margin: 0;
+    padding: 0 5px;
+}
+
+.settingsContainer {
+    padding: 20px;
+    padding-right: 100px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.span {
+    margin-left: 10px;
+}
+
+.label {
+    margin-bottom: 5px;
+}
