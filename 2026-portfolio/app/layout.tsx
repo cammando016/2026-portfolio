@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import styles from '../styles/home-layout.module.scss';
-import ActiveStoreProvider from "../components/ActiveStoreProvider";
-import LinksAndIcons from "../components/LinksAndIcons";
+import AppProvider from "../components/AppProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,23 +25,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${geistSans.variable} ${geistMono.variable} antialiased`}
     >
       <body>
-        <div className={styles.window}>
-          <div className={`${styles.topScreenBar} ${styles.rowFlex} `}>
-            <div className={` ${styles.windowControlContainer} ${styles.windowIconRed} `}></div>
-            <div className={` ${styles.windowControlContainer} ${styles.windowIconYellow} `}></div>
-            <div className={` ${styles.windowControlContainer} ${styles.windowIconGreen} `}></div>
-          </div>
-
-          <div className={`${styles.homeContainer} ${styles.rowFlex}`}>
-            <LinksAndIcons />
-            <ActiveStoreProvider>{children}</ActiveStoreProvider>
-          </div>
-
-          <div className={styles.bottomScreenBar}>
-            <div>footer</div>
-          </div>
-
-        </div>
+        <AppProvider children={children}/>
       </body>
     </html>
   );
