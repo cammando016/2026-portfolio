@@ -29,18 +29,16 @@ export default function SectionLinks (props: Props) {
     return (
         <div>
             <div className={`${globalStyles.rowFlex} ${globalStyles.paddingTopBottom} ${!isActiveSection ? globalStyles.hover : ''}`}>
-                <button onClick={isActiveSection ? () => setShowLinks(!showLinks) : () => router.push(props.link)}><span className={`${styles.sectionLinksChevron} ${(showLinks && isActiveSection) ? styles.sectionLinksChevronExpanded : ''}`}>{`>`}</span></button> 
+                <button onClick={isActiveSection ? () => setShowLinks(!showLinks) : () => router.push(props.link)}><span className={`${styles.sectionLinksChevron} ${isActiveSection ? globalStyles.hover : ''} ${(showLinks && isActiveSection) ? styles.sectionLinksChevronExpanded : ''}`}>{`>`}</span></button> 
                 <button disabled={isActiveSection} onClick={() => router.push(props.link)} className={styles.linkText} >{props.sectionName}</button>
             </div>
             
             {(isActiveSection && showLinks) && fileData.map(f => {
                 const isFocused = f.screenQuarter === activeScreenQuarter && f.activeFileInQuarter;
                 return (
-                    <div key={f.key} className={`${styles.fileRowOuter} ${isFocused ? styles.focusedFile : globalStyles.hover}`}>
+                    <div onClick={() => openFile(f.key)} role='button' key={f.key} className={`${styles.fileRowOuter} ${isFocused ? styles.focusedFile : globalStyles.hover}`}>
                         <div className={`${styles.fileRowInner} ${globalStyles.paddingTopBottom} ${styles.linkText}`}>
-                            <button onClick={() => openFile(f.key)} className={`${styles.fileButton}`}>
-                                {f.fileName}
-                            </button>
+                            <div className={`${styles.fileButton}`}>{f.fileName}</div>
                         </div>
                     </div>
                 );
