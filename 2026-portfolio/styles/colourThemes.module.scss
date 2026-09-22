@@ -23,7 +23,7 @@
     --dotActiveBackground: #0071c1;
     --fileTabText: black;
     --defaultBackground: white;
-    --defaultText: black;
+    --defaultText: #933034;
 
     &[data-theme="dark"] {
         --fieldsetBorder: #474747;
@@ -45,6 +45,30 @@
         --imageNavButtonHover: rgba(119, 136, 153, 0.2);
         --fileTabText: #828282;
         --defaultBackground: #1c1c1c;
-        --defaultText: #dcdcdc;
+        --defaultText: #8bd8fb;
+    }
+
+    &[data-theme="retro"] {
+        --fieldsetBorder: #5f8f51;
+        --fileBarBackground: rgba(95, 143, 81, 0.1);;
+        --fileNameActive: #1c1c1c;
+        --fileNameInactive: #282828;
+        --lineNum: #5f8f51;
+        --dragOver: rgba(95, 143, 81, 0.1);
+        --pathNameBoxShadow: rgba(95, 143, 81, 0.8);
+        --globalHover: #252829;
+        --iconBorder: #5f8f51;
+        --iconBackground: #2d2d2d;
+        --filesBackground: #212122;
+        --contentBorder: #5f8f51;
+        --topScreen: #353535;
+        --linkText: #5f8f51;
+        --focusedFile: #303035;
+        --fileColumnBorder: #5f8f51;
+        --imageNavButton: rgba(119, 136, 153, 0.4);
+        --imageNavButtonHover: rgba(119, 136, 153, 0.2);
+        --fileTabText: #5f8f51;
+        --defaultText: #5f8f51;
+        --defaultBackground: #080808
     }
 }
