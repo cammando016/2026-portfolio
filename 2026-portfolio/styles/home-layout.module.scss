@@ -138,3 +138,17 @@ html, body {
     padding-left: 5px;
     border-left: 1px solid var(--fileColumnBorder);
 }
+
+@media (max-width: 768px) {
+    .homeContainer {
+        display: block;
+    }
+
+    .iconsPane, .filesPane {
+        display: none;
+    }
+
+    .homeContainer > :last-child {
+        width: 100%;
+    }
+}
