@@ -8,12 +8,13 @@
     flex-direction: column;
 }
 
-.button {
-    &:hover {
-        background-color: aquamarine;
-    }
-}
-
 .paddingTopBottom {
     padding: 2px 0;
+}
+
+.hover, .hover * {
+    &:hover {
+        background-color: #e4e4e4;
+        cursor: pointer;
+    }
 }

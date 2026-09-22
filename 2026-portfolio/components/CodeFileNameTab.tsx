@@ -26,9 +26,7 @@ export default function CodeFileNameTab(props: Props) {
                 <p className={`${styles.paddingSides}`}>TS</p>
                 <p className={`${styles.paddingSides}`}>{props.fileName}</p>
             </div>
-            <div>
-                <button className={`${styles.paddingSides} ${globalStyles.button}`} onClick={() => closeFile(props.fileKey)}>X</button>
-            </div>
+            <button className={`${globalStyles.hover} ${styles.closeFileButton}`} onClick={() => closeFile(props.fileKey)}>X</button>
         </div>
     )
 }
