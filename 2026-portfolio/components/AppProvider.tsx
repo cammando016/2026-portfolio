@@ -6,6 +6,7 @@ import ActiveStoreProvider from "../components/ActiveStoreProvider";
 import LinksAndIcons from "../components/LinksAndIcons";
 import { useState } from "react";
 import { colourSchemes } from "../types/Files";
+import Footer from "./Footer";
 
 interface Props {
     children: React.ReactNode
@@ -13,11 +14,10 @@ interface Props {
 
 export default function AppProvider(props: Props) {
     const [theme, setTheme] = useState<colourSchemes>('light');
-    const updateTheme = (newTheme: colourSchemes) => setTheme(newTheme);
 
     return (
         <ThemeContext.Provider
-            value={theme}
+            value={{theme, setTheme}}
         >
             <div className={styles.window}>
             <div className={`${styles.topScreenBar} ${styles.rowFlex} `}>
@@ -31,9 +31,7 @@ export default function AppProvider(props: Props) {
                 <ActiveStoreProvider>{props.children}</ActiveStoreProvider>
             </div>
 
-            <div className={styles.bottomScreenBar}>
-                <div>{theme}</div>
-            </div>
+            <Footer />
 
             </div>
         </ThemeContext.Provider>
