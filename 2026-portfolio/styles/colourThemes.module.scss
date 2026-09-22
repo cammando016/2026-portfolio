@@ -8,6 +8,7 @@
     --pathNameBoxShadow: rgba(0, 0, 0, 0.3);
     --globalHover: #e4e4e4;
     --iconBackground: #2c2c2c;
+    --iconBorder: white;
     --filesBackground: #f3f3f3;
     --contentBorder: lightgrey;
     --topScreen: #e1e1e1;
@@ -20,4 +21,30 @@
     --imageNavButtonHover: rgba(0, 0, 0, 0.6);
     --dotBackground: #ccc;
     --dotActiveBackground: #0071c1;
+    --fileTabText: black;
+    --defaultBackground: white;
+    --defaultText: black;
+
+    &[data-theme="dark"] {
+        --fieldsetBorder: #474747;
+        --fileBarBackground: #212122;
+        --fileNameActive: #1c1c1c;
+        --fileNameInactive: #282828;
+        --lineNum: #787878;
+        --dragOver: #53595d80;
+        --pathNameBoxShadow: rgba(255, 255, 255, 0.3);
+        --globalHover: #252829;
+        --iconBackground: #2d2d2d;
+        --filesBackground: #212122;
+        --contentBorder: #474747;
+        --topScreen: #353535;
+        --linkText: #c5c5c5;
+        --focusedFile: #303035;
+        --fileColumnBorder: #4e4e4e;
+        --imageNavButton: rgba(119, 136, 153, 0.4);
+        --imageNavButtonHover: rgba(119, 136, 153, 0.2);
+        --fileTabText: #828282;
+        --defaultBackground: #1c1c1c;
+        --defaultText: #dcdcdc;
+    }
 }

@@ -3,9 +3,11 @@ html, body {
 }
 
 .window {
+    background-color: var(--defaultBackground);
     display: flex;
     flex-direction: column;
     height: 100vh;
+    color: var(--defaultText);
 }
 
 .rowFlex {
@@ -37,7 +39,7 @@ html, body {
 }
 
 .iconContainerActive {
-    border-left: solid var(--fileNameActive) 3px;
+    border-left: solid var(--iconBorder) 3px;
 }
 
 .iconContainerInactive {
