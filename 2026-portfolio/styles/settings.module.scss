@@ -1,6 +1,6 @@
 .themeFieldset {
-    border-top: 2px solid lightslategrey;
-    border-bottom: 2px solid lightslategray;
+    border-top: 2px solid var(--fieldsetBorder);
+    border-bottom: 2px solid var(--fieldsetBorder);
     padding: 10px;
     display: flex;
     flex-direction: column;

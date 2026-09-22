@@ -14,7 +14,7 @@
 
 .hover, .hover * {
     &:hover {
-        background-color: #e4e4e4;
+        background-color: var(--globalHover);
         cursor: pointer;
     }
 }
