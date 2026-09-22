@@ -4,6 +4,7 @@ import "./globals.css";
 import styles from '../styles/home-layout.module.scss';
 import Links from "../components/Links";
 import ActiveStoreProvider from "../components/ActiveStoreProvider";
+import Icons from "../components/Icons";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -35,10 +36,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           </div>
 
           <div className={`${styles.homeContainer} ${styles.rowFlex}`}>
-            <div className={styles.iconsPane}>
-              <p>icons</p>
-            </div>
-
+            <Icons />
             <Links />
             <ActiveStoreProvider>{children}</ActiveStoreProvider>
           </div>
