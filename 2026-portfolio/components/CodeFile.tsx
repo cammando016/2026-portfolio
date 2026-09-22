@@ -40,7 +40,7 @@ export default function CodeFile ( props : Props ) {
     const lineNums: number[] = !hasScreenshots ? Array.from({length: lineCount}, (_, i) => i + 1) : [];
 
     return (
-        <div className={`${styles.container} ${globalStyles.greyBorderRight}`}>
+        <div className={`${styles.container} ${globalStyles.greyBorderRight} ${!hasScreenshots ? styles.textPadding : ''}`}>
             <div className={`${globalStyles.rowFlex} ${styles.screenQuarterContent}`}>
                 {lineNums.length > 0 &&
                     <div className={`${styles.lineNumsContainer}`}>

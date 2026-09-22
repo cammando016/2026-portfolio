@@ -6,6 +6,13 @@
     overflow-y: auto;
 }
 
+.textPadding {
+    padding-right: 15px;
+    padding-top: 10px;
+    padding-bottom: 5px;
+    text-align: justify;
+}
+
 .paddingSides {
     padding: 3;
 }
@@ -93,6 +100,10 @@
 
 .markdownContent > * {
     margin-bottom: 24px;
+}
+
+.markdownContent h1 {
+    font-weight: bold;
 }
 
 .codeFileWrapper {
