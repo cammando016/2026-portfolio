@@ -16,3 +16,5 @@ export interface FileData {
     githubLink?: string,
     screenshots? : StaticImageData[],
 }
+
+export type iconOptions = 'files' | 'settings' | 'logo' | null;

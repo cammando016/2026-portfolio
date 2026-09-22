@@ -2,9 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import styles from '../styles/home-layout.module.scss';
-import Links from "../components/Links";
 import ActiveStoreProvider from "../components/ActiveStoreProvider";
-import Icons from "../components/Icons";
+import LinksAndIcons from "../components/LinksAndIcons";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -36,8 +35,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           </div>
 
           <div className={`${styles.homeContainer} ${styles.rowFlex}`}>
-            <Icons />
-            <Links />
+            <LinksAndIcons />
             <ActiveStoreProvider>{children}</ActiveStoreProvider>
           </div>
 
