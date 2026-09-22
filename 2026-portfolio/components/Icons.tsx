@@ -21,7 +21,8 @@ export default function Icons (props : Props) {
     return (
         <div className={`${styles.iconsPane}`}>
             <div>
-                <Icon 
+                <Icon
+                    toggleable={true} 
                     activeIcon={activeIcon}
                     iconType='files'
                     handleClickIcon={props.handleClickIcon}
@@ -33,20 +34,25 @@ export default function Icons (props : Props) {
             </div>
             <div>
                 <Icon 
+                    toggleable={false} 
                     activeIcon={activeIcon}
                     iconType='logo'
                     handleClickIcon={props.handleClickIcon}
                     selectedIconSrc={githubLogo}
                     selectedIconAlt='github logo'
+                    href=''
                 />
                 <Icon 
+                    toggleable={false} 
                     activeIcon={activeIcon}
                     iconType='logo'
                     handleClickIcon={props.handleClickIcon}
                     selectedIconSrc={linkedInLogo}
                     selectedIconAlt='linked in logo'
+                    href=''
                 />
                 <Icon 
+                    toggleable={true} 
                     activeIcon={activeIcon}
                     iconType='settings'
                     handleClickIcon={props.handleClickIcon}

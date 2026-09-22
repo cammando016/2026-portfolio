@@ -2,21 +2,37 @@ import styles from '../styles/home-layout.module.scss';
 import Image, { StaticImageData } from 'next/image';
 import { iconOptions } from '../types/Files';
 
-interface Props {
+type ToggleableProps = {
+    toggleable: true
     activeIcon: iconOptions,
     iconType: iconOptions,
     handleClickIcon: (iconKey: iconOptions) => void,
     selectedIconSrc: StaticImageData,
     selectedIconAlt: string,
-    unselectedIconSrc?: StaticImageData,
-    unselectedIconAlt?: string 
+    unselectedIconSrc: StaticImageData,
+    unselectedIconAlt: string,
+    href?: never,
 }
+
+type UntoggleableProps = {
+    toggleable: false,
+    activeIcon: iconOptions,
+    iconType: iconOptions,
+    handleClickIcon: (iconKey: iconOptions) => void,
+    selectedIconSrc: StaticImageData,
+    selectedIconAlt: string,
+    unselectedIconSrc?: never,
+    unselectedIconAlt?: never,
+    href: string,
+}
+
+type Props = ToggleableProps | UntoggleableProps
 
 export default function Icon(props : Props) {
     const isActiveIcon: boolean = props.activeIcon === props.iconType;
     return (
         <>
-        { (props.unselectedIconAlt && props.unselectedIconSrc) ?
+        { props.toggleable ?
             <button 
                 className={`${styles.iconContainer} ${isActiveIcon ? styles.iconContainerActive : styles.iconContainerInactive} `}
                 onClick={() => props.handleClickIcon(props.iconType)}    
