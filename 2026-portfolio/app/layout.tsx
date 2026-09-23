@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import AppProvider from "../components/AppProvider";
+import Script from "next/script";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -22,8 +23,24 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} antialiased`}
     >
+      <head>
+        <Script id="theme-init" strategy="beforeInteractive">
+          {`
+            (function() {
+              try {
+                var stored = localStorage.getItem('portfolio-theme');
+                var validThemes = ['light', 'dark', 'retro'];
+                if (stored && validThemes.indexOf(stored) !== -1) {
+                  document.documentElement.setAttribute('data-theme', stored);
+                }
+              } catch (e) {}
+            })();
+          `}
+        </Script>
+      </head>
       <body>
         <AppProvider children={children}/>
       </body>

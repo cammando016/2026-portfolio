@@ -1,74 +1,74 @@
-.window {
-    --fieldsetBorder: lightslategrey;
-    --fileBarBackground: #f1f1f1;
-    --fileNameActive: white;
-    --fileNameInactive: #E9E9E9;
-    --lineNum: #106e86;
-    --dragOver: #D6EBFF;
-    --pathNameBoxShadow: rgba(0, 0, 0, 0.3);
-    --globalHover: #e4e4e4;
-    --iconBackground: #2c2c2c;
-    --iconBorder: white;
-    --filesBackground: #f3f3f3;
-    --contentBorder: lightgrey;
-    --topScreen: #e1e1e1;
-    --footerBackground: #0071c1;
-    --footerText: white;
-    --linkText: #5a5a5a;
-    --focusedFile: #dfe2ee;
-    --fileColumnBorder: grey;
-    --imageNavButton: rgba(0, 0, 0, 0.4);
-    --imageNavButtonHover: rgba(0, 0, 0, 0.6);
-    --dotBackground: #ccc;
-    --dotActiveBackground: #0071c1;
-    --fileTabText: black;
-    --defaultBackground: white;
-    --defaultText: #933034;
+// .window {
+//     --fieldsetBorder: lightslategrey;
+//     --fileBarBackground: #f1f1f1;
+//     --fileNameActive: white;
+//     --fileNameInactive: #E9E9E9;
+//     --lineNum: #106e86;
+//     --dragOver: #D6EBFF;
+//     --pathNameBoxShadow: rgba(0, 0, 0, 0.3);
+//     --globalHover: #e4e4e4;
+//     --iconBackground: #2c2c2c;
+//     --iconBorder: white;
+//     --filesBackground: #f3f3f3;
+//     --contentBorder: lightgrey;
+//     --topScreen: #e1e1e1;
+//     --footerBackground: #0071c1;
+//     --footerText: white;
+//     --linkText: #5a5a5a;
+//     --focusedFile: #dfe2ee;
+//     --fileColumnBorder: grey;
+//     --imageNavButton: rgba(0, 0, 0, 0.4);
+//     --imageNavButtonHover: rgba(0, 0, 0, 0.6);
+//     --dotBackground: #ccc;
+//     --dotActiveBackground: #0071c1;
+//     --fileTabText: black;
+//     --defaultBackground: white;
+//     --defaultText: #933034;
 
-    &[data-theme="dark"] {
-        --fieldsetBorder: #474747;
-        --fileBarBackground: #212122;
-        --fileNameActive: #1c1c1c;
-        --fileNameInactive: #282828;
-        --lineNum: #787878;
-        --dragOver: #53595d80;
-        --pathNameBoxShadow: rgba(255, 255, 255, 0.3);
-        --globalHover: #252829;
-        --iconBackground: #2d2d2d;
-        --filesBackground: #212122;
-        --contentBorder: #474747;
-        --topScreen: #353535;
-        --linkText: #c5c5c5;
-        --focusedFile: #303035;
-        --fileColumnBorder: #4e4e4e;
-        --imageNavButton: rgba(119, 136, 153, 0.4);
-        --imageNavButtonHover: rgba(119, 136, 153, 0.2);
-        --fileTabText: #828282;
-        --defaultBackground: #1c1c1c;
-        --defaultText: #8bd8fb;
-    }
+//     &[data-theme="dark"] {
+//         --fieldsetBorder: #474747;
+//         --fileBarBackground: #212122;
+//         --fileNameActive: #1c1c1c;
+//         --fileNameInactive: #282828;
+//         --lineNum: #787878;
+//         --dragOver: #53595d80;
+//         --pathNameBoxShadow: rgba(255, 255, 255, 0.3);
+//         --globalHover: #252829;
+//         --iconBackground: #2d2d2d;
+//         --filesBackground: #212122;
+//         --contentBorder: #474747;
+//         --topScreen: #353535;
+//         --linkText: #c5c5c5;
+//         --focusedFile: #303035;
+//         --fileColumnBorder: #4e4e4e;
+//         --imageNavButton: rgba(119, 136, 153, 0.4);
+//         --imageNavButtonHover: rgba(119, 136, 153, 0.2);
+//         --fileTabText: #828282;
+//         --defaultBackground: #1c1c1c;
+//         --defaultText: #8bd8fb;
+//     }
 
-    &[data-theme="retro"] {
-        --fieldsetBorder: #5f8f51;
-        --fileBarBackground: rgba(95, 143, 81, 0.1);
-        --fileNameActive: #1c1c1c;
-        --fileNameInactive: #282828;
-        --lineNum: #5f8f51;
-        --dragOver: rgba(95, 143, 81, 0.1);
-        --pathNameBoxShadow: rgba(95, 143, 81, 0.8);
-        --globalHover: #252829;
-        --iconBorder: #5f8f51;
-        --iconBackground: #2d2d2d;
-        --filesBackground: #212122;
-        --contentBorder: #5f8f51;
-        --topScreen: #353535;
-        --linkText: #5f8f51;
-        --focusedFile: #303035;
-        --fileColumnBorder: #5f8f51;
-        --imageNavButton: rgba(119, 136, 153, 0.4);
-        --imageNavButtonHover: rgba(119, 136, 153, 0.2);
-        --fileTabText: #5f8f51;
-        --defaultText: #5f8f51;
-        --defaultBackground: #080808
-    }
-}
+//     &[data-theme="retro"] {
+//         --fieldsetBorder: #5f8f51;
+//         --fileBarBackground: rgba(95, 143, 81, 0.1);
+//         --fileNameActive: #1c1c1c;
+//         --fileNameInactive: #282828;
+//         --lineNum: #5f8f51;
+//         --dragOver: rgba(95, 143, 81, 0.1);
+//         --pathNameBoxShadow: rgba(95, 143, 81, 0.8);
+//         --globalHover: #252829;
+//         --iconBorder: #5f8f51;
+//         --iconBackground: #2d2d2d;
+//         --filesBackground: #212122;
+//         --contentBorder: #5f8f51;
+//         --topScreen: #353535;
+//         --linkText: #5f8f51;
+//         --focusedFile: #303035;
+//         --fileColumnBorder: #5f8f51;
+//         --imageNavButton: rgba(119, 136, 153, 0.4);
+//         --imageNavButtonHover: rgba(119, 136, 153, 0.2);
+//         --fileTabText: #5f8f51;
+//         --defaultText: #5f8f51;
+//         --defaultBackground: #080808
+//     }
+// }

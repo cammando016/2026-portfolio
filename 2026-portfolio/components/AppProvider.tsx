@@ -23,22 +23,23 @@ export default function AppProvider(props: Props) {
     const [theme, setThemeState] = useState<colourSchemes>('light');
 
     useEffect(() => {
-        try {
-            const stored = localStorage.getItem(THEME_STORAGE_KEY);
-            if (isValidTheme(stored)) setThemeState(stored);
-        } catch {}
-    }, []);
+        const attr = document.documentElement.getAttribute('data-theme');
+        if (isValidTheme(attr) && attr !== theme) setThemeState(attr);
+    }, [])
 
     const setTheme = (newTheme: colourSchemes) => {
         setThemeState(newTheme);
-        localStorage.setItem(THEME_STORAGE_KEY, newTheme);
+        document.documentElement.setAttribute('data-theme', newTheme);
+        try {
+            localStorage.setItem(THEME_STORAGE_KEY, newTheme);
+        } catch {}
     }
 
     return (
         <ThemeContext.Provider
             value={{theme, setTheme}}
         >
-            <div className={`${styles.window} ${colourStyles.window} `} data-theme={theme}>
+            <div className={`${styles.window} ${colourStyles.window} `}>
             <div className={`${styles.topScreenBar} ${styles.rowFlex} `}>
                 <div className={` ${styles.windowControlContainer} ${styles.windowIconRed} `}></div>
                 <div className={` ${styles.windowControlContainer} ${styles.windowIconYellow} `}></div>
