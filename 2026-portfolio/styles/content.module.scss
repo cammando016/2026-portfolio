@@ -1,0 +1,38 @@
+.contactFieldset {
+    border: 2px solid var(--fieldsetBorder);
+    border-radius: 5px;
+    padding: 5px 15px 20px;
+}
+
+.contactLegend {
+    font-weight: bold;
+}
+
+.input {
+    border: 1px solid var(--fieldsetBorder);
+    border-radius: 5px;
+    padding: 3px;
+}
+
+.checkbox {
+    margin-right: 5px;
+}
+
+.inputLarge {
+    height: 1;
+}
+
+.inputInvalid {
+    border-color: red;
+}
+
+.label {
+    margin: 3px 0;
+}
+
+.formButton {
+    cursor: pointer;
+    border: 2px solid black;
+    border-radius: 4px;
+    padding: 5px 15px;
+}
