@@ -2,7 +2,6 @@
 
 import { ThemeContext } from "../store/colourSchemeContext";
 import styles from '../styles/home-layout.module.scss';
-import colourStyles from '../styles/colourThemes.module.scss';
 import ActiveStoreProvider from "../components/ActiveStoreProvider";
 import LinksAndIcons from "../components/LinksAndIcons";
 import { useEffect, useState } from "react";
@@ -39,7 +38,7 @@ export default function AppProvider(props: Props) {
         <ThemeContext.Provider
             value={{theme, setTheme}}
         >
-            <div className={`${styles.window} ${colourStyles.window} `}>
+            <div className={`${styles.window}`}>
             <div className={`${styles.topScreenBar} ${styles.rowFlex} `}>
                 <div className={` ${styles.windowControlContainer} ${styles.windowIconRed} `}></div>
                 <div className={` ${styles.windowControlContainer} ${styles.windowIconYellow} `}></div>
