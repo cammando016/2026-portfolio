@@ -16,6 +16,7 @@
 
 .checkbox {
     margin-right: 5px;
+    align-self: center;
 }
 
 .inputLarge {
@@ -26,8 +27,12 @@
     border-color: red;
 }
 
-.label {
+.inputDiv {
     margin: 3px 0;
+}
+
+.label {
+    margin-bottom: 3px;
 }
 
 .formButton {
@@ -35,4 +40,8 @@
     border: 2px solid black;
     border-radius: 4px;
     padding: 5px 15px;
+}
+
+.formButtonDisabled, .errorMessage {
+    color: red;
 }
