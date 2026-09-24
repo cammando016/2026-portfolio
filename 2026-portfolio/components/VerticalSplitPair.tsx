@@ -75,16 +75,6 @@ export default function VerticalSplitPair(props : Props) {
     const firstFits : boolean = effectiveFirstHeight <= threshold;
     const secondFits : boolean = effectiveSecondHeight <= threshold;
 
-    console.log({
-        containerHeight,
-        threshold,
-        firstHeight,
-        secondHeight,
-        firstFits,
-        secondFits,
-        branch: firstFits && !secondFits ? 'first-fixed' : !firstFits && secondFits ? 'second-fixed' : 'even-split',
-    })
-
     let firstStyle: CSSProperties;
     let secondStyle: CSSProperties;
     

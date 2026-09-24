@@ -18,7 +18,7 @@ export default function CodeFile ( props : Props ) {
     const measureRef = useRef<HTMLDivElement>(null);
     const [lineCount, setLineCount] = useState<number>(1);
 
-    // const noLineNums =!!props.file.screenshots || props.file.contentComponent === 'projectLinks';
+    const noLineNums = props.file.contentComponent === 'projectLinks';
     const hasScreenshots = !!props.file.screenshots;
 
     useLayoutEffect(() => {
@@ -45,7 +45,7 @@ export default function CodeFile ( props : Props ) {
         return () => observer.disconnect();
     }, [props.file.key, hasScreenshots]);
 
-    const lineNums: number[] = !hasScreenshots ? Array.from({length: lineCount}, (_, i) => i + 1) : [];
+    const lineNums: number[] = (!hasScreenshots && !noLineNums) ? Array.from({length: lineCount}, (_, i) => i + 1) : [];
 
     return (
         <div className={styles.codeFileWrapper}>
