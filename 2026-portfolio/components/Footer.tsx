@@ -9,8 +9,8 @@ export default function Footer() {
     const {showTags} = useShowTagsContext();
     return (
         <div className={`${styles.bottomScreenBar}`}>
-            <p>Theme: {theme}</p>
-            <p>Show Element Tags: {showTags ? 'On' : 'Off'}</p>
+            <p>{`${showTags && '<p>'}Theme: ${theme}${showTags && '</p>'}`}</p>
+            <p>{`${showTags && '<p>'}Show Element Tags: ${showTags ? 'On' : 'Off'}${showTags && '</p>'}`}</p>
         </div>
     )
 }
