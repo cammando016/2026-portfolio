@@ -64,7 +64,7 @@ export default function Landing () {
                     </span>}
                 </li>
 
-                <li>
+                <li className={contentStyles.landingDesktop}>
                     {showTags && <span className={codeFileStyles.tagLabel}>
                         {`<li>`}
                     </span>}
@@ -74,7 +74,7 @@ export default function Landing () {
                     </span>}
                 </li>
 
-                <li>
+                <li className={contentStyles.landingMobile}>
                     {showTags && <span className={codeFileStyles.tagLabel}>
                         {`<li>`}
                     </span>}
