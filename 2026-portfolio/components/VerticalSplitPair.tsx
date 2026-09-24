@@ -69,8 +69,11 @@ export default function VerticalSplitPair(props : Props) {
 
     //Height splitting when both top and bottom have files
     const threshold : number = containerHeight / 2;
-    const firstFits : boolean = firstHeight <= threshold;
-    const secondFits : boolean = secondHeight <= threshold;
+    const effectiveFirstHeight : number = hasFirst && firstHeight === 0 ? threshold : firstHeight;
+    const effectiveSecondHeight : number = hasSecond && secondHeight === 0 ? threshold : secondHeight;
+
+    const firstFits : boolean = effectiveFirstHeight <= threshold;
+    const secondFits : boolean = effectiveSecondHeight <= threshold;
 
     console.log({
         containerHeight,
@@ -86,11 +89,11 @@ export default function VerticalSplitPair(props : Props) {
     let secondStyle: CSSProperties;
     
     if (firstFits && !secondFits) {
-        firstStyle = { flex: '0 0 auto', maxHeight: firstHeight, minHeight: 0 }
+        firstStyle = { flex: '0 0 auto', maxHeight: effectiveFirstHeight, minHeight: 0 }
         secondStyle = { flex: '1 1 0', minHeight: 0 }
     } else if (!firstFits && secondFits) {
         firstStyle = { flex: '1 1 0', minHeight: 0 }
-        secondStyle = { flex: '0 0 auto', maxHeight: secondHeight, minHeight: 0 }
+        secondStyle = { flex: '0 0 auto', maxHeight: effectiveSecondHeight, minHeight: 0 }
     } else {
         firstStyle = { flex: '1 1 0', minHeight: 0 };
         secondStyle = { flex: '1 1 0', minHeight: 0};
