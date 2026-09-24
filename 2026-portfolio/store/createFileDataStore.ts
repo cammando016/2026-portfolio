@@ -12,6 +12,7 @@ export interface FileDataState {
     updateQuarterActiveFile: (fileKey: string) => void,
     closeFile: (fileKey: string) => void,
     openFile: (fileKey: string) => void,
+    collapseAllToQuarter: (targetQuarter: number) => void,
 }
 
 export const createFileDataStore = (initFileData: FileData[]) => {
@@ -57,6 +58,10 @@ export const createFileDataStore = (initFileData: FileData[]) => {
                 activeScreenQuarter
             );
             set({fileData: result.fileData, activeScreenQuarter: result.activeScreenQuarter});
+        },
+
+        collapseAllToQuarter: (targetQuarter) => {
+            set(state => ({ fileData: fileFuncs.collapseAllToQuarter(state.fileData, targetQuarter) }))
         }
     }))
 }

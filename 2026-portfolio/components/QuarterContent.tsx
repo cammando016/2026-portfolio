@@ -4,6 +4,7 @@ import CodeFile from "./CodeFile";
 import CodeFileNameTab from "./CodeFileNameTab";
 import codeFileStyles from '../styles/codeFile.module.scss';
 import globalStyles from '../styles/global.module.scss';
+import layoutStyles from '../styles/home-layout.module.scss';
 import { FileData } from "../types/Files";
 import { useCurrentFileDataStore } from "../store/fileDataStoreContext";
 import React, { useRef, useState } from "react";

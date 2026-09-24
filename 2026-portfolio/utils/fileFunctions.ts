@@ -101,3 +101,22 @@ export const fillEmptyQuartersAboveAndLeft = (fileData: FileData[], activeScreen
 
     return {fileData: result, activeScreenQuarter: newActiveScreenQuarter};
 }
+
+export const collapseAllToQuarter = (fileData: FileData[], targetQuarter: number) : FileData[] => {
+    const openFiles = fileData.filter(f => f.fileOpen);
+    if (openFiles.length === 0) return fileData;
+
+    return fileData.map((f, i) => {
+        if (!f.fileOpen) return f;
+        if (i === 0) return {
+            ...f,
+            activeFileInQuarter: true,
+            screenQuarter: targetQuarter
+        }
+        return {
+            ...f,
+            activeFileInQuarter: false,
+            screenQuarter: targetQuarter
+        }
+    })
+}

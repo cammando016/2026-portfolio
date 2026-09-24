@@ -151,4 +151,14 @@ html, body {
     .homeContainer > :last-child {
         width: 100%;
     }
+
+    .contentDesktop {
+        display: none;
+    }
+}
+
+@media (min-width: 769px) {
+    .contentMobile {
+        display: none;
+    }
 }
