@@ -5,6 +5,7 @@ import ScreenQuarters from "./ScreenQuarters";
 import styles from '../styles/home-layout.module.scss';
 import { useCurrentFileDataStore } from "../store/fileDataStoreContext";
 import { useEffect, useRef } from "react";
+import Landing from "./contentComponents/Landing";
 
 const MOBILE_WIDTH_BREAKPOINT = 768;
 
@@ -38,11 +39,16 @@ export default function MainContentSection () {
         quarterFiles[f.screenQuarter - 1].push(f);
     });
 
+    const hasOpenFiles = quarterFiles.some(quarter => quarter.some(files => files.fileOpen));
 
     return (
         <>
             <div className={`${styles.rowFlex} ${styles.contentPane}`}>
-                <ScreenQuarters quarterArrays={quarterFiles} />
+                {hasOpenFiles ?
+                    <ScreenQuarters quarterArrays={quarterFiles} />
+                    :
+                    <Landing />
+                }
             </div>
         </>
     )

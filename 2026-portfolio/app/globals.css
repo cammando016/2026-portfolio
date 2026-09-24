@@ -12,6 +12,18 @@
   }
 }
 
+h1 {
+  font-weight: bold;
+}
+
+li {
+  list-style:circle;
+}
+
+ul {
+  padding-left: 20px;
+}
+
 html {
   --fieldsetBorder: lightslategrey;
   --fileBarBackground: #f1f1f1;

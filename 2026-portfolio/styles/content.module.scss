@@ -46,3 +46,9 @@
 .formButtonDisabled, .errorMessage {
     color: red;
 }
+
+.landing {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
