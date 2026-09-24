@@ -14,7 +14,7 @@ export default function Links () {
     return (
         <div className={styles.filesPane}>
 
-            <div onClick={() => router.push('/')} className={`${globalStyles.rowFlex} ${globalStyles.paddingTopBottom} ${!isActiveSection ? globalStyles.hover : ''}`}>
+            <div onClick={() => router.push('/')} className={`${globalStyles.rowFlex} ${globalStyles.paddingTopBottom} ${!isActiveSection ? globalStyles.hover : styles.focusedFile}`}>
                 <button disabled={isActiveSection} onClick={() => router.push('/')} className={styles.linkText} >Home</button>
             </div>
             <SectionLinks sectionName='About Me' link='/about-me' useStore={useHomeFileDataStore} />

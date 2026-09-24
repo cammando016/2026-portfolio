@@ -4,7 +4,7 @@ import { FileData } from "../types/Files";
 import ScreenQuarters from "./ScreenQuarters";
 import styles from '../styles/home-layout.module.scss';
 import { useCurrentFileDataStore } from "../store/fileDataStoreContext";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Landing from "./contentComponents/Landing";
 
 const MOBILE_WIDTH_BREAKPOINT = 768;
@@ -13,11 +13,15 @@ export default function MainContentSection () {
     const updateActiveScreenQuarter = useCurrentFileDataStore(state => state.updateActiveScreenQuarter);
     const collapseAllToQuarter = useCurrentFileDataStore(state => state.collapseAllToQuarter);
     const hasCollapsedRef = useRef<boolean>(false);
-    const fileData = useCurrentFileDataStore(state => state.fileData);
+    const fileData : FileData[] = useCurrentFileDataStore(state => state.fileData);
+    const [isOnMobile, setIsOnMobile] = useState<boolean>(false);
+
+    console.log(isOnMobile);
 
     useEffect(() => {
         const mediaQuery = window.matchMedia(`(max-width: ${MOBILE_WIDTH_BREAKPOINT}px)`);
         const handleChange = (e: MediaQueryListEvent | MediaQueryList) => {
+            setIsOnMobile(e.matches);
             if (e.matches && !hasCollapsedRef.current) {
                 hasCollapsedRef.current = true;
                 updateActiveScreenQuarter(1);
@@ -45,7 +49,7 @@ export default function MainContentSection () {
         <>
             <div className={`${styles.rowFlex} ${styles.contentPane}`}>
                 {hasOpenFiles ?
-                    <ScreenQuarters quarterArrays={quarterFiles} />
+                    <ScreenQuarters quarterArrays={quarterFiles} isOnMobile={isOnMobile} />
                     :
                     <Landing />
                 }

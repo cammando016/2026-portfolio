@@ -4,7 +4,6 @@ import CodeFile from "./CodeFile";
 import CodeFileNameTab from "./CodeFileNameTab";
 import codeFileStyles from '../styles/codeFile.module.scss';
 import globalStyles from '../styles/global.module.scss';
-import layoutStyles from '../styles/home-layout.module.scss';
 import { FileData } from "../types/Files";
 import { useCurrentFileDataStore } from "../store/fileDataStoreContext";
 import React, { useRef, useState } from "react";
@@ -15,6 +14,7 @@ interface Props {
     quarter: number,
     offerVerticalDropTarget?: number,
     offerHorizontalDropTarget?: number,
+    isOnMobile: boolean,
 }
 
 type EdgeZone = 'bottom' | 'right' | null;
@@ -83,22 +83,26 @@ export default function QuarterContent (props : Props) {
         if (draggedFileKey) updateFileScreenQuarter(draggedFileKey, targetQuarter);
     }
 
+    const dragHandlers = props.isOnMobile ? {} : {
+        onDragEnter: handleDragEnter,
+        onDragOver: handleDragOver,
+        onDragLeave: handleDragLeave,
+        onDrop: handleDrop
+    }
+
     return (
         <div
             ref={containerRef}
             className={`${codeFileStyles.screenQuarterContainer} ${needsGrow ? codeFileStyles.screenQuarterContainerGrow : ''}  ${isDragging && !edgeZone ? codeFileStyles.dragOver : ''}`} 
             onClick={() => updateActiveScreenQuarter(props.quarter)}
-            onDragEnter={handleDragEnter}
-            onDragOver={handleDragOver}
-            onDragLeave={handleDragLeave}
-            onDrop={handleDrop}
+            {...dragHandlers}
         >
             {edgeZone && (
                 <div className={`${codeFileStyles.edgeZoneIndicator} ${codeFileStyles[`edgeZone_${edgeZone}`]} ${codeFileStyles.dragOver} `}></div>
             )}
             <div className={`${codeFileStyles.fileBar} ${globalStyles.rowFlex}`}>
                 {
-                    props.quarterFiles.map(f => <CodeFileNameTab key={f.key} fileName={f.fileName} fileExtension={f.fileExtension} fileKey={f.key} activeFileInQuarter={f.activeFileInQuarter} />)
+                    props.quarterFiles.map(f => <CodeFileNameTab key={f.key} fileName={f.fileName} fileExtension={f.fileExtension} fileKey={f.key} activeFileInQuarter={f.activeFileInQuarter} isOnMobile={props.isOnMobile} />)
                 }
             </div>
             {props.quarterFiles.length > 0 && (

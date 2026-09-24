@@ -10,6 +10,7 @@ interface Props {
     fileKey: string,
     fileExtension: string,
     activeFileInQuarter: boolean,
+    isOnMobile: boolean,
 }
 
 export default function CodeFileNameTab(props: Props) {
@@ -22,7 +23,7 @@ export default function CodeFileNameTab(props: Props) {
     }
 
     return (
-        <div draggable onDragStart={handleDragStart} className={`${globalStyles.rowFlex} ${styles.fileName} ${props.activeFileInQuarter ? styles.fileNameActive : styles.fileNameInactive}`}>
+        <div draggable={!props.isOnMobile} onDragStart={handleDragStart} className={`${globalStyles.rowFlex} ${styles.fileName} ${props.activeFileInQuarter ? styles.fileNameActive : styles.fileNameInactive}`}>
             <div className={`${globalStyles.rowFlex}`} onClick={() => updateQuarterActiveFile(props.fileKey)} >
                 <p className={`${styles.paddingSides}`}>{props.fileExtension}</p>
                 <p className={`${styles.paddingSides}`}>{props.fileName}</p>

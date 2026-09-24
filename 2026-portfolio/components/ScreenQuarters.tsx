@@ -6,7 +6,8 @@ import styles from '../styles/home-layout.module.scss';
 import globalStyles from '../styles/global.module.scss';
 
 interface Props {
-    quarterArrays: FileData[][]
+    quarterArrays: FileData[][],
+    isOnMobile: boolean,
 }
 
 export default function ScreenQuarters (props : Props) {
@@ -19,14 +20,30 @@ export default function ScreenQuarters (props : Props) {
                 const second = i*2+1;
                 const isLeftColumn = i === 0;
 
-                const offerVerticalDropTarget = props.quarterArrays[second].length === 0 ? second + 1 : undefined;
-                const offerHorizontalDropTarget = isLeftColumn && !rightHasContent ? 3 : undefined;
+                const offerVerticalDropTarget = !props.isOnMobile && props.quarterArrays[second].length === 0 ? second + 1 : undefined;
+                const offerHorizontalDropTarget = !props.isOnMobile && isLeftColumn && !rightHasContent ? 3 : undefined;
 
                 return (
                     (props.quarterArrays[first].length > 0 || props.quarterArrays[second].length > 0) && (
                         <div key={i} className={`${styles.verticalFileSplit} ${globalStyles.columnFlex}`} >
-                            { props.quarterArrays[first].length > 0 && <QuarterContent quarterFiles={props.quarterArrays[first]} quarter={first + 1} offerHorizontalDropTarget={offerHorizontalDropTarget} offerVerticalDropTarget={offerVerticalDropTarget} />}
-                            { props.quarterArrays[second].length > 0 && <QuarterContent quarterFiles={props.quarterArrays[second]} quarter={second + 1} offerHorizontalDropTarget={offerHorizontalDropTarget} offerVerticalDropTarget={offerVerticalDropTarget} /> }
+                            { props.quarterArrays[first].length > 0 && 
+                                <QuarterContent 
+                                    quarterFiles={props.quarterArrays[first]} 
+                                    quarter={first + 1} 
+                                    offerHorizontalDropTarget={offerHorizontalDropTarget} 
+                                    offerVerticalDropTarget={offerVerticalDropTarget} 
+                                    isOnMobile={props.isOnMobile}
+                                />
+                            }
+                            { props.quarterArrays[second].length > 0 && 
+                                <QuarterContent 
+                                    quarterFiles={props.quarterArrays[second]} 
+                                    quarter={second + 1} 
+                                    offerHorizontalDropTarget={offerHorizontalDropTarget} 
+                                    offerVerticalDropTarget={offerVerticalDropTarget} 
+                                    isOnMobile={props.isOnMobile}
+                                /> 
+                            }
                         </div>
                     )
                 )
