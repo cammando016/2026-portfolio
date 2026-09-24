@@ -13,8 +13,20 @@ export default function ProjectLinks (props : Props) {
     const {showTags} = useShowTagsContext();
     return (
         <div className={`${globalStyles.rowFlex} ${contentStyles.projectLinks}`}>
-            {props.projectLink && <a className={`${contentStyles.linkButton}`} target="blank" href={props.projectLink} >{`${showTags && '<a '}Visit Project${showTags && ' />'}`}</a>}
-            {props.githubLink && <a className={`${contentStyles.linkButton}`} target="blank" href={props.githubLink} >{`${showTags && '<a '}Visit Repo${showTags && ' />'}`}</a>}
+            {props.projectLink && 
+                <a className={`${contentStyles.linkButton}`} target="blank" href={props.projectLink} >
+                    {showTags && <span>{`<a `}</span>}
+                    Visit Project
+                    {showTags && <span>{` />`}</span>}
+                </a>
+            }
+            {props.githubLink && 
+                <a className={`${contentStyles.linkButton}`} target="blank" href={props.githubLink} >
+                    {showTags && <span>{`<a `}</span>}
+                    Visit Repo
+                    {showTags && <span>{` />`}</span>}    
+                </a>
+            }
         </div>
     )
 }
