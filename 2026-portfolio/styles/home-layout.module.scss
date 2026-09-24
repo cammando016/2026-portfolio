@@ -104,7 +104,10 @@ html, body {
     background-color: var(--footerBackground);
     flex-shrink: 0;
     text-align: center;
-    color: var(--footerText)
+    color: var(--footerText);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
 }
 
 .sectionLinksChevron {

@@ -7,6 +7,7 @@ import LinksAndIcons from "../components/LinksAndIcons";
 import { useEffect, useState } from "react";
 import { COLOUR_SCHEMES, colourSchemes } from "../types/Files";
 import Footer from "./Footer";
+import { ShowTagsContext } from "../store/showTagsContext";
 
 interface Props {
     children: React.ReactNode
@@ -20,6 +21,7 @@ function isValidTheme(value: string | null) : value is colourSchemes {
 
 export default function AppProvider(props: Props) {
     const [theme, setThemeState] = useState<colourSchemes>('light');
+    const [showTags, setShowTags] = useState<boolean>(true);
 
     useEffect(() => {
         const attr = document.documentElement.getAttribute('data-theme');
@@ -34,25 +36,31 @@ export default function AppProvider(props: Props) {
         } catch {}
     }
 
+    const toggleShowTags = () => setShowTags(prev => !prev);
+
     return (
         <ThemeContext.Provider
             value={{theme, setTheme}}
         >
-            <div className={`${styles.window}`}>
-            <div className={`${styles.topScreenBar} ${styles.rowFlex} `}>
-                <div className={` ${styles.windowControlContainer} ${styles.windowIconRed} `}></div>
-                <div className={` ${styles.windowControlContainer} ${styles.windowIconYellow} `}></div>
-                <div className={` ${styles.windowControlContainer} ${styles.windowIconGreen} `}></div>
-            </div>
+            <ShowTagsContext.Provider
+                value={{showTags, toggleShowTags}}
+            >
+                <div className={`${styles.window}`}>
+                <div className={`${styles.topScreenBar} ${styles.rowFlex} `}>
+                    <div className={` ${styles.windowControlContainer} ${styles.windowIconRed} `}></div>
+                    <div className={` ${styles.windowControlContainer} ${styles.windowIconYellow} `}></div>
+                    <div className={` ${styles.windowControlContainer} ${styles.windowIconGreen} `}></div>
+                </div>
 
-            <div className={`${styles.homeContainer} ${styles.rowFlex}`}>
-                <LinksAndIcons />
-                <ActiveStoreProvider>{props.children}</ActiveStoreProvider>
-            </div>
+                <div className={`${styles.homeContainer} ${styles.rowFlex}`}>
+                    <LinksAndIcons />
+                    <ActiveStoreProvider>{props.children}</ActiveStoreProvider>
+                </div>
 
-            <Footer />
+                <Footer />
 
-            </div>
+                </div>
+            </ShowTagsContext.Provider>
         </ThemeContext.Provider>
     )
 }

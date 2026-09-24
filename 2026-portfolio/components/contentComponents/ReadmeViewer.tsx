@@ -4,6 +4,7 @@ import ReactMarkdown from 'react-markdown';
 import styles from '../../styles/codeFile.module.scss';
 import { JSX } from 'react/jsx-runtime';
 import React from 'react';
+import { useShowTagsContext } from '../../store/showTagsContext';
 
 const LINE_HEIGHT_PIXELS = 24;
 
@@ -13,7 +14,6 @@ function createTagComponent(tagName: string, Tag: keyof JSX.IntrinsicElements, s
             return (
                 <>
                     <Tag>{children}</Tag>
-                    <p aria-hidden='true' style={{margin: 0, height: `${LINE_HEIGHT_PIXELS}px`, lineHeight: `${LINE_HEIGHT_PIXELS}px` }}>&nbsp;</p>
                 </>
             )
         }
@@ -34,19 +34,19 @@ function createTagComponent(tagName: string, Tag: keyof JSX.IntrinsicElements, s
 }
 
 export default function ReadmeViewer({content} : {content?: string}) {
-    const showMarkdownTags = true;
+    const {showTags} = useShowTagsContext();
 
     if (!content) return null;
     return (
         <div className={styles.markdownContent} >
             <ReactMarkdown
                 components={{
-                    p: createTagComponent('p', 'p', showMarkdownTags),
-                    h1: createTagComponent('h1', 'h1', showMarkdownTags),
-                    h2: createTagComponent('h2', 'h2', showMarkdownTags),
-                    h3: createTagComponent('h3', 'h3', showMarkdownTags),
-                    ul: createTagComponent('ul', 'ul', showMarkdownTags),
-                    ol: createTagComponent('ol', 'ol', showMarkdownTags),
+                    p: createTagComponent('p', 'p', showTags),
+                    h1: createTagComponent('h1', 'h1', showTags),
+                    h2: createTagComponent('h2', 'h2', showTags),
+                    h3: createTagComponent('h3', 'h3', showTags),
+                    ul: createTagComponent('ul', 'ul', showTags),
+                    ol: createTagComponent('ol', 'ol', showTags),
                 }}
             >{content}</ReactMarkdown>
         </div>
