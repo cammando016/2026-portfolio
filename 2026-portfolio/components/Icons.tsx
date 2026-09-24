@@ -20,7 +20,7 @@ export default function Icons (props : Props) {
 
     return (
         <div className={`${styles.iconsPane}`}>
-            <div>
+            
                 <Icon
                     toggleable={true} 
                     activeIcon={activeIcon}
@@ -31,8 +31,9 @@ export default function Icons (props : Props) {
                     unselectedIconSrc={unselectedFiles}
                     unselectedIconAlt='file icon unselected'
                 />
-            </div>
-            <div>
+
+                <div className={styles.iconSpacer}></div>
+            
                 <Icon 
                     toggleable={false} 
                     activeIcon={activeIcon}
@@ -61,7 +62,7 @@ export default function Icons (props : Props) {
                     unselectedIconSrc={unselectedSettings}
                     unselectedIconAlt='settings icon unselected'
                 />
-            </div>
+            
         </div>
     )
 }

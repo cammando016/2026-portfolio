@@ -38,6 +38,10 @@ html, body {
     justify-content: center;
 }
 
+.iconSpacer {
+    flex-grow: 1;
+}
+
 .iconContainerActive {
     border-left: solid var(--iconBorder) 3px;
 }
@@ -144,11 +148,30 @@ html, body {
         display: block;
     }
 
-    .iconsPane, .filesPane {
+    .filesPane {
         display: none;
     }
 
-    .homeContainer > :last-child {
+    .iconsPane {
+        flex-direction: row;
+        flex: 1;
+    }
+
+    .iconContainer {
+        max-width: 15%;
+    }
+
+    .iconContainerActive {
+        border-top: solid var(--iconBorder) 3px;
+        border-left: none;
+    }
+    
+    .iconContainerInactive {
+        border-top: solid var(--iconBackground) 3px;
+        border-left: none;
+    }
+
+    .homeContainer > :last-child, .iconsPane {
         width: 100%;
     }
 
