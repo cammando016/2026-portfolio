@@ -23,6 +23,7 @@ export default function Settings() {
                                 value={c}
                                 checked={theme === c}
                                 onChange={handleChangeTheme}
+                                className={styles.radioSelector}
                             />
                             <span className={styles.span}>{c}</span>
                         </label>
