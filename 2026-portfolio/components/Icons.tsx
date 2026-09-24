@@ -2,13 +2,16 @@
 
 import unselectedFiles from '../assets/fileIconUnselected.png';
 import selectedFiles from '../assets/fileIconSelected.png';
+import selectedFilesMatrix from '../assets/fileIconSelectedMatrix.png';
 import unselectedSettings from '../assets/settingsUnselected.png';
 import selectedSettings from '../assets/settingsSelected.png';
+import selectedSettingsMatrix from '../assets/settingsSelectedMatrix.png';
 import githubLogo from '../assets/githubLogo.png';
 import linkedInLogo from '../assets/linkedinLogo.png'
 import styles from '../styles/home-layout.module.scss';
 import { iconOptions } from '../types/Files';
 import Icon from './Icon';
+import { useThemeContext } from '../store/colourSchemeContext';
 
 interface Props {
     handleClickIcon: (iconKey: iconOptions) => void;
@@ -17,7 +20,7 @@ interface Props {
 
 export default function Icons (props : Props) {
     const activeIcon = props.activeIcon;
-
+    const {theme} = useThemeContext();
     return (
         <div className={`${styles.iconsPane}`}>
             
@@ -26,7 +29,7 @@ export default function Icons (props : Props) {
                     activeIcon={activeIcon}
                     iconType='files'
                     handleClickIcon={props.handleClickIcon}
-                    selectedIconSrc={selectedFiles}
+                    selectedIconSrc={theme === 'matrix' ? selectedFilesMatrix : selectedFiles}
                     selectedIconAlt='file icon selected'
                     unselectedIconSrc={unselectedFiles}
                     unselectedIconAlt='file icon unselected'
@@ -57,7 +60,7 @@ export default function Icons (props : Props) {
                     activeIcon={activeIcon}
                     iconType='settings'
                     handleClickIcon={props.handleClickIcon}
-                    selectedIconSrc={selectedSettings}
+                    selectedIconSrc={theme === 'matrix' ? selectedSettingsMatrix : selectedSettings}
                     selectedIconAlt='settings icon selected'
                     unselectedIconSrc={unselectedSettings}
                     unselectedIconAlt='settings icon unselected'

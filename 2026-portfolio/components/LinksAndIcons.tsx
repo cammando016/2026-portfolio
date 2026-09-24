@@ -4,29 +4,26 @@ import { useState } from "react";
 import Icons from "./Icons";
 import Links from "./Links";
 import { iconOptions } from "../types/Files";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 export default function LinksAndIcons() {
-    const [activeIcon, setActiveIcon] = useState<iconOptions>('files');
+    const [showFiles, setShowFiles] = useState<boolean>(true);
     const router = useRouter();
+    const pathname = usePathname();
+    
+    const activeIcon : iconOptions = pathname === '/settings' ? 'settings' : 'files';
+
+    console.log(pathname, activeIcon);
 
     const handleClickIcon = (iconKey : iconOptions) => {
-        if(activeIcon === iconKey) setActiveIcon(null);
-        else if (iconKey === 'files') {
-            setActiveIcon(iconKey);
-            router.push('/')
-        }
-        else if (iconKey === 'settings') {
-            setActiveIcon(iconKey);
-            router.push('/settings');
-        }
-        else setActiveIcon(iconKey);
+        if(iconKey === 'files') setShowFiles(prev => !prev);
+        else if (iconKey === 'settings') router.push('/settings')
     }
 
     return (
         <>
             <Icons handleClickIcon={handleClickIcon} activeIcon={activeIcon} />
-            {activeIcon === 'files' && <Links />}
+            {showFiles && <Links /> }
         </>
     )
 }

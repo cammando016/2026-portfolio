@@ -1,6 +1,7 @@
 import styles from '../styles/home-layout.module.scss';
 import Image, { StaticImageData } from 'next/image';
 import { iconOptions } from '../types/Files';
+import { usePathname } from 'next/navigation';
 
 type ToggleableProps = {
     toggleable: true
@@ -30,11 +31,11 @@ type Props = ToggleableProps | UntoggleableProps
 
 export default function Icon(props : Props) {
     const isActiveIcon: boolean = props.activeIcon === props.iconType;
+
     return (
         <>
         { props.toggleable ?
             <button
-                disabled={props.activeIcon === 'settings' && props.iconType === 'settings'}
                 className={`${styles.iconContainer} ${isActiveIcon ? styles.iconContainerActive : styles.iconContainerInactive} `}
                 onClick={() => props.handleClickIcon(props.iconType)}    
             >
@@ -48,7 +49,8 @@ export default function Icon(props : Props) {
             <a 
                 className={`${styles.iconContainer} ${styles.iconContainerInactive} `}
                 href={props.href}
-                target='blank'   
+                target="_blank"
+                rel="noopener noreferrer"
             >
                 <Image src={props.selectedIconSrc} alt={props.selectedIconAlt} />
             </a>
