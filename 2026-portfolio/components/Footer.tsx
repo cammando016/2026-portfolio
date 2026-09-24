@@ -17,7 +17,7 @@ export default function Footer() {
 
             <p>
                 {showTags && <span>{`<p>`}</span>}
-                {`Show Element Tags: ${showTags ? 'On' : 'Off'}`}
+                {`Element Tags: ${showTags ? 'On' : 'Off'}`}
                 {showTags && <span>{`</p>`}</span>}
             </p>
         </div>
