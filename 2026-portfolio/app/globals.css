@@ -51,15 +51,15 @@ html {
   --dotActiveBackground: #0071c1;
   --fileTabText: black;
   --defaultBackground: white;
-  --defaultText: #001471;
-  --tagText: #933034;
+  --defaultText: #0067B5;
+  --tagText: #A51F26;
 }
 
 html[data-theme="dark"] {
   --fieldsetBorder: #474747;
   --fileBarBackground: #212122;
+  --fileNameInactive: black;
   --fileNameActive: #1c1c1c;
-  --fileNameInactive: #282828;
   --lineNum: #787878;
   --dragOver: #53595d80;
   --pathNameBoxShadow: rgba(255, 255, 255, 0.3);
@@ -77,13 +77,14 @@ html[data-theme="dark"] {
   --fileTabText: #828282;
   --defaultBackground: #1c1c1c;
   --defaultText: #8bd8fb;
+  --tagText: #CB846F;
 }
 
 html[data-theme="matrix"] {
   --fieldsetBorder: #5ba786;
   --fileBarBackground: rgba(91, 167, 134, 0.1);
-  --fileNameActive: #1c1c1c;
-  --fileNameInactive: #282828;
+  --fileNameActive: black;
+  --fileNameInactive: #1c1c1c;
   --lineNum: #5ba786;
   --dragOver: rgba(95, 143, 81, 0.1);
   --pathNameBoxShadow: rgba(91, 167, 134, 0.8);
@@ -103,5 +104,6 @@ html[data-theme="matrix"] {
   --imageNavButtonHover: rgba(119, 136, 153, 0.2);
   --fileTabText: #5ba786;
   --defaultText: #5ba786;
+  --tagText: grey;
   --defaultBackground: #080808
 }
