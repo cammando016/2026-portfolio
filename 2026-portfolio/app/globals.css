@@ -51,7 +51,8 @@ html {
   --dotActiveBackground: #0071c1;
   --fileTabText: black;
   --defaultBackground: white;
-  --defaultText: #933034;
+  --tagText: #933034;
+  --defaultText: #001471;
 }
 
 html[data-theme="dark"] {

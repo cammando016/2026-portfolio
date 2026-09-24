@@ -113,3 +113,9 @@
 .pathnamePiece {
     margin-right: 5px;
 }
+
+.tagLabel {
+    color: var(--tagText);
+    font-style: italic;
+    opacity: 0.7;
+}
