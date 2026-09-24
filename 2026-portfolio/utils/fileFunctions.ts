@@ -31,7 +31,8 @@ export const updateQuarterActiveFile = (fileData: FileData[], fileKey: string) :
 export const closeFile = (fileData: FileData[], fileKey: string) : FileData[] => {
     //If another file as the one closed with the same screenQuarter is open, needs to be set as activeFileInQuarter true to display
     //Get quarter of the file that close was clicked on for this
-    const closedFileQuarter = fileData.find(f => f.key === fileKey)!.screenQuarter;
+    const closedFileQuarter : number = fileData.find(f => f.key === fileKey)!.screenQuarter;
+    const closedWasActive : boolean = fileData.find(f => f.key === fileKey)!.activeFileInQuarter;
 
     //Need key of first file in the same quarter of closed file
     //Might not exist if closed file was only one in screen quarter
@@ -39,9 +40,9 @@ export const closeFile = (fileData: FileData[], fileKey: string) : FileData[] =>
     const firstFileKeyMatchingQuarter = matchingQuarterFiles.length > 0 ? matchingQuarterFiles[0].key : '';
 
     return fileData.map(f => {
-        if (f.key !== fileKey && f.key !== firstFileKeyMatchingQuarter) return f;
-        if(f.key === firstFileKeyMatchingQuarter) return { ...f, activeFileInQuarter: true };
-        return { ...f, screenQuarter: 0, fileOpen: false }
+        if(f.key === fileKey) return {...f, screenQuarter: 0, fileOpen: false, activeFileInQuarter: false}
+        if (closedWasActive && f.key === firstFileKeyMatchingQuarter) return {...f, activeFileInQuarter: true}
+        return f;
     })
 }
 
