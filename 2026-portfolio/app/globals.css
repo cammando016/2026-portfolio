@@ -79,28 +79,28 @@ html[data-theme="dark"] {
 }
 
 html[data-theme="retro"] {
-  --fieldsetBorder: #5f8f51;
-  --fileBarBackground: rgba(95, 143, 81, 0.1);
+  --fieldsetBorder: #5ba786;
+  --fileBarBackground: rgba(91, 167, 134, 0.1);
   --fileNameActive: #1c1c1c;
   --fileNameInactive: #282828;
-  --lineNum: #5f8f51;
+  --lineNum: #5ba786;
   --dragOver: rgba(95, 143, 81, 0.1);
-  --pathNameBoxShadow: rgba(95, 143, 81, 0.8);
+  --pathNameBoxShadow: rgba(91, 167, 134, 0.8);
   --globalHover: #252829;
-  --iconBorder: #5f8f51;
+  --iconBorder: #5ba786;
   --iconBackground: #2d2d2d;
   --filesBackground: #212122;
-  --contentBorder: #5f8f51;
+  --contentBorder: #5ba786;
   --topScreen: #353535;
-  --footerBackground: #5f8f51;
+  --footerBackground: #5ba786;
   --footerText: black;
-  --buttonBackground: rgba(95, 143, 81, 0.8);
-  --linkText: #5f8f51;
+  --buttonBackground: rgba(91, 167, 134, 0.8);
+  --linkText: #5ba786;
   --focusedFile: #303035;
-  --fileColumnBorder: #5f8f51;
+  --fileColumnBorder: #5ba786;
   --imageNavButton: rgba(119, 136, 153, 0.4);
   --imageNavButtonHover: rgba(119, 136, 153, 0.2);
-  --fileTabText: #5f8f51;
-  --defaultText: #5f8f51;
+  --fileTabText: #5ba786;
+  --defaultText: #5ba786;
   --defaultBackground: #080808
 }
