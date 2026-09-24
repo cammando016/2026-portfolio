@@ -56,18 +56,11 @@
     min-height: 0;
     overflow-y: hidden;
     position: relative;
-    &:last-child {
-        flex: 1;
-    }
 }
 
 .screenQuarterContent {
     flex: 1;
     min-height: 0;
-}
-
-.screenQuarterContainerGrow {
-    flex: 1;
 }
 
 .dragOver {

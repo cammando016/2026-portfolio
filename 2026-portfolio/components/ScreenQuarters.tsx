@@ -1,9 +1,7 @@
 'use client'
 
 import { FileData } from "../types/Files"
-import QuarterContent from "./QuarterContent"
-import styles from '../styles/home-layout.module.scss';
-import globalStyles from '../styles/global.module.scss';
+import VerticalSplitPair from "./VerticalSplitPair";
 
 interface Props {
     quarterArrays: FileData[][],
@@ -24,28 +22,16 @@ export default function ScreenQuarters (props : Props) {
                 const offerHorizontalDropTarget = !props.isOnMobile && isLeftColumn && !rightHasContent ? 3 : undefined;
 
                 return (
-                    (props.quarterArrays[first].length > 0 || props.quarterArrays[second].length > 0) && (
-                        <div key={i} className={`${styles.verticalFileSplit} ${globalStyles.columnFlex}`} >
-                            { props.quarterArrays[first].length > 0 && 
-                                <QuarterContent 
-                                    quarterFiles={props.quarterArrays[first]} 
-                                    quarter={first + 1} 
-                                    offerHorizontalDropTarget={offerHorizontalDropTarget} 
-                                    offerVerticalDropTarget={offerVerticalDropTarget} 
-                                    isOnMobile={props.isOnMobile}
-                                />
-                            }
-                            { props.quarterArrays[second].length > 0 && 
-                                <QuarterContent 
-                                    quarterFiles={props.quarterArrays[second]} 
-                                    quarter={second + 1} 
-                                    offerHorizontalDropTarget={offerHorizontalDropTarget} 
-                                    offerVerticalDropTarget={offerVerticalDropTarget} 
-                                    isOnMobile={props.isOnMobile}
-                                /> 
-                            }
-                        </div>
-                    )
+                    <VerticalSplitPair 
+                        key={i}
+                        firstFiles={props.quarterArrays[first]}
+                        firstQuarter={first + 1}
+                        secondFiles={props.quarterArrays[second]}
+                        secondQuarter={second + 1}
+                        offerVerticalDropTarget={offerVerticalDropTarget}
+                        offerHorizontalDropTarget={offerHorizontalDropTarget}
+                        isOnMobile={props.isOnMobile}
+                    />
                 )
             })}
         </>
