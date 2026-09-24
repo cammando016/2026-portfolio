@@ -36,11 +36,22 @@
     justify-content: space-between;
 }
 
-.formButton {
+.formButton, .linkButton {
     cursor: pointer;
-    border: 2px solid black;
-    border-radius: 4px;
+    border: 2px solid var(--footerBackground);
+    border-radius: 8px;
     padding: 5px 15px;
+    background-color: var(--buttonBackground);
+    color: var(--footerText);
+
+    &:hover {
+        box-shadow: 0px 0px 10px var(--footerBackground) ;
+    }
+}
+
+.projectLinks {
+    justify-content: space-evenly;
+    padding: 20px 0;
 }
 
 .formButtonDisabled, .errorMessage {
@@ -52,6 +63,7 @@
     flex-direction: column;
     padding: 10px;
 }
+
 
 @media (min-width: 769px) {
     .landingMobile {

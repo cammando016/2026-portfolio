@@ -17,7 +17,7 @@ export default function CodeFile ( props : Props ) {
     const measureRef = useRef<HTMLDivElement>(null);
     const [lineCount, setLineCount] = useState<number>(1);
 
-    const hasScreenshots =!!props.file.screenshots;
+    const noLineNums =!!props.file.screenshots || props.file.contentComponent === 'projectLinks';
 
     useLayoutEffect(() => {
         const el = measureRef.current;
@@ -37,10 +37,10 @@ export default function CodeFile ( props : Props ) {
         return () => observer.disconnect();
     }, [props.file.key]);
 
-    const lineNums: number[] = !hasScreenshots ? Array.from({length: lineCount}, (_, i) => i + 1) : [];
+    const lineNums: number[] = !noLineNums ? Array.from({length: lineCount}, (_, i) => i + 1) : [];
 
     return (
-        <div className={`${styles.container} ${globalStyles.greyBorderRight} ${!hasScreenshots ? styles.textPadding : ''}`}>
+        <div className={`${styles.container} ${globalStyles.greyBorderRight} ${!noLineNums ? styles.textPadding : ''}`}>
             <div className={`${globalStyles.rowFlex} ${styles.screenQuarterContent}`}>
                 {lineNums.length > 0 &&
                     <div className={`${styles.lineNumsContainer}`}>
@@ -50,7 +50,7 @@ export default function CodeFile ( props : Props ) {
                     </div>
                 }
                 <div style={{ display: 'flex', flexDirection: 'column', flex: 1, minHeight: 0 }}>
-                    {hasScreenshots ? (
+                    {noLineNums ? (
                         <Content content={props.file.content} projectLink={props.file.projectLink} githubLink={props.file.githubLink} screenshots={props.file.screenshots} />
                     ) : (
                         <div ref={measureRef}>

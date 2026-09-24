@@ -1,4 +1,5 @@
 import globalStyles from '../../styles/global.module.scss';
+import contentStyles from '../../styles/content.module.scss';
 
 interface Props {
     projectLink?: string,
@@ -7,9 +8,9 @@ interface Props {
 
 export default function ProjectLinks (props : Props) {
     return (
-        <div className={`${globalStyles.columnFlex}`}>
-            {props.projectLink && <a target="blank" href={props.projectLink} >click to visit project</a>}
-            {props.githubLink && <a target="blank" href={props.githubLink} >click to visit repo</a>}
+        <div className={`${globalStyles.rowFlex} ${contentStyles.projectLinks}`}>
+            {props.projectLink && <a className={`${contentStyles.linkButton}`} target="blank" href={props.projectLink} >Visit Project</a>}
+            {props.githubLink && <a className={`${contentStyles.linkButton}`} target="blank" href={props.githubLink} >Visit Repo</a>}
         </div>
     )
 }
