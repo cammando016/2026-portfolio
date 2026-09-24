@@ -1,5 +1,5 @@
-import MainContentSection from '../components/MainContentSection';
+import Landing from '../components/contentComponents/Landing';
 
 export default function Home() {
-  return <MainContentSection />
+  return <Landing />
 }

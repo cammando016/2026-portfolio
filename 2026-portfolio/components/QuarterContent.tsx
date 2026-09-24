@@ -24,7 +24,7 @@ export default function QuarterContent (props : Props) {
     //Get pathname to fill out file being viewed in quarter
     const pathname = usePathname();
     const pathnamePieces : string[] = pathname.split('/').slice(1);
-    if (pathnamePieces.length === 1) pathnamePieces[0] = 'home';
+    if (pathnamePieces.length === 1) pathnamePieces[0] = 'about me';
 
     const activeFile = props.quarterFiles.filter(f => f.activeFileInQuarter)[0];
     const needsGrow = !!activeFile?.screenshots;
