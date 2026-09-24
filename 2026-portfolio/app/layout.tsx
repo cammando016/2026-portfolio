@@ -21,7 +21,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             (function() {
               try {
                 var stored = localStorage.getItem('portfolio-theme');
-                var validThemes = ['light', 'dark', 'retro'];
+                var validThemes = ['light', 'dark', 'matrix'];
                 if (stored && validThemes.indexOf(stored) !== -1) {
                   document.documentElement.setAttribute('data-theme', stored);
                 }

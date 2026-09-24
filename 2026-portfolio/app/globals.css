@@ -78,7 +78,7 @@ html[data-theme="dark"] {
   --defaultText: #8bd8fb;
 }
 
-html[data-theme="retro"] {
+html[data-theme="matrix"] {
   --fieldsetBorder: #5ba786;
   --fileBarBackground: rgba(91, 167, 134, 0.1);
   --fileNameActive: #1c1c1c;
