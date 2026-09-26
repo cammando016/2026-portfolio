@@ -48,7 +48,7 @@ export default function AboutMe () {
             <br />
             <p>
                 {showTags && <span className={styles.tagLabel}>{`<p>`}</span>}
-                I also love snowboarding, going every winter including travelling to snowboarded twice in Japan, and am hoping to travel to Canada next.
+                I also love snowboarding, going every winter including travelling to snowboard twice in Japan, and am hoping to travel to Canada next.
                 {showTags && <span className={styles.tagLabel}>{`</p>`}</span>}
             </p>
             <br />

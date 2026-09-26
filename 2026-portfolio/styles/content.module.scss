@@ -64,6 +64,33 @@
     padding: 10px;
 }
 
+.skillsContainer {
+    display: flex;
+    flex-flow: row wrap;
+    padding: 2%;
+}
+
+.skillContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    width: 25%;
+    height: auto;
+    border-radius: 25%;
+    &:hover {
+        box-shadow: 2px 5px 10px var(--defaultText);
+    }
+}
+
+.skillImage {
+    max-height: 64px;
+    width: auto;
+    margin-bottom: 15px
+}
+
 
 @media (min-width: 769px) {
     .landingMobile {
