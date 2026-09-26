@@ -29,6 +29,7 @@ export default function QuarterContent (props : Props) {
     if (pathnamePieces.length === 1) pathnamePieces[0] = 'about me';
 
     const activeFile = props.quarterFiles.filter(f => f.activeFileInQuarter)[0];
+    const activeQuarter = useCurrentFileDataStore(state => state.activeScreenQuarter);
     const updateActiveScreenQuarter = useCurrentFileDataStore(state => state.updateActiveScreenQuarter);
     const updateFileScreenQuarter = useCurrentFileDataStore(state => state.updateFileScreenQuarter);
     const [isDragging, setIsDragging] = useState<boolean>(false);
@@ -121,7 +122,7 @@ export default function QuarterContent (props : Props) {
             </div>
             {props.quarterFiles.length > 0 && (
                 <div className={`${codeFileStyles.codeFileWrapper}`}>
-                    <div ref={pathnameRef} className={`${globalStyles.rowFlex} ${codeFileStyles.pathnameContainer}`}>
+                    <div ref={pathnameRef} style={{fontWeight: (activeFile && props.quarter === activeQuarter) ? 'bold' : ''}} className={`${globalStyles.rowFlex} ${codeFileStyles.pathnameContainer} ${props.quarter === activeQuarter ? codeFileStyles.pathnameContainerActive : '' }`}>
                         {pathnamePieces.map(p => <p className={`${codeFileStyles.pathnamePiece}`} key={p}>{`${p} >`}</p> )}
                         <p className={`${codeFileStyles.pathnamePiece}`}>{activeFile.fileName}.{activeFile.fileExtension}</p>
                     </div>
