@@ -18,7 +18,12 @@ export default function CodeFile ( props : Props ) {
     const measureRef = useRef<HTMLDivElement>(null);
     const [lineCount, setLineCount] = useState<number>(1);
 
-    const noLineNums = props.file.contentComponent === 'projectLinks';
+    const noLineNums = 
+        props.file.contentComponent === 'projectLinks' || 
+        props.file.contentComponent === 'skills' || 
+        props.file.contentComponent === 'contactMe' ||
+        props.file.contentComponent === 'githubGraph'    
+    ;
     const hasScreenshots = !!props.file.screenshots;
 
     useLayoutEffect(() => {

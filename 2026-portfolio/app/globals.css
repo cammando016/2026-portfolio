@@ -53,6 +53,11 @@ html {
   --defaultBackground: white;
   --defaultText: #05518b;
   --tagText: #A51F26;
+  --contribLevel0: #ebedf0;
+  --contribLevel1: #b3d4fc;
+  --contribLevel2: #6fa8f5;
+  --contribLevel3: #2f6fd6;
+  --contribLevel4: #0b3d91;
 }
 
 html[data-theme="dark"] {
@@ -78,6 +83,11 @@ html[data-theme="dark"] {
   --defaultBackground: #1c1c1c;
   --defaultText: #8bd8fb;
   --tagText: #CB846F;
+  --contribLevel0: #646464;
+  --contribLevel1: #9fa272;
+  --contribLevel2: #eff96a;
+  --contribLevel3: #ecf752;
+  --contribLevel4: #ffff30;
 }
 
 html[data-theme="matrix"] {
@@ -105,5 +115,10 @@ html[data-theme="matrix"] {
   --fileTabText: #5ba786;
   --defaultText: #5ba786;
   --tagText: grey;
-  --defaultBackground: #080808
+  --defaultBackground: #080808;
+  --contribLevel0: #0d1a12;
+  --contribLevel1: #1f5c2e;
+  --contribLevel2: #339645;
+  --contribLevel3: #4ecc5e;
+  --contribLevel4: #6bff73;
 }
