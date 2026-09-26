@@ -38,7 +38,7 @@ export default function ReadmeViewer({content} : {content?: string}) {
 
     if (!content) return null;
     return (
-        <div className={styles.markdownContent} >
+        <div className={`${styles.markdownContent} ${styles.text} `}>
             <ReactMarkdown
                 components={{
                     p: createTagComponent('p', 'p', showTags),

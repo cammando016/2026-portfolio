@@ -101,6 +101,7 @@
     flex-direction: column;
     flex: 1;
     min-height: 0;
+    padding-right: 10px;
 }
 
 .pathnameContainer {
@@ -117,4 +118,8 @@
 .tagLabel {
     color: var(--tagText);
     font-style: italic;
+}
+
+.text {
+    text-align: justify;
 }
