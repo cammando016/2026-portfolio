@@ -12,6 +12,10 @@
     border: 1px solid var(--fieldsetBorder);
     border-radius: 5px;
     padding: 3px;
+    &:focus {
+        border-width: 3px;
+        outline: none;
+    }
 }
 
 .checkbox {
@@ -21,10 +25,6 @@
 
 .inputLarge {
     height: 1;
-}
-
-.inputInvalid {
-    border-color: red;
 }
 
 .inputDiv {
@@ -55,7 +55,19 @@
 }
 
 .formButtonDisabled, .errorMessage {
-    color: red;
+    color: var(--disabledButtonText)
+}
+
+.formButtonDisabled {
+    border: 2px solid var(--footerBackground);
+    border-radius: 8px;
+    padding: 5px 15px;
+    background-color: var(--disabledButtonBackground);
+    border-color: var(--disabledButtonBackground);
+}
+
+.invalidInput {
+    border: 1px solid var(--disabledButtonText);
 }
 
 .landing {

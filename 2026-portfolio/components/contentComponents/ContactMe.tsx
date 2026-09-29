@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import ReCAPTCHA from 'react-google-recaptcha';
 import styles from '../../styles/content.module.scss';
 import globalStyles from '../../styles/global.module.scss';
@@ -26,20 +26,22 @@ const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z
 
 const validateForm = (values: FormState) : FormErrors => {
     const errors: FormErrors = {};
-    if (!values.submittedName.trim()) errors.submittedName = 'Name is required';
+    if (!values.submittedName.trim()) errors.submittedName = 'Required field';
     if (!values.returnEmail.trim()) {
-        errors.returnEmail = 'Return email address is required';
+        errors.returnEmail = 'Required field';
     } else if (!EMAIL_REGEX.test(values.returnEmail)) {
-        errors.returnEmail = 'Invalid email address format';
+        errors.returnEmail = 'Invalid format';
     }
-    if (!values.subject.trim()) errors.subject = 'Email subject is required';
-    if (!values.emailContent.trim()) errors.emailContent = 'Email message is required';
+    if (!values.subject.trim()) errors.subject = 'Required field';
+    if (!values.emailContent.trim()) errors.emailContent = 'Required field';
     return errors;
 }
 
 export default function ContactMe () {
     const recaptchaRef = useRef<ReCAPTCHA>(null);
     const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+    const [submitStatus, setSubmitStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
+    const [emailError, setEmailError] = useState<string | null>(null);
 
     const [form, setForm] = useState<FormState>({
         submittedName: '',
@@ -53,9 +55,63 @@ export default function ContactMe () {
     const errors = validateForm(form);
     const formValid = Object.keys(errors).length === 0;
 
+    const handleSendEmail = async (e: React.SubmitEvent) => {
+        e.preventDefault();
+        if (!formValid) {
+            setEmailError('Invalid values in form');
+            return;
+        }
+        if (!captchaToken) {
+            setEmailError('ReCAPTCHA not valid');
+            return;
+        }
+
+        setSubmitStatus('sending');
+
+        try {
+            const res = await fetch ('/api/send', {
+                method: 'POST',
+                headers: { 'Content-Type' : 'application/json' },
+                body: JSON.stringify({ 
+                    submittedName: form.submittedName,
+                    subject: form.subject,
+                    company: form.company,
+                    returnEmail: form.returnEmail,
+                    emailContent: form.emailContent,
+                    receiveCC: form.receiveCC ? form.returnEmail : null,
+                    captchaToken, 
+                }),
+            });
+
+            const data = await res.json();
+
+            if (!res.ok) {
+                setEmailError(data.error.message ?? 'Sending failed');
+                throw new Error(data.error.message ?? 'Sending failed');
+            }
+
+            setSubmitStatus('success');
+            setForm({
+                submittedName: '',
+                subject: '',
+                company: '',
+                returnEmail: '',
+                emailContent: '',
+                receiveCC: false,
+            });
+            setEmailError(null);
+            recaptchaRef.current?.reset();
+            setCaptchaToken(null);
+        } catch {
+            setSubmitStatus('error');
+            recaptchaRef.current?.reset();
+            setCaptchaToken(null);
+        }
+    }
+
     return (
-        <div>
-            <form>
+        <div style={{marginLeft: '20px', marginTop: '15px'}}>
+            <form onSubmit={handleSendEmail}>
                 <fieldset className={styles.contactFieldset}>
                     <legend className={styles.contactLegend}>Contact Me</legend>
                     <div className={`${globalStyles.columnFlex} ${styles.inputDiv}`}>
@@ -64,9 +120,9 @@ export default function ContactMe () {
                             {errors.submittedName && <em><p className={styles.errorMessage}>{errors.submittedName}</p></em>}
                         </div>
                         <input
-                            maxLength={20}
+                            maxLength={25}
                             placeholder="Please enter your name"
-                            className={`${styles.input} `}
+                            className={`${styles.input} ${errors.submittedName ? styles.invalidInput : ''}`}
                             id="submittedName"
                             type="text"
                             value={form.submittedName}
@@ -76,13 +132,13 @@ export default function ContactMe () {
                     </div>
                     <div className={`${globalStyles.columnFlex} ${styles.inputDiv}`}>
                         <div className={`${styles.label} ${globalStyles.rowFlex}`} >
-                            <label className={styles.label} htmlFor='returnEmail'>Return Email *</label>
+                            <label className={styles.label} htmlFor='returnEmail'>Return Email Address *</label>
                             {errors.returnEmail && <em><p className={styles.errorMessage}>{errors.returnEmail}</p></em>}
                         </div>
                         <input
-                            maxLength={20}
-                            placeholder="Please enter an email address for my response"
-                            className={`${styles.input} `}
+                            maxLength={50}
+                            placeholder="Please enter an email for my response"
+                            className={`${styles.input} ${errors.returnEmail ? styles.invalidInput : ''}`}
                             id="returnEmail"
                             type="text"
                             value={form.returnEmail}
@@ -109,7 +165,7 @@ export default function ContactMe () {
                         <input
                             maxLength={50}
                             placeholder="Please enter the email subject"
-                            className={`${styles.input} `}
+                            className={`${styles.input} ${errors.subject ? styles.invalidInput : ''}`}
                             id="subject"
                             type="text"
                             value={form.subject}
@@ -124,7 +180,7 @@ export default function ContactMe () {
                         <textarea
                             maxLength={1000}
                             placeholder="Please enter your message"
-                            className={`${styles.input} `}
+                            className={`${styles.input} ${errors.emailContent ? styles.invalidInput : ''}`}
                             rows={10}
                             id="content"
                             value={form.emailContent}
@@ -135,23 +191,32 @@ export default function ContactMe () {
                         <input
                             className={`${styles.checkbox}`}
                             type="checkbox"
-                            value="receiveCC"
+                            value={styles.receiveCC}
                             onChange={() => setForm(prev => ({...prev, receiveCC: !prev.receiveCC})) }
                         />
                         <label className={styles.label} htmlFor='cc'>Receive CC?</label>
                     </div>
                     <div>
-                        { !captchaToken ? 
-                            <ReCAPTCHA 
-                                ref={recaptchaRef}
-                                sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
-                                onChange={(token : any) => setCaptchaToken(token)}
-                            />
-                        :
-                            <button
-                                className={`${styles.formButton} ${formValid ? '' : styles.formButtonDisabled}`}
-                                disabled={!formValid || !captchaToken}
-                            >Send</button>
+                        <ReCAPTCHA 
+                            ref={recaptchaRef}
+                            sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
+                            onChange={(token : any) => setCaptchaToken(token)}
+                        />
+
+                        <button
+                            className={`${(!formValid || !captchaToken) ? styles.formButtonDisabled : styles.formButton}`}
+                            style={{marginTop: '10px', marginBottom: '10px'}}
+                            type="submit"
+                            disabled={!formValid || !captchaToken}
+                        >Send</button>
+                        { 
+                            submitStatus === 'sending' && <p>Sending Email...</p>
+                        }
+                        {
+                            submitStatus === 'success' && <p>Email Sent!</p>
+                        }
+                        {
+                            submitStatus === 'error' && <p>{`Error: ${emailError}`}</p>
                         }
                     </div>
                 </fieldset>

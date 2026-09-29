@@ -58,6 +58,8 @@ html {
   --contribLevel2: #6fa8f5;
   --contribLevel3: #2f6fd6;
   --contribLevel4: #0b3d91;
+  --disabledButtonText: rgb(220, 96, 96);
+  --disabledButtonBackground: lightgrey;
 }
 
 html[data-theme="dark"] {
@@ -88,6 +90,8 @@ html[data-theme="dark"] {
   --contribLevel2: #eff96a;
   --contribLevel3: #ecf752;
   --contribLevel4: #ffff30;
+  --disabledButtonText: rgb(220, 96, 96);
+  --disabledButtonBackground: rgb(63, 63, 63);
 }
 
 html[data-theme="matrix"] {
@@ -121,4 +125,6 @@ html[data-theme="matrix"] {
   --contribLevel2: #339645;
   --contribLevel3: #4ecc5e;
   --contribLevel4: #6bff73;
+  --disabledButtonText: rgb(220, 96, 96);
+  --disabledButtonBackground: rgb(63, 63, 63);
 }

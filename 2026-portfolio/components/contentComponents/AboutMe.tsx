@@ -16,6 +16,7 @@ export default function AboutMe () {
             <p>
                 {showTags && <span className={styles.tagLabel}>{`<p>`}</span>}
                 I am a full stack software engineer, looking for an opportunity to continue my IT career.
+                My career to date includes 2 fixed term roles and I am seeking an ongoing full time role.
                 {showTags && <span className={styles.tagLabel}>{`</p>`}</span>}
             </p>
             <br />

@@ -8,12 +8,9 @@ interface Props {
 export default function EmailTemplate(props: Props) {
     return (
         <div>
-            <h2>Hi Cam</h2>
-            <br />
+            <h4>Hi Cam,</h4>
             <p>{`${props.sender}${props.company ? ` from ${props.company}` : ''} sent you a message:`}</p>
-            <br />
             <p>{props.emailContent}</p>
-            <br />
             <p>{`Respond to ${props.sender} at ${props.returnEmail}`}</p>
         </div>
     )
