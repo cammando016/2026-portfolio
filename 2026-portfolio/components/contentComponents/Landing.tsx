@@ -3,11 +3,21 @@
 import { useShowTagsContext } from '../../store/showTagsContext';
 import contentStyles from '../../styles/content.module.scss';
 import codeFileStyles from '../../styles/codeFile.module.scss';
+import { useThemeContext } from '../../store/colourSchemeContext';
 
 export default function Landing () {
     const {showTags} = useShowTagsContext();
+    const {theme} = useThemeContext();
     return (
-        <div className={`${contentStyles.landing}`}>
+        <div 
+            className={`${contentStyles.landing}`} 
+            style={{
+                backgroundImage: `url(${theme === 'light' ? "/vscLogo.png" : "/vscLogoDark.png" })`,
+                backgroundSize: '60% auto',
+                backgroundRepeat: 'no-repeat',
+                backgroundPosition: 'center',
+            }}
+        >
             <h1>
                 {showTags && <span className={codeFileStyles.tagLabel}>
                     {`<h1>`}
