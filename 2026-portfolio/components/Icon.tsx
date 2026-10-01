@@ -40,9 +40,9 @@ export default function Icon(props : Props) {
                 onClick={() => props.handleClickIcon(props.iconType)}    
             >
                 {isActiveIcon ?
-                    <Image src={props.selectedIconSrc} alt={props.selectedIconAlt} />
+                    <Image src={props.selectedIconSrc} alt={props.selectedIconAlt} style={{ height: '100%', width: 'auto' }} />
                     :
-                    <Image src={props.unselectedIconSrc} alt={props.unselectedIconAlt} />
+                    <Image src={props.unselectedIconSrc} alt={props.unselectedIconAlt} style={{ height: '100%', width: 'auto' }} />
                 }
             </button>
             :
@@ -52,7 +52,7 @@ export default function Icon(props : Props) {
                 target="_blank"
                 rel="noopener noreferrer"
             >
-                <Image src={props.selectedIconSrc} alt={props.selectedIconAlt} />
+                <Image src={props.selectedIconSrc} alt={props.selectedIconAlt} style={{ height: '100%', width: 'auto' }}/>
             </a>
         }
         </>
