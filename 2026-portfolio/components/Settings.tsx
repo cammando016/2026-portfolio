@@ -5,12 +5,40 @@ import { useShowTagsContext } from "../store/showTagsContext";
 import styles from '../styles/settings.module.scss';
 import codeFileStyles from '../styles/codeFile.module.scss';
 import { COLOUR_SCHEMES } from "../types/Files";
+import ThemePalette from "./ThemePalette";
 
 export default function Settings() {
     const { theme, setTheme } = useThemeContext();
     const { showTags, toggleShowTags } = useShowTagsContext();
 
-    const handleChangeTheme = (e: any) => setTheme(e.target.value)
+    const handleChangeTheme = (e: any) => setTheme(e.target.value);
+
+    const lightModeColours : string[] = [
+        'white',
+        '#05518b',
+        '#106e86',
+        '#f3f3f3',
+        '#A51F26',
+        '#0b3d91'
+    ];
+
+    const darkModeColours : string[] = [
+        '#1c1c1c',
+        '#8bd8fb',
+        '#787878',
+        '#CB846F',
+        '#ffff30',
+        '#212122'
+    ];
+
+    const matrixModeColours : string[] = [
+        '#080808',
+        '#5ba786',
+        '#5ba78680',
+        '#6bff73',
+        'grey',
+        '#212122'
+    ];
 
     return (
         <div className={`${styles.settingsContainer}`}>
@@ -19,8 +47,11 @@ export default function Settings() {
             <fieldset className={`${styles.themeFieldset}`}>
                 <legend className={`${styles.themeLegend}`}>Update Colour Theme</legend>
                 {COLOUR_SCHEMES.map(c => {
+                    const paletteArray : string[] =
+                        c === 'light' ? lightModeColours :
+                            c === 'dark' ? darkModeColours : matrixModeColours;
                     return (
-                        <label className={styles.label} key={c}>
+                        <label className={styles.label} style={{ backgroundColor: paletteArray[0] }} key={c}>
                             <input
                                 type="radio"
                                 name={c}
@@ -29,7 +60,8 @@ export default function Settings() {
                                 onChange={handleChangeTheme}
                                 className={styles.radioSelector}
                             />
-                            <span className={styles.span}>{c}</span>
+                            <span style={{ color: paletteArray.slice(1, 2)[0] }} className={styles.span}>{c}</span>
+                            <ThemePalette colours={paletteArray.slice(1)} />
                         </label>
                     )
                 })

@@ -87,6 +87,7 @@ html[data-theme="dark"] {
   --imageNavButtonHover: rgba(119, 136, 153, 0.2);
   --fileTabText: #828282;
   --defaultBackground: #1c1c1c;
+  --dotActiveBackground: #8bd8fb;
   --defaultText: #8bd8fb;
   --tagText: #CB846F;
   --contribLevel0: #646464;
@@ -103,7 +104,7 @@ html[data-theme="matrix"] {
   --fileBarBackground: rgba(91, 167, 134, 0.3);
   --fileNameActive: black;
   --fileNameInactive: #1c1c1c;
-  --lineNum: #5ba786;
+  --lineNum: rgba(91, 167, 134, 0.502);
   --dragOver: rgba(95, 143, 81, 0.1);
   --pathNameBoxShadow: rgba(91, 167, 134, 0.8);
   --globalHover: #252829;
@@ -124,6 +125,7 @@ html[data-theme="matrix"] {
   --defaultText: #5ba786;
   --tagText: grey;
   --defaultBackground: #080808;
+  --dotActiveBackground: #5ba786;
   --contribLevel0: #0d1a12;
   --contribLevel1: #1f5c2e;
   --contribLevel2: #339645;
