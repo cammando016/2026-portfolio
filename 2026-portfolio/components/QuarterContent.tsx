@@ -47,7 +47,7 @@ export default function QuarterContent (props : Props) {
             return;
         }
         const chromeHeight = (fileBarRef.current?.offsetHeight ?? 0) + (pathnameRef.current?.offsetHeight ?? 0);
-        props.onContentHeightChange?.(contentHeight + chromeHeight);
+        props.onContentHeightChange?.(contentHeight + chromeHeight + 20);
     }
 
     const computeEdgeZone = (e: React.DragEvent<HTMLDivElement>) : EdgeZone => {
@@ -122,7 +122,7 @@ export default function QuarterContent (props : Props) {
                     props.quarterFiles.map(f => <CodeFileNameTab key={f.key} fileName={f.fileName} fileExtension={f.fileExtension} fileKey={f.key} activeFileInQuarter={f.activeFileInQuarter} isOnMobile={props.isOnMobile} />)
                 }
                 </div>
-                <SplitScreenButtons screenQuarter={props.quarter} />
+                <SplitScreenButtons isOnMobile={props.isOnMobile} screenQuarter={props.quarter} />
             </div>
             {props.quarterFiles.length > 0 && (
                 <div className={`${codeFileStyles.codeFileWrapper}`}>

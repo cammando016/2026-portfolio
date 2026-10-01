@@ -6,6 +6,7 @@ import styles from '../styles/codeFile.module.scss';
 
 interface Props {
     screenQuarter: number,
+    isOnMobile: boolean,
 }
 
 export default function SplitScreenButtons (props : Props) {
@@ -48,7 +49,7 @@ export default function SplitScreenButtons (props : Props) {
     }
 
     return (
-        (canMoveHorizontal || canMoveVertical) &&
+        (canMoveHorizontal || canMoveVertical) && !props.isOnMobile &&
             <div className={styles.splitScreenButtons}>
                 { canMoveHorizontal &&
                     <button 
