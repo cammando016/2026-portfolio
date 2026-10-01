@@ -101,6 +101,10 @@
     border-radius: 25%;
 }
 
+.markdownContent >:last-child {
+    display: none;
+}
+
 .markdownContent > * {
     margin-bottom: 24px;
 }
