@@ -76,8 +76,9 @@
 
 .skillsContainer {
     display: flex;
+    justify-content: center;
     flex-flow: row wrap;
-    padding: 2%;
+    padding: 1% 2% 2%;
 }
 
 .skillContainer {
@@ -87,7 +88,7 @@
     align-items: center;
     text-align: center;
     padding: 20px;
-    width: 25%;
+    width: 133px;
     height: auto;
     border-radius: 25%;
     &:hover {
