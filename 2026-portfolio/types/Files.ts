@@ -1,6 +1,6 @@
 import { StaticImageData } from "next/image"
 
-export type ContentComponentKey = 'aboutMe' | 'contactMe' | 'githubGraph' | 'skills' | 'readme' | 'projectLinks' | 'screenshots'
+export type ContentComponentKey = 'aboutMe' | 'contactMe' | 'githubGraph' | 'skills' | 'readme' | 'projectLinks' | 'screenshots' | 'education'
 
 export interface FileData {
     key: string,

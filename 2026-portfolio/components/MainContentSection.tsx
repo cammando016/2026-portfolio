@@ -16,8 +16,6 @@ export default function MainContentSection () {
     const fileData : FileData[] = useCurrentFileDataStore(state => state.fileData);
     const [isOnMobile, setIsOnMobile] = useState<boolean>(false);
 
-    console.log(isOnMobile);
-
     useEffect(() => {
         const mediaQuery = window.matchMedia(`(max-width: ${MOBILE_WIDTH_BREAKPOINT}px)`);
         const handleChange = (e: MediaQueryListEvent | MediaQueryList) => {

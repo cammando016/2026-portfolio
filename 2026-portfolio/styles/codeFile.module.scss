@@ -21,6 +21,7 @@
     background-color: var(--fileBarBackground);
     display: flex;
     flex-shrink: 0;
+    gap: 2px;
 }
 
 .fileName {
@@ -122,6 +123,7 @@
 .tagLabel {
     color: var(--tagText);
     font-style: italic;
+    font-weight: normal;
 }
 
 .text {

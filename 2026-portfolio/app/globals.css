@@ -64,7 +64,7 @@ html {
 
 html[data-theme="dark"] {
   --fieldsetBorder: #474747;
-  --fileBarBackground: #212122;
+  --fileBarBackground: rgba(139, 216, 251, 0.1);
   --fileNameInactive: black;
   --fileNameActive: #1c1c1c;
   --lineNum: #787878;
@@ -96,7 +96,7 @@ html[data-theme="dark"] {
 
 html[data-theme="matrix"] {
   --fieldsetBorder: #5ba786;
-  --fileBarBackground: rgba(91, 167, 134, 0.1);
+  --fileBarBackground: rgba(91, 167, 134, 0.3);
   --fileNameActive: black;
   --fileNameInactive: #1c1c1c;
   --lineNum: #5ba786;

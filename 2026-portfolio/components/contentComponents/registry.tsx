@@ -8,6 +8,7 @@ import Skills from "./Skills";
 import Screenshots from "./Screenshots";
 import { ContentComponentKey } from "../../types/Files";
 import { StaticImageData } from "next/image";
+import Education from "./Education";
 
 export const contentComponentRegistry : Record<ContentComponentKey, ComponentType<{
     content? : string,
@@ -21,5 +22,6 @@ export const contentComponentRegistry : Record<ContentComponentKey, ComponentTyp
     contactMe: ContactMe,
     githubGraph: GithubGraph,
     skills: Skills,
-    screenshots: Screenshots
+    screenshots: Screenshots,
+    education: Education,
 }

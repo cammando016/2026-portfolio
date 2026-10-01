@@ -13,8 +13,6 @@ export default function LinksAndIcons() {
     
     const activeIcon : iconOptions = pathname === '/settings' ? 'settings' : 'files';
 
-    console.log(pathname, activeIcon);
-
     const handleClickIcon = (iconKey : iconOptions) => {
         if(iconKey === 'files') setShowFiles(prev => !prev);
         else if (iconKey === 'settings') router.push('/settings')
