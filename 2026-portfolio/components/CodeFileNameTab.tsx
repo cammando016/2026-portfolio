@@ -16,7 +16,6 @@ interface Props {
 export default function CodeFileNameTab(props: Props) {
     const closeFile = useCurrentFileDataStore(state => state.closeFile);
     const updateQuarterActiveFile = useCurrentFileDataStore(state => state.updateQuarterActiveFile);
-    const activeQuarter = useCurrentFileDataStore(state => state.activeScreenQuarter);
 
     const handleDragStart = (e: React.DragEvent<HTMLDivElement>) => {
         e.dataTransfer.setData('text/plain', props.fileKey);
@@ -27,7 +26,7 @@ export default function CodeFileNameTab(props: Props) {
         <div draggable={!props.isOnMobile} onDragStart={handleDragStart} className={`${globalStyles.rowFlex} ${styles.fileName} ${props.activeFileInQuarter ? styles.fileNameActive : styles.fileNameInactive}`}>
             <div className={`${globalStyles.rowFlex}`} onClick={() => updateQuarterActiveFile(props.fileKey)} >
                 <p className={`${styles.paddingSides}`}>{props.fileExtension}</p>
-                <p style={{fontWeight: props.activeFileInQuarter ? 'bold' : ''}} className={`${styles.paddingSides}`}>{props.fileName}</p>
+                <p style={{fontWeight: props.activeFileInQuarter ? 'bold' : '', flexGrow: 1}} className={`${styles.paddingSides}`}>{props.fileName}</p>
             </div>
             <button className={`${globalStyles.hover} ${styles.closeFileButton}`} onClick={() => closeFile(props.fileKey)}>X</button>
         </div>
