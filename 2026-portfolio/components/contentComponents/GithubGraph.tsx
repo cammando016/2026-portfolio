@@ -38,6 +38,9 @@ export default function GithubGraph () {
 
     if (loading) return <p className={styles.status}>Loading contributions...</p>
     if (error || !calendar) return <p className={styles.status}>{error ?? 'No data available'}</p>
+    
+    //Dates are in American format, need to store as a date object to correct, github returns as string
+    const date = new Date(latestCommit!.date);
 
     return (
         <div className={styles.graphContainer}>
@@ -82,7 +85,7 @@ export default function GithubGraph () {
                     </p>
                     <p>
                         {showTags && <span className={codeFileStyles.tagLabel}>{`<p>`}</span>}
-                        Date: {latestCommit.date.slice(0, 10)}
+                        Date: {date.toDateString().slice(0, 15)}
                         {showTags && <span className={codeFileStyles.tagLabel}>{`</p>`}</span>}
                     </p>
                     <p>
