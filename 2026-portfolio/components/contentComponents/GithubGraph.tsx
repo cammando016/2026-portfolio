@@ -36,8 +36,6 @@ export default function GithubGraph () {
         })
     }, []);
 
-    console.log(latestCommit);
-
     if (loading) return <p className={styles.status}>Loading contributions...</p>
     if (error || !calendar) return <p className={styles.status}>{error ?? 'No data available'}</p>
 

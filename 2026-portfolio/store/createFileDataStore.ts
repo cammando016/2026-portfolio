@@ -61,7 +61,10 @@ export const createFileDataStore = (initFileData: FileData[]) => {
         },
 
         collapseAllToQuarter: (targetQuarter) => {
-            set(state => ({ fileData: fileFuncs.collapseAllToQuarter(state.fileData, targetQuarter) }))
+            set(state => ({
+                fileData: fileFuncs.collapseAllToQuarter(state.fileData, targetQuarter),
+                activeScreenQuarter: targetQuarter
+            }))
         }
-    }))
+    }));
 }
