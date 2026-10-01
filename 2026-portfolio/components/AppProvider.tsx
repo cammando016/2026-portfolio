@@ -14,6 +14,7 @@ interface Props {
 }
 
 const THEME_STORAGE_KEY = 'portfolio-theme';
+const SHOW_TAGS_STORAGE_KEY = 'portfolio-show-tags';
 
 function isValidTheme(value: string | null) : value is colourSchemes {
     return COLOUR_SCHEMES.includes(value as colourSchemes);
@@ -21,11 +22,14 @@ function isValidTheme(value: string | null) : value is colourSchemes {
 
 export default function AppProvider(props: Props) {
     const [theme, setThemeState] = useState<colourSchemes>('light');
-    const [showTags, setShowTags] = useState<boolean>(true);
+    const [showTags, setShowTagsState] = useState<boolean>(true);
 
     useEffect(() => {
         const attr = document.documentElement.getAttribute('data-theme');
         if (isValidTheme(attr) && attr !== theme) setThemeState(attr);
+
+        const showTagsAttr = document.documentElement.getAttribute('data-show-tags');
+        if (showTagsAttr === 'true' || showTagsAttr === 'false') setShowTagsState(showTagsAttr === 'true');
     }, [])
 
     const setTheme = (newTheme: colourSchemes) => {
@@ -36,7 +40,16 @@ export default function AppProvider(props: Props) {
         } catch {}
     }
 
-    const toggleShowTags = () => setShowTags(prev => !prev);
+    const toggleShowTags = () => {
+        setShowTagsState(prev => {
+            const next = !prev;
+            document.documentElement.setAttribute('data-show-tags', String(next));
+            try {
+                localStorage.setItem(SHOW_TAGS_STORAGE_KEY, String(next));
+            } catch {}
+            return next;
+        })
+    }
 
     return (
         <ThemeContext.Provider

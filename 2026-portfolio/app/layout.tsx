@@ -29,6 +29,18 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             })();
           `}
         </Script>
+        <Script id="show-tags-init" strategy="beforeInteractive">
+          {`
+              (function() {
+                try {
+                  var stored = localStorage.getItem('portfolio-show-tags');
+                  if (stored === 'true' || stored === 'false') {
+                    document.documentElement.setAttribute('data-show-tags', stored);
+                  }
+                } catch (e) {}
+              })();
+          `}
+        </Script>
       </head>
       <body>
         <AppProvider children={children}/>
