@@ -46,17 +46,28 @@ export const closeFile = (fileData: FileData[], fileKey: string) : FileData[] =>
     })
 }
 
-export const openFile = (fileData: FileData[], fileKey: string, activeScreenQuarter: number) : FileData[] => {
-    //If file is already open then do nothing
-    if (fileData.find(f => f.key === fileKey)!.fileOpen) return fileData;
+export const openFile = (fileData: FileData[], fileKey: string, activeScreenQuarter: number) : { fileData: FileData[], activeScreenQuarter: number } => {
+    //If file is already open then set as the active file in it's quarter and change the active screen quarter to the opened file
+    const clickedFile = fileData.find(f => f.key === fileKey)!
+    if (clickedFile.fileOpen) {
+        const quarterOfClickedFile = clickedFile.screenQuarter;
+        const  newFileData = fileData.map(f => {
+            if (f.key === fileKey) return { ...f, activeFileInQuarter: true};
+            if (f.key !== fileKey && f.screenQuarter === quarterOfClickedFile) return {...f, activeFileInQuarter: false};
+            return f;
+        });
+        return { fileData: newFileData, activeScreenQuarter: quarterOfClickedFile }
+    }
 
-    return fileData.map(f => {
+    //If file was closed, open in the currently active screen quarter (last interacted quarter)
+    const newFileData = fileData.map(f => {
         //No changes for files not clicked on and in different screen quarter
         if (f.key !== fileKey && f.screenQuarter !== activeScreenQuarter) return f;
         //Set active file false if open and in same screen quarter
         if (f.key !== fileKey && f.screenQuarter === activeScreenQuarter) return { ...f, activeFileInQuarter: false };
         return { ...f, fileOpen: true, screenQuarter: activeScreenQuarter, activeFileInQuarter: true }
-    })
+    });
+    return { fileData: newFileData, activeScreenQuarter }
 }
 
 //Move files that have an empty quarter above, or empty half to the left to fill first available quarter

@@ -53,10 +53,7 @@ export const createFileDataStore = (initFileData: FileData[]) => {
 
         openFile: (fileKey) => {
             const { fileData, activeScreenQuarter } = get();
-            const result = fileFuncs.fillEmptyQuartersAboveAndLeft(
-                fileFuncs.openFile(fileData, fileKey, activeScreenQuarter),
-                activeScreenQuarter
-            );
+            const result = fileFuncs.openFile(fileData, fileKey, activeScreenQuarter)
             set({fileData: result.fileData, activeScreenQuarter: result.activeScreenQuarter});
         },
 
