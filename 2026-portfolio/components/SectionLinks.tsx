@@ -29,7 +29,17 @@ export default function SectionLinks (props: Props) {
     return (
         <div>
             <div onClick={() => router.push(props.link)} className={`${globalStyles.rowFlex} ${globalStyles.paddingTopBottom} ${!isActiveSection ? globalStyles.hover : ''}`}>
-                <button onClick={isActiveSection ? () => setShowLinks(!showLinks) : () => router.push(props.link)}><span className={`${styles.sectionLinksChevron} ${isActiveSection ? globalStyles.hover : ''} ${(showLinks && isActiveSection) ? styles.sectionLinksChevronExpanded : ''}`}>{`>`}</span></button> 
+                <button 
+                    onClick={(e) => {
+                        if (!isActiveSection) router.push(props.link);
+                        else {
+                            e.stopPropagation();
+                            if (isActiveSection) setShowLinks(!showLinks);
+                        }
+                    }}  
+                >
+                    <span className={`${styles.sectionLinksChevron} ${isActiveSection ? globalStyles.hover : ''} ${(showLinks && isActiveSection) ? styles.sectionLinksChevronExpanded : ''}`}>{`>`}</span>
+                </button> 
                 <button disabled={isActiveSection} onClick={() => router.push(props.link)} className={styles.linkText} >{props.sectionName}</button>
             </div>
             
