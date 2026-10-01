@@ -8,6 +8,7 @@ import { FileData } from "../types/Files";
 import { useCurrentFileDataStore } from "../store/fileDataStoreContext";
 import React, { useRef, useState, CSSProperties } from "react";
 import { usePathname } from "next/navigation";
+import SplitScreenButtons from "./SplitScreenButtons";
 
 interface Props {
     quarterFiles: FileData[],
@@ -115,10 +116,13 @@ export default function QuarterContent (props : Props) {
             {edgeZone && (
                 <div className={`${codeFileStyles.edgeZoneIndicator} ${codeFileStyles[`edgeZone_${edgeZone}`]} ${codeFileStyles.dragOver} `}></div>
             )}
-            <div ref={fileBarRef} className={`${codeFileStyles.fileBar} ${globalStyles.rowFlex}`}>
+            <div ref={fileBarRef} className={`${globalStyles.rowFlex}`} style={{minWidth: 0, justifyContent: 'space-between'}}>
+                <div className={`${codeFileStyles.fileBar}`}>
                 {
                     props.quarterFiles.map(f => <CodeFileNameTab key={f.key} fileName={f.fileName} fileExtension={f.fileExtension} fileKey={f.key} activeFileInQuarter={f.activeFileInQuarter} isOnMobile={props.isOnMobile} />)
                 }
+                </div>
+                <SplitScreenButtons screenQuarter={props.quarter} />
             </div>
             {props.quarterFiles.length > 0 && (
                 <div className={`${codeFileStyles.codeFileWrapper}`}>

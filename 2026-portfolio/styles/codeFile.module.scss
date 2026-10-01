@@ -22,7 +22,8 @@
 .fileBar {
     background-color: var(--fileBarBackground);
     display: flex;
-    flex-shrink: 0;
+    flex-grow: 1;
+    min-width: 0;
     gap: 2px;
     overflow-x: auto;
 }
@@ -142,4 +143,65 @@
 
 .text {
     text-align: justify;
+}
+
+.splitScreenButtons {
+    display: flex;
+    flex-direction: row;
+    flex-shrink: 0;
+    height: 100%;
+    gap: 6px;
+    align-items: center;
+    margin: 0 10px;
+}
+
+.splitScreenButton {
+    display: flex;
+    border-radius: 2px;
+    border: 2px solid var(--fileTabText);
+    width: 20px;
+    height: 20px;
+    justify-content: space-evenly;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.hoverFirstChild {
+    &:hover >:first-child {
+        background-color: var(--defaultText);
+    }
+}
+
+.hoverLastChild {
+    &:hover >:last-child {
+        background-color: var(--defaultText);
+    }
+}
+
+.splitScreenButtonVertical {
+    flex-direction: column;
+
+    &>:first-child {
+        border-bottom: 1px solid var(--fileTabText);
+        height: 50%;
+    }
+
+    &>:last-child {
+        border-top: 1px solid var(--fileTabText);
+        height: 50%;
+    }
+}
+
+.splitScreenButtonHorizontal {
+    &>:first-child {
+        border-right: 1px solid var(--fileTabText);
+        width: 50%;
+    }
+
+    &>:last-child {
+        border-left: 1px solid var(--fileTabText);
+        width: 50%;
+    }
 }
