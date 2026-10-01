@@ -24,6 +24,10 @@ ul {
   padding-left: 20px;
 }
 
+body {
+  max-height: 100dvh;
+}
+
 html {
   font-family: Menlo, Monaco, 'Courier New', monospace;
   --fieldsetBorder: lightslategrey;
