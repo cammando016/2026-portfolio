@@ -2,6 +2,8 @@
     border: 2px solid var(--fieldsetBorder);
     border-radius: 5px;
     padding: 5px 15px 20px;
+    min-width: 0;
+    overflow-x: auto;
 }
 
 .contactLegend {
@@ -21,10 +23,6 @@
 .checkbox {
     margin-right: 5px;
     align-self: center;
-}
-
-.inputLarge {
-    height: 1;
 }
 
 .inputDiv {

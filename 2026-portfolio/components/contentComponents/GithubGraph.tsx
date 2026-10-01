@@ -49,23 +49,25 @@ export default function GithubGraph () {
                 {showTags && <span className={codeFileStyles.tagLabel}>{`</h3>`}</span>}
             </h3>
             <p className={styles.total}>{`${calendar.totalContributions} contributions in the past year ->`}</p>
-            <div className={styles.grid}>
-                {
-                    calendar.weeks.map((w, i) => (
-                        <div key={i} className={styles.week}>
-                            {
-                                w.contributionDays.map(d => (
-                                    <div 
-                                        key={d.date}
-                                        title={`${d.contributionCount} contributions on ${d.date}`}
-                                        className={styles.day}
-                                        style={{ backgroundColor: `var(--contribLevel${getIntencityLevel(d.contributionCount)})` }}
-                                    />
-                                ))
-                            }
-                        </div>
-                    ))
-                }
+            <div className={styles.graphScroll}>
+                <div className={styles.grid}>
+                    {
+                        calendar.weeks.map((w, i) => (
+                            <div key={i} className={styles.week}>
+                                {
+                                    w.contributionDays.map(d => (
+                                        <div 
+                                            key={d.date}
+                                            title={`${d.contributionCount} contributions on ${d.date}`}
+                                            className={styles.day}
+                                            style={{ backgroundColor: `var(--contribLevel${getIntencityLevel(d.contributionCount)})` }}
+                                        />
+                                    ))
+                                }
+                            </div>
+                        ))
+                    }
+                </div>
             </div>
 
             {latestCommit &&

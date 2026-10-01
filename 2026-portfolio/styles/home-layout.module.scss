@@ -61,6 +61,7 @@ html, body {
 .contentPane {
     flex: 1;
     min-height: 0;
+    min-width: 0;
     display: flex;
     > :nth-child(2) {
         border-left-width: 1px;

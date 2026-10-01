@@ -26,14 +26,14 @@ const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z
 
 const validateForm = (values: FormState) : FormErrors => {
     const errors: FormErrors = {};
-    if (!values.submittedName.trim()) errors.submittedName = 'Required field';
+    if (!values.submittedName.trim()) errors.submittedName = 'Required';
     if (!values.returnEmail.trim()) {
-        errors.returnEmail = 'Required field';
+        errors.returnEmail = 'Required';
     } else if (!EMAIL_REGEX.test(values.returnEmail)) {
-        errors.returnEmail = 'Invalid format';
+        errors.returnEmail = 'Invalid';
     }
-    if (!values.subject.trim()) errors.subject = 'Required field';
-    if (!values.emailContent.trim()) errors.emailContent = 'Required field';
+    if (!values.subject.trim()) errors.subject = 'Required';
+    if (!values.emailContent.trim()) errors.emailContent = 'Required';
     return errors;
 }
 
@@ -148,7 +148,7 @@ export default function ContactMe () {
                     <div className={`${globalStyles.columnFlex} ${styles.inputDiv}`}>
                         <label className={styles.label} htmlFor='company'>Company</label>
                         <input
-                            maxLength={20}
+                            maxLength={40}
                             placeholder="Please enter your company name"
                             className={`${styles.input} `}
                             id="company"
