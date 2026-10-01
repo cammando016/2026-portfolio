@@ -24,8 +24,8 @@ ul {
   padding-left: 20px;
 }
 
-body {
-  max-height: 100dvh;
+@media (max-width: 768px) {
+  body {max-height: 100svh;}
 }
 
 html {
