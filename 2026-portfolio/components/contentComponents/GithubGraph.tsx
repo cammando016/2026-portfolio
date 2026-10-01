@@ -46,7 +46,7 @@ export default function GithubGraph () {
                 Contribution History
                 {showTags && <span className={codeFileStyles.tagLabel}>{`</h3>`}</span>}
             </h3>
-            <p className={styles.total}>{`${calendar.totalContributions} contributions in the past year ->`}</p>
+            <p className={styles.total}>{`<- ${calendar.totalContributions} contributions in the past year ->`}</p>
             <div className={styles.graphScroll}>
                 <div className={styles.grid}>
                     {
@@ -77,7 +77,7 @@ export default function GithubGraph () {
                     </h3>
                     <p>
                         {showTags && <span className={codeFileStyles.tagLabel}>{`<p>`}</span>}
-                        Repo: {latestCommit.repo}
+                        Repo: <a style={{textDecoration: 'underline'}} href={`https://github.com/${latestCommit.repo}`} rel="noopener noreferrer" target="_blank">{latestCommit.repo}</a>
                         {showTags && <span className={codeFileStyles.tagLabel}>{`</p>`}</span>}
                     </p>
                     <p>

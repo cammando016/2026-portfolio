@@ -60,7 +60,7 @@ export default function Settings() {
                                 onChange={handleChangeTheme}
                                 className={styles.radioSelector}
                             />
-                            <span style={{ color: paletteArray.slice(1, 2)[0] }} className={styles.span}>{c}</span>
+                            <span style={{ color: paletteArray.slice(1, 2)[0], fontWeight: theme === c ? 'bold' : '' }} className={styles.span}>{c}</span>
                             <ThemePalette colours={paletteArray.slice(1)} />
                         </label>
                     )
