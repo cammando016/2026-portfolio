@@ -10,21 +10,66 @@ interface Props {
 
 export default function SplitScreenButtons (props : Props) {
     const fileData : FileData[] = useCurrentFileDataStore(state => state.fileData);
+    const updateFileScreenQuarter = useCurrentFileDataStore(state => state.updateFileScreenQuarter);
+    const activeFileInQuarter : string = fileData.find(f => f.activeFileInQuarter && f.screenQuarter === props.screenQuarter && f.fileOpen)!.key;
+
+    //if there are at least two files, then they can be split to left and right sides of screen
+    const canMoveHorizontal : boolean = fileData.filter(f => f.fileOpen).length > 1;
+
+    //Must be at least 2 open files in the left or right side, to allow moving between top and bottom halves of each side
+    const canMoveVertical : boolean = (
+        props.screenQuarter < 3 ?
+            fileData.filter(f => f.screenQuarter < 3 && f.fileOpen).length > 1 :
+            fileData.filter(f => f.screenQuarter > 2 && f.fileOpen).length > 1
+    );
+
+    /* 
+    <--------- ---------->
+    Don't need to handle whether moving files leaves a quarter empty
+    Files automatically collapse if no files in quarters to left or above
+    ie none in 1 or 3, files in 2 or 4 move up 1.
+    ie none in 1 and 2, files in 3 or 4 move down 2.
+    */
+
+    //Quarter below 3 means it is on the left, move to the right
+    //Quarter above 2 means it is on the right, move to the left
+    const handleMoveHorizontal = () => {
+        props.screenQuarter < 3 ?
+            updateFileScreenQuarter(activeFileInQuarter, props.screenQuarter + 2) :
+            updateFileScreenQuarter(activeFileInQuarter, props.screenQuarter - 2)
+    };
+
+    //Quarter is even means it is on the bottom, move to the top
+    //Quarter is odd means it is on the top, move to the bottom
+    const handleMoveVertical = () => {
+        props.screenQuarter % 2 === 0 ? 
+            updateFileScreenQuarter(activeFileInQuarter, props.screenQuarter - 1) :
+            updateFileScreenQuarter(activeFileInQuarter, props.screenQuarter + 1)
+    }
 
     return (
-        <div className={styles.splitScreenButtons}>
-            <div 
-                className={`${styles.splitScreenButton} ${styles.splitScreenButtonHorizontal} ${props.screenQuarter < 3 ? styles.hoverLastChild : styles.hoverFirstChild}`}
-            >
-                <span></span>
-                <span></span>
+        (canMoveHorizontal || canMoveVertical) &&
+            <div className={styles.splitScreenButtons}>
+                { canMoveHorizontal &&
+                    <button 
+                        onClick={handleMoveHorizontal}
+                        className={`${styles.splitScreenButton} ${styles.splitScreenButtonHorizontal} ${props.screenQuarter < 3 ? styles.hoverLastChild : styles.hoverFirstChild}`}
+                    >
+                        {/* Size set automatically in css properties for children of outer div */}
+                        <span></span>
+                        <span></span>
+                    </button>
+                }
+                { canMoveVertical && 
+                    <button 
+                        onClick={handleMoveVertical}
+                        className={`${styles.splitScreenButton} ${styles.splitScreenButtonVertical} ${props.screenQuarter % 2 === 0 ? styles.hoverFirstChild : styles.hoverLastChild}`}
+                    >
+                        {/* Size set automatically in css properties for children of outer div */}
+                        <span></span>
+                        <span></span>
+                    </button>
+                }
             </div>
-            <div 
-                className={`${styles.splitScreenButton} ${styles.splitScreenButtonVertical} ${props.screenQuarter % 2 === 0 ? styles.hoverFirstChild : styles.hoverLastChild}`}
-            >
-                <span></span>
-                <span></span>
-            </div>
-        </div>
     )
 }
