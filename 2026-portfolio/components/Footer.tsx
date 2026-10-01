@@ -11,13 +11,13 @@ export default function Footer() {
         <div className={`${styles.bottomScreenBar}`}>
             <p>
                 {showTags && <span>{`<p>`}</span>}
-                {`Theme: ${theme}`}
+                {`Theme: ${theme.slice(0, 1).toUpperCase()}${theme.slice(1)}`}
                 {showTags && <span>{`</p>`}</span>}
             </p>
 
             <p>
                 {showTags && <span>{`<p>`}</span>}
-                {`Element Tags: ${showTags ? 'On' : 'Off'}`}
+                {`Tags: ${showTags ? 'On' : 'Off'}`}
                 {showTags && <span>{`</p>`}</span>}
             </p>
         </div>

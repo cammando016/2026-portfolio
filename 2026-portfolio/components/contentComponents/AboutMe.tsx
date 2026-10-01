@@ -22,16 +22,16 @@ export default function AboutMe () {
             <br />
             <p>
                 {showTags && <span className={styles.tagLabel}>{`<p>`}</span>}
-                I completed a 6 month graduate program as a Software Support Consultant.
+                I completed a 6 month graduate program as a software support consultant at Halo Service Solutions.
                 My responsibilities were software support for existing customers, writing bespoke SQL reports per customer requests, and assisting with product implementation for new clients.
-                The implementations were a mix of remote and on site, including being the supporting consultant for the 2 largest clients assisting with both on site at the clients' offices in New Zealand.
+                The implementations were a mix of remote and on site, including being the supporting consultant for the 2 largest clients and supporting the rollouts for both companies at their New Zealand offices.
                 {showTags && <span className={styles.tagLabel}>{`</p>`}</span>}
             </p>
             <br />
             <p>
                 {showTags && <span className={styles.tagLabel}>{`<p>`}</span>}
                 Due to strong technical skills shown in my role as a manager at Village Cinemas, I was offered a fixed term developer secondment within the projection support department. 
-                During this secondment I was tasked with building a python script run on through a small user interface on an M5Stack device to send and receive MQTT messages via AWS to each cinema's sound system for external volume control.
+                During this secondment I was tasked with building a python script, run through a small user interface on an M5Stack device, to send and receive MQTT messages via AWS to each cinema's sound system for external volume control.
                 {showTags && <span className={styles.tagLabel}>{`</p>`}</span>}
             </p>
 
