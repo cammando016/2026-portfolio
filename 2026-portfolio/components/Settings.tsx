@@ -19,7 +19,7 @@ export default function Settings() {
         '#106e86',
         '#f3f3f3',
         '#A51F26',
-        '#0b3d91'
+        '#724f94'
     ];
 
     const darkModeColours : string[] = [
@@ -51,7 +51,7 @@ export default function Settings() {
                         c === 'light' ? lightModeColours :
                             c === 'dark' ? darkModeColours : matrixModeColours;
                     return (
-                        <label className={styles.label} style={{ backgroundColor: paletteArray[0] }} key={c}>
+                        <label className={styles.label} style={{ backgroundColor: paletteArray[0], borderColor: paletteArray.slice(4)[0], border: theme === c ? '2px solid' : '' }} key={c}>
                             <input
                                 type="radio"
                                 name={c}
