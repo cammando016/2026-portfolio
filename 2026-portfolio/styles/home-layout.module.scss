@@ -159,6 +159,7 @@ html, body {
 
     .filesPane {
         display: flex;
+        flex-direction: column;
         width: 100%;
         max-width: none;
         flex: 0 1 auto;
