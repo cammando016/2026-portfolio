@@ -1,16 +1,21 @@
 'use client'
 
 import { ThemeContext } from "../store/colourSchemeContext";
-import styles from '../styles/home-layout.module.scss';
+import { ShowTagsContext } from "../store/showTagsContext";
+import { SearchIndexContext } from "../store/searchIndexContext";
+
 import ActiveStoreProvider from "../components/ActiveStoreProvider";
 import LinksAndIcons from "../components/LinksAndIcons";
-import { useEffect, useState } from "react";
-import { COLOUR_SCHEMES, colourSchemes } from "../types/Files";
 import Footer from "./Footer";
-import { ShowTagsContext } from "../store/showTagsContext";
+
+import styles from '../styles/home-layout.module.scss';
+
+import { useEffect, useState } from "react";
+import { COLOUR_SCHEMES, colourSchemes, SearchableFile } from "../types/Files";
 
 interface Props {
-    children: React.ReactNode
+    searchIndex: SearchableFile[],
+    children: React.ReactNode,
 }
 
 const THEME_STORAGE_KEY = 'portfolio-theme';
@@ -52,27 +57,25 @@ export default function AppProvider(props: Props) {
     }
 
     return (
-        <ThemeContext.Provider
-            value={{theme, setTheme}}
-        >
-            <ShowTagsContext.Provider
-                value={{showTags, toggleShowTags}}
-            >
-                <div className={`${styles.window}`}>
-                <div className={`${styles.topScreenBar} ${styles.rowFlex} `}>
-                    <div className={` ${styles.windowControlContainer} ${styles.windowIconRed} `}></div>
-                    <div className={` ${styles.windowControlContainer} ${styles.windowIconYellow} `}></div>
-                    <div className={` ${styles.windowControlContainer} ${styles.windowIconGreen} `}></div>
-                </div>
+        <ThemeContext.Provider value={{theme, setTheme}} >
+            <ShowTagsContext.Provider value={{showTags, toggleShowTags}} >
+                <SearchIndexContext.Provider value={props.searchIndex} >
+                    <div className={`${styles.window}`}>
+                    <div className={`${styles.topScreenBar} ${styles.rowFlex} `}>
+                        <div className={` ${styles.windowControlContainer} ${styles.windowIconRed} `}></div>
+                        <div className={` ${styles.windowControlContainer} ${styles.windowIconYellow} `}></div>
+                        <div className={` ${styles.windowControlContainer} ${styles.windowIconGreen} `}></div>
+                    </div>
 
-                <div className={`${styles.homeContainer} ${styles.rowFlex}`}>
-                    <LinksAndIcons />
-                    <ActiveStoreProvider>{props.children}</ActiveStoreProvider>
-                </div>
+                    <div className={`${styles.homeContainer} ${styles.rowFlex}`}>
+                        <LinksAndIcons />
+                        <ActiveStoreProvider>{props.children}</ActiveStoreProvider>
+                    </div>
 
-                <Footer />
+                    <Footer />
 
-                </div>
+                    </div>
+                </SearchIndexContext.Provider>
             </ShowTagsContext.Provider>
         </ThemeContext.Provider>
     )
