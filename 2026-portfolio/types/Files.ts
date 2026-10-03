@@ -44,3 +44,19 @@ export interface LatestCommit {
     date: string,
     url: string,
 }
+
+export interface Skill {
+    logo: StaticImageData,
+    alt: string,
+    label: string,
+    theme?: colourSchemes,
+}
+
+interface ContentSection {
+    heading: string,
+    paragraphs: string[],
+}
+
+export interface TextContent {
+    sections: ContentSection[],
+}
