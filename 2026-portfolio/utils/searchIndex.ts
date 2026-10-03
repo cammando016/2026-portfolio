@@ -2,7 +2,7 @@ import { backgroundContent } from "../data/background";
 import { educationContent } from "../data/education";
 import { homeFileData } from "../data/homeFileData";
 import { projectsConfig } from "../data/projectsConfig";
-import { settingsSearchEntries } from "../data/settingsSearchEntries";
+import { settingsSearchEntries, githubSearchEntries, contactSearchEntries } from "../data/manualSearchEntries";
 import { skillLogosData } from "../data/skills";
 import { FileData, SearchableFile, TextContent } from "../types/Files";
 import { fetchReadme } from "./githubFetch";
@@ -45,7 +45,7 @@ const buildSearchEntry = (f: FileData, route: string, storeId: string) : Searcha
 
 //Combine all searchable files into array of search results tied to file data
 export async function buildSearchIndex () : Promise<SearchableFile[]> {
-    const index : SearchableFile[] = [...settingsSearchEntries];
+    const index : SearchableFile[] = [...settingsSearchEntries, ...githubSearchEntries, ...contactSearchEntries];
 
     //Add each searchable file string into search index array
     homeFileData.forEach(f => {
