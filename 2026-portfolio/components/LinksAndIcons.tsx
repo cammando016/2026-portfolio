@@ -3,11 +3,9 @@
 import { useRef, useState, useEffect } from "react";
 import Icons from "./Icons";
 import Links from "./Links";
+import SearchBar from "./SearchBar";
 import { iconOptions } from "../types/Files";
 import { usePathname, useRouter } from "next/navigation";
-
-
-import styles from '../styles/home-layout.module.scss';
 
 const MOBILE_WIDTH_BREAKPOINT = 768;
 
@@ -65,7 +63,7 @@ export default function LinksAndIcons() {
             {panelOpen && (
                 panelContent === 'files' 
                     ? <Links onAnyClick={closePanelMobile} />
-                    : <div className={styles.filesPane}><p>Search</p></div> //placeholder to test toggling displayed content
+                    : <SearchBar />
             )}
         </>
     )
