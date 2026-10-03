@@ -187,14 +187,15 @@ export default function ContactMe () {
                             onChange={(e) => setForm(prev => ({...prev, emailContent: e.target.value})) }
                         ></textarea>
                     </div>
-                    <div className={`${styles.inputDiv} ${globalStyles.rowFlex}`}>
+                    <div className={`${styles.inputDiv} ${globalStyles.rowFlex}`} style={{alignItems: 'center'}}>
                         <input
                             className={`${styles.checkbox}`}
                             type="checkbox"
+                            id="cc"
                             value={styles.receiveCC}
                             onChange={() => setForm(prev => ({...prev, receiveCC: !prev.receiveCC})) }
                         />
-                        <label className={styles.label} htmlFor='cc'>Receive CC?</label>
+                        <label className={styles.label} style={{cursor: 'pointer'}} htmlFor='cc'>Receive CC?</label>
                     </div>
                     <div>
                         <ReCAPTCHA 
