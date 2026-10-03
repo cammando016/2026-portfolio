@@ -21,7 +21,7 @@ export default async function ProjectPage(props : Props) {
         const readmeContent = await fetchReadme(project.githubRepo.owner, project.githubRepo.repo);
 
         const readmeFile: FileData = {
-            key: crypto.randomUUID(),
+            key: `readme-${slug}`,
             screenQuarter: 1,
             fileName: 'README',
             lineCount: readmeContent.split(`\n`).length,

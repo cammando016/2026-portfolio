@@ -60,3 +60,12 @@ interface ContentSection {
 export interface TextContent {
     sections: ContentSection[],
 }
+
+export interface SearchableFile {
+    key: string,
+    fileName: string,
+    fileExtension: string,
+    route: string,
+    storeId: string,
+    searchableText: string,
+}
