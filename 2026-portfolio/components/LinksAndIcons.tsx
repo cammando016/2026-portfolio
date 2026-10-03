@@ -63,7 +63,7 @@ export default function LinksAndIcons() {
             {panelOpen && (
                 panelContent === 'files' 
                     ? <Links onAnyClick={closePanelMobile} />
-                    : <SearchBar />
+                    : <SearchBar onAnyClick={closePanelMobile} />
             )}
         </>
     )

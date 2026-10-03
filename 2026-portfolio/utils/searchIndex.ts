@@ -74,3 +74,14 @@ export async function buildSearchIndex () : Promise<SearchableFile[]> {
 
     return index;
 }
+
+export function searchFiles(index: SearchableFile[], query: string, currentPathname: string, limit = 5) : SearchableFile[] {
+    const q = query.trim().toLowerCase();
+    if (!q) return [];
+
+    const matches : SearchableFile[] = index.filter(f => f.searchableText.includes(q));
+    const currentSection : SearchableFile[] = matches.filter(f => f.route === currentPathname); //Search results from the same path should be shown first
+    const otherSections : SearchableFile[]  = matches.filter(f => f.route !== currentPathname); //Search results from all other paths, 0 or more matches
+
+    return [...currentSection, ...otherSections].slice(0, limit);
+}
