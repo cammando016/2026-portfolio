@@ -15,6 +15,15 @@ import calendarScreenshot7 from '../assets/calendarCreateEvent.png';
 import calendarScreenshot8 from '../assets/calendarGroupList.png';
 import calendarScreenshot9 from '../assets/calendarEditGroup.png';
 import resumeScreenshot0 from '../assets/resumeScreenshot0.png';
+import gym0 from '../assets/gymHomeIncompletedWorkout.png';
+import gym1 from '../assets/gymLogWorkout.png';
+import gym2 from '../assets/gymHomeCompletedWorkout.png';
+import gym3 from '../assets/gymWorkoutsTab.png';
+import gym4 from '../assets/gymEditSplit.png';
+import gym5 from '../assets/gymWorkoutTemplates.png';
+import gym6 from '../assets/gymCreateWorkoutTemplate.png';
+import gym7 from '../assets/gymCreateExercise.png';
+import gym8 from '../assets/gymEditWorkout.png';
 
 export interface ProjectConfig {
     slug: string,
@@ -103,6 +112,17 @@ export const projectsConfig: ProjectConfig[] = [
                 contentComponent: 'projectLinks',
                 githubLink: 'https://github.com/cammando016/gym'
             },
+            {
+                key: crypto.randomUUID(),
+                screenQuarter: 4,
+                fileName: 'Screenshots',
+                lineCount: 0,
+                fileExtension: 'png',
+                fileOpen: true,
+                activeFileInQuarter: true,
+                contentComponent: 'screenshots',
+                screenshots: [gym0, gym1, gym2, gym3, gym4, gym5, gym6, gym7, gym8],
+            }
         ],
     },
     {
