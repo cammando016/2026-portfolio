@@ -19,7 +19,6 @@ type UntoggleableProps = {
     toggleable: false,
     activeIcon: iconOptions,
     iconType: iconOptions,
-    handleClickIcon: (iconKey: iconOptions) => void,
     selectedIconSrc: StaticImageData,
     selectedIconAlt: string,
     unselectedIconSrc?: never,

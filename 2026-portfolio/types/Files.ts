@@ -17,7 +17,7 @@ export interface FileData {
     screenshots? : StaticImageData[],
 }
 
-export type iconOptions = 'files' | 'settings' | 'logo' | null;
+export type iconOptions = 'files' | 'search' | 'settings' | 'logo' | null;
 
 export const COLOUR_SCHEMES = ['light', 'dark', 'matrix'] as const;
 export type colourSchemes = typeof COLOUR_SCHEMES[number];
