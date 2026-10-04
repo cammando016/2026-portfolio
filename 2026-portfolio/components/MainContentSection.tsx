@@ -19,7 +19,6 @@ export default function MainContentSection () {
     useEffect(() => {
         const mediaQuery = window.matchMedia(`(max-width: ${MOBILE_WIDTH_BREAKPOINT}px)`);
         const handleChange = (e: MediaQueryListEvent | MediaQueryList) => {
-            console.log('[MainContentSection] handleChange fired, matches:', e.matches, 'hydrated:', hydrated)
             setIsOnMobile(e.matches);
             if (e.matches) collapseAllToQuarter(1);
         }
@@ -28,7 +27,7 @@ export default function MainContentSection () {
         mediaQuery.addEventListener('change', handleChange);
 
         return () => mediaQuery.removeEventListener('change', handleChange)
-    }, [collapseAllToQuarter])
+    }, [collapseAllToQuarter, hydrated])
 
     const quarterFiles : FileData[][] = [[], [], [], []];
     fileData.forEach(f => {
