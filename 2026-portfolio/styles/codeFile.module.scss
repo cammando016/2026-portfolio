@@ -208,3 +208,14 @@
         width: 50%;
     }
 }
+
+.bottomGlow {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 12px;
+    pointer-events: none;
+    background: linear-gradient(to bottom, transparent, var(--scrollGlow));
+    z-index: 5;
+}

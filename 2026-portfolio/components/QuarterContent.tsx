@@ -38,6 +38,8 @@ export default function QuarterContent (props : Props) {
     const containerRef = useRef<HTMLDivElement>(null);
     const dragCounter = useRef<number>(0);
 
+    const [showBottomGlow, setShowBottomGlow] = useState<boolean>(false);
+
     const fileBarRef = useRef<HTMLDivElement>(null);
     const pathnameRef = useRef<HTMLDivElement>(null);
 
@@ -130,9 +132,10 @@ export default function QuarterContent (props : Props) {
                         {pathnamePieces.map(p => <p className={`${codeFileStyles.pathnamePiece}`} key={p}>{`${p} >`}</p> )}
                         <p className={`${codeFileStyles.pathnamePiece}`}>{activeFile.fileName}.{activeFile.fileExtension}</p>
                     </div>
-                    <CodeFile file={props.quarterFiles.filter(f => f.activeFileInQuarter)[0]} onContentHeightChange={handleContentHeightChange} />
+                    <CodeFile file={props.quarterFiles.filter(f => f.activeFileInQuarter)[0]} onContentHeightChange={handleContentHeightChange} onOverflowChange={setShowBottomGlow}/>
                 </div>
             )}
+            {showBottomGlow && <div className={codeFileStyles.bottomGlow}/>}
         </div>
     )
 }

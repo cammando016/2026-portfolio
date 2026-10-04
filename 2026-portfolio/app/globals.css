@@ -52,6 +52,7 @@ html {
   --contribLevel4: #724f94;
   --disabledButtonText: rgb(220, 96, 96);
   --disabledButtonBackground: lightgrey;
+  --scrollGlow: #d8d8d8;
 }
 
 html[data-theme="dark"] {
@@ -85,6 +86,7 @@ html[data-theme="dark"] {
   --contribLevel4: #ffff30;
   --disabledButtonText: rgb(220, 96, 96);
   --disabledButtonBackground: rgb(63, 63, 63);
+  --scrollGlow: #373737;
 }
 
 html[data-theme="matrix"] {
@@ -121,4 +123,5 @@ html[data-theme="matrix"] {
   --contribLevel4: #6bff73;
   --disabledButtonText: rgb(220, 96, 96);
   --disabledButtonBackground: rgb(63, 63, 63);
+  --scrollGlow: #434343;
 }
