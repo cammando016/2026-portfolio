@@ -139,7 +139,6 @@ export const projectsConfig: ProjectConfig[] = [
                 fileOpen: true,
                 activeFileInQuarter: true,
                 contentComponent: 'projectLinks',
-                projectLink: 'https://c-anderson-resume.netlify.app/#education-section',
                 githubLink: 'https://github.com/cammando016/resume-draft'
             },
             {
