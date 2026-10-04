@@ -14,11 +14,13 @@ export default function MainContentSection () {
     const fileData : FileData[] = useCurrentFileDataStore(state => state.fileData);
     const [isOnMobile, setIsOnMobile] = useState<boolean>(false);
 
+    const hydrated = useCurrentFileDataStore(state => state.hydrated);
+
     useEffect(() => {
         const mediaQuery = window.matchMedia(`(max-width: ${MOBILE_WIDTH_BREAKPOINT}px)`);
         const handleChange = (e: MediaQueryListEvent | MediaQueryList) => {
+            console.log('[MainContentSection] handleChange fired, matches:', e.matches, 'hydrated:', hydrated)
             setIsOnMobile(e.matches);
-            console.log(e.matches);
             if (e.matches) collapseAllToQuarter(1);
         }
 

@@ -15,6 +15,7 @@ export default function ProjectPageClient (props : Props) {
     const hydrateFileData = useStore(state => state.hydrateFileData);
 
     useEffect(() => {
+        console.log('[ProjectPageClient] hydrating', props.slug, props.initialFileData.map(f => f.screenQuarter));
         hydrateFileData(props.initialFileData);
     }, []);
 
