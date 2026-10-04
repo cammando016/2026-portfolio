@@ -23,7 +23,7 @@ export default function Screenshots (props : Props) {
     }, [screenshots.length]);
 
     const prevScreenshot = useCallback(() => {
-        setScreenshotIndex(i => (i === 0 ? screenshots.length - 1 : 1 - 1))
+        setScreenshotIndex(i => (i === 0 ? screenshots.length - 1 : i - 1))
     }, [screenshots.length]);
 
     const resetTimer = useCallback(() => {

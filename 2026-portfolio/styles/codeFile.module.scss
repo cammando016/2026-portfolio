@@ -124,6 +124,7 @@
     padding-left: 15px;
     flex-shrink: 0;
     margin-bottom: 10px;
+    overflow-x: scroll;
 }
 
 .pathnameContainerActive {
@@ -133,6 +134,7 @@
 
 .pathnamePiece {
     margin-right: 5px;
+    flex-shrink: 0;
 }
 
 .tagLabel {
