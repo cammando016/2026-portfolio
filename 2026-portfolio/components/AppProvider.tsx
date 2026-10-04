@@ -60,20 +60,19 @@ export default function AppProvider(props: Props) {
         <ThemeContext.Provider value={{theme, setTheme}} >
             <ShowTagsContext.Provider value={{showTags, toggleShowTags}} >
                 <SearchIndexContext.Provider value={props.searchIndex} >
-                    <div className={`${styles.window}`}>
-                    <div className={`${styles.topScreenBar} ${styles.rowFlex} `}>
-                        <div className={` ${styles.windowControlContainer} ${styles.windowIconRed} `}></div>
-                        <div className={` ${styles.windowControlContainer} ${styles.windowIconYellow} `}></div>
-                        <div className={` ${styles.windowControlContainer} ${styles.windowIconGreen} `}></div>
-                    </div>
+                    <div className={`${styles.windowStyles}`}>
+                        <div className={`${styles.topScreenBar} ${styles.rowFlex} `}>
+                            <div className={` ${styles.windowControlContainer} ${styles.windowIconRed} `}></div>
+                            <div className={` ${styles.windowControlContainer} ${styles.windowIconYellow} `}></div>
+                            <div className={` ${styles.windowControlContainer} ${styles.windowIconGreen} `}></div>
+                        </div>
 
-                    <div className={`${styles.homeContainer} ${styles.rowFlex}`}>
-                        <LinksAndIcons />
-                        <ActiveStoreProvider>{props.children}</ActiveStoreProvider>
-                    </div>
+                        <div className={`${styles.homeContainer} ${styles.rowFlex}`}>
+                            <LinksAndIcons />
+                            <ActiveStoreProvider>{props.children}</ActiveStoreProvider>
+                        </div>
 
-                    <Footer />
-
+                        <Footer />
                     </div>
                 </SearchIndexContext.Provider>
             </ShowTagsContext.Provider>
