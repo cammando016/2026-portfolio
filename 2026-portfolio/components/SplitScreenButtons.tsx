@@ -34,10 +34,21 @@ export default function SplitScreenButtons (props : Props) {
 
     //Quarter below 3 means it is on the left, move to the right
     //Quarter above 2 means it is on the right, move to the left
+
+    //If quarter is even, it is below another file. Moving to the side should only place below files on adjacent side if there are already open files below
+    //ie RHS only has one full height file (quarter 3), moving a quarter 2 file to the right should go into quarter 3 to match opposite side window structure
     const handleMoveHorizontal = () => {
-        props.screenQuarter < 3 ?
-            updateFileScreenQuarter(activeFileInQuarter, props.screenQuarter + 2) :
-            updateFileScreenQuarter(activeFileInQuarter, props.screenQuarter - 2)
+        if (props.screenQuarter < 3) {
+            const hasFilesInQuarterFour = fileData.some(f => f.screenQuarter === 4);
+            const targetQuarter = props.screenQuarter === 2 && hasFilesInQuarterFour ? 4 : 3;
+
+            updateFileScreenQuarter(activeFileInQuarter, targetQuarter);
+        } else {
+            const hasFilesInQuarterTwo = fileData.some(f => f.screenQuarter === 2);
+            const targetQuarter = props.screenQuarter === 4 && hasFilesInQuarterTwo ? 2 : 1;
+
+            updateFileScreenQuarter(activeFileInQuarter, targetQuarter)
+        }
     };
 
     //Quarter is even means it is on the bottom, move to the top
