@@ -13,7 +13,7 @@ ul {
 }
 
 @media (max-width: 768px) {
-  body {max-height: 100svh;}
+  body {height: 100svh;}
 }
 
 html {
