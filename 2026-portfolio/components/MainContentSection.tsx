@@ -18,6 +18,7 @@ export default function MainContentSection () {
         const mediaQuery = window.matchMedia(`(max-width: ${MOBILE_WIDTH_BREAKPOINT}px)`);
         const handleChange = (e: MediaQueryListEvent | MediaQueryList) => {
             setIsOnMobile(e.matches);
+            console.log(e.matches);
             if (e.matches) collapseAllToQuarter(1);
         }
 

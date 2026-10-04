@@ -128,7 +128,7 @@ export default function QuarterContent (props : Props) {
                 <div className={`${codeFileStyles.codeFileWrapper}`}>
                     <div ref={pathnameRef} style={{fontWeight: (activeFile && props.quarter === activeQuarter) ? 'bold' : ''}} className={`${globalStyles.rowFlex} ${codeFileStyles.pathnameContainer} ${props.quarter === activeQuarter ? codeFileStyles.pathnameContainerActive : '' }`}>
                         {pathnamePieces.map(p => <p className={`${codeFileStyles.pathnamePiece}`} key={p}>{`${p} >`}</p> )}
-                        <p className={`${codeFileStyles.pathnamePiece}`}>{activeFile.fileName}.{activeFile.fileExtension}</p>
+                        <p className={`${codeFileStyles.pathnamePiece}`}>{activeFile.fileName}.{activeFile.fileExtension} {activeFile.screenQuarter} {props.isOnMobile}</p>
                     </div>
                     <CodeFile file={props.quarterFiles.filter(f => f.activeFileInQuarter)[0]} onContentHeightChange={handleContentHeightChange} />
                 </div>
